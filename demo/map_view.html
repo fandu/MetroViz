@@ -6,7 +6,11 @@
     <title>Untitled Document</title>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript" src="../d3.v3/d3.v3.js"></script>
+    <script type="text/javascript" src="../jQuery/jquery-2.0.3.min.js"></script>
     <style type="text/css">
+    #map * {
+        cursor: default;
+    }
     html, body, #map {
         width: 800px;
         height: 600px;
@@ -17,15 +21,24 @@
         position: absolute;
     }
     .stations svg {
-        width: 60px;
-        height: 20px;
+        width: 200px;
+        height: 25px;
         padding-right: 100px;
         font: 12px sans-serif;
     }
     .stations circle {
-        fill: none;
+        fill: brown;
+        stroke: white;
+        stroke-width: 3px;
+        cursor: pointer !important;
+    }
+    .stations text {
         stroke: brown;
-        stroke-width: 2px;
+        font-size: 18px;
+        visibility: hidden;
+    }
+    .stations circle.mouseon {
+        fill: blue;
     }
     </style>
 </head>
@@ -50,7 +63,7 @@
 
         // Add the container when the overlay is added to the map.
         overlay.onAdd = function() {
-            var layer = d3.select(this.getPanes().overlayLayer).append("div")
+            var layer = d3.select(this.getPanes().overlayMouseTarget).append("div")
                 .attr("class", "stations");
 
             // Draw each marker as a separate SVG element.
@@ -61,24 +74,38 @@
 
                 var marker = layer.selectAll("svg")
                     .data(d3.entries(data))
-                    .each(transform) // update existing markers
-                .enter().append("svg:svg")
-                    .each(transform)
+                // for every time
+                .each(transform)
+                    .enter().append("svg")
+                // for the first time
+                .each(transform)
                     .attr("class", "marker");
 
                 // Add a circle.
-                marker.append("svg:circle")
-                    .attr("r", 5)
+                marker.append("circle")
+                    .attr("r", 10)
                     .attr("cx", padding)
-                    .attr("cy", padding);
+                    .attr("cy", padding)
+                    .on("mouseover", function(d) {
+                        $(this).next("text").attr("style", "visibility: visible");
+                        d3.select(this).classed("mouseon", true);
+                    })
+                    .on("mouseout", function(d) {
+                        $(this).next("text").attr("style", "visibility: hidden");
+                        d3.select(this).classed("mouseon", false);
+                    })
+                    .on("click", function(d) {
+                        log($(this).next("text").text());
+                        alert($(this).next("text").text());
+                    });
 
                 // Add a label.
-                marker.append("svg:text")
-                    .attr("x", padding + 7)
+                marker.append("text")
+                    .attr("x", padding + 18)
                     .attr("y", padding)
-                    .attr("dy", ".31em")
+                    .attr("dy", "7px")
                     .text(function(d) {
-                        //return d.key;
+                        return d.key;
                     });
 
                 function transform(d) {
@@ -94,6 +121,10 @@
         // Bind our overlay to the map…
         overlay.setMap(map);
     });
+
+    function log(d) {
+        console.log(d);
+    }
     </script>
 </body>
 
