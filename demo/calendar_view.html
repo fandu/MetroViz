@@ -12,13 +12,14 @@
     <button onclick="showDow(5)">All Fridays</button>
     <button onclick="showDow(6)">All Saturdays</button>
     <br>
+    <div id="calendar-container"></div>
+    <div id="trip-container"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://underscorejs.org/underscore-min.js"></script>
 <script type="text/javascript" src="./js/calendar_view.js"></script>
 <script type="text/javascript" src="./js/trip_view.js"></script>
 <script>
-    console.log(data);
-    displayCalendar(data, initTripView, updateTripView);
+    displayCalendar(fake_cal_data, updateTripView);
 </script>
 
 </body>
