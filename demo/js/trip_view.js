@@ -7,18 +7,6 @@ function truncate(str, maxLength, suffix) {
 	return str;
 }
 
-var margin = {top: 20, right: 200, bottom: 0, left: 20},
-	width = 300,
-	height = 650;
-
-var start_year = 2004,
-	end_year = 2013;
-
-var c = d3.scale.category20c();
-
-var x = d3.scale.linear()
-	.range([0, width]);
-
 /* Using fake data for now */
 
 var stops = ["Squires West", "Main Red / Maple Nbnd", "Squires East", "Fairfax Ellett Nbnd"];
@@ -43,22 +31,38 @@ for (var i = 0; i < 10; i++) {
 /* End fake data generation */
 
 var xAxis;
-var svg = d3.select("body").append("svg")
+var initTripView = function () {
+margin = {top: 20, right: 200, bottom: 0, left: 20};
+	width = 300;
+	height = 650;
+
+svg = d3.select("body").append("svg")
 	.attr("width", width + margin.left + margin.right)
 	.attr("height", height + margin.top + margin.bottom)
 	.style("margin-left", margin.left + "px")
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
+}
 
 var updateTripView = function (data) {
+var c = d3.scale.category20c();
+
+var x = d3.scale.linear()
+	.range([0, width]);
+
     var stops = [];
     for (var i = 0; i < data.length; i++) {
         if (stops.indexOf(data[i]["stop"]) == -1) {
             stops.push(data[i]["stop"]);
         }
     }
-    console.log(stops);
+
+    var maxPassengers = d3.max(data, function(d) { return d.passengers; });
+    var maxAdherence = d3.max(data, function(d) { return Math.abs(d.scheduled - d.actual); });
+
+	var rScale = d3.scale.linear()
+		.domain([0, maxPassengers])
+		.range([2, 9]);
 
     x = d3.scale.ordinal()
         .domain(stops)
@@ -70,11 +74,14 @@ var updateTripView = function (data) {
 
     d3.selectAll(".journal").remove();
 
-    data = d3.nest()
+    var data = d3.nest()
         .key(function (d) { return d["trip"]; })
+        .key(function (d) { return d["stop"]; })
         .map(data);
 
-    console.log(data);
+    /*data = d3.nest()
+        .key(function (d) { return d["trip"]; })
+        .map(data);*/
 
 	var xScale = d3.scale.linear()
 		.domain([x(stops[0]), x(stops[stops.length - 1])])
@@ -84,6 +91,8 @@ var updateTripView = function (data) {
         var words = str.split(' ');
         return words.map(function (word) { return word[0]; }).join('');
     }
+    console.log(data);
+    console.log(stops);
 
 	var g = svg.append("g").attr("class","journal");
 	var text = g.selectAll("text")
@@ -98,7 +107,11 @@ var updateTripView = function (data) {
 		.text(function(d){ return abbr(d); });
 
 	for (trip_no in data) {
-        var trip = data[trip_no];
+        var trip = Object.keys(data[trip_no]).map(function (key) {
+            return {"stop": key,
+                "entries": data[trip_no][key]
+            };
+        });
 		var g = svg.append("g").attr("class","journal");
 
 		var circles = g.selectAll("circle")
@@ -111,18 +124,30 @@ var updateTripView = function (data) {
 			.enter()
 			.append("text");
 
-		var rScale = d3.scale.linear()
-			.domain([0, d3.max(trip, function(d) { return Math.abs(d.scheduled - d.actual); })])
-			.range([2, 9]);
+        var avePassengers = function (d) {
+            return d.entries.reduce(function (acc, curr) {
+                return acc + curr.passengers;
+            }, 0) / d.entries.length;
+        }
+
+        var aveAdherence = function (d) {
+            return d.entries.reduce(function (prev, curr) {
+                return prev + Math.abs(curr.scheduled - curr.actual);
+            }, 0) / d.entries.length;
+        }
 
         var circleFill = function (d) {
-			return d3.hsl(0, d.passengers / 50, 0.7);
+			return d3.hsl(0, aveAdherence(d) / maxAdherence, 0.7);
+        }
+
+        var circleRadius = function (d) {
+            return rScale(avePassengers(d));
         }
 
 		circles
 			.attr("cx", function(d, i) { return 50 + xScale(x(d.stop)); })
 			.attr("cy", trip_no*20+20)
-			.attr("r", function(d) { return rScale(Math.abs(d.scheduled - d.actual)); })
+			.attr("r", circleRadius)
 			.style("fill", circleFill);
 
 		text
@@ -155,5 +180,3 @@ var updateTripView = function (data) {
 		d3.select(g).selectAll("text.value").style("display","none");
 	}
 };
-
-
