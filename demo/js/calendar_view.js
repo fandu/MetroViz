@@ -66,7 +66,7 @@
             .map(data);
 
         showDow = function (dow) {
-            updateTripView(data_by_dow["" + dow]);
+            subviewUpdate(data_by_dow["" + dow]);
         };
 
         var adherence = function (d) {
