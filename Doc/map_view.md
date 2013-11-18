@@ -6,8 +6,10 @@
 
 1. d3
 2. google map API
-3. jQuery
-4. stops.json
+
+## Data Files
+
+1. stops.json
 
 ## Preliminary
 
