@@ -20,27 +20,27 @@ and access to the internet.
 
 ## API
 
-function highlightStops(stopNames) {
-    for (var i = 0; i < stopNames.length; i++) {
-        var stopName = trimStopName(stopNames[i]);
-        d3.select(".map_marker." + stopName).classed("mouseon", true);
-        d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", true);
-        d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", true);
-    }
-}
-
-function unhighlightStops(stopNames) {
-    for (var i = 0; i < stopNames.length; i++) {
-        var stopName = trimStopName(stopNames[i]);
-        d3.select(".map_marker." + stopName).classed("mouseon", false);
-        d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", false);
-        d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", false);
-    }
-}
-
-function afterClickStop(d) {
-    alert(""+d.value[0] + "," + d.value[1] + ":" + d.key);
-}
+	function highlightStops(stopNames) {
+	    for (var i = 0; i < stopNames.length; i++) {
+	        var stopName = trimStopName(stopNames[i]);
+	        d3.select(".map_marker." + stopName).classed("mouseon", true);
+	        d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", true);
+	        d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", true);
+	    }
+	}
+	
+	function unhighlightStops(stopNames) {
+	    for (var i = 0; i < stopNames.length; i++) {
+	        var stopName = trimStopName(stopNames[i]);
+	        d3.select(".map_marker." + stopName).classed("mouseon", false);
+	        d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", false);
+	        d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", false);
+	    }
+	}
+	
+	function afterClickStop(d) {
+	    alert(""+d.value[0] + "," + d.value[1] + ":" + d.key);
+	}
 
 ### highlightStops
 
