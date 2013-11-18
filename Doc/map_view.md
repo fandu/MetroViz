@@ -1,6 +1,6 @@
 # Using Map View
 
-# Class and ID prefix: map_
+## Class and ID prefix: map_
 
 ## Dependencies
 
