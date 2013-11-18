@@ -1,6 +1,36 @@
 sample_data = [
     {
         "delta":"254",
+        "scheduled":"1980-01-01  08:14:00",
+        "population":"0"
+    },
+    {
+        "delta":"254",
+        "scheduled":"1980-01-01  9:14:00",
+        "population":"2"
+    },
+    {
+        "delta":"254",
+        "scheduled":"1980-01-01  10:14:00",
+        "population":"4"
+    },
+    {
+        "delta":"-254",
+        "scheduled":"1980-01-01  11:14:00",
+        "population":"2"
+    },
+    {
+        "delta":"-100",
+        "scheduled":"1980-01-01  12:14:00",
+        "population":"1"
+    },
+    {
+        "delta":"254",
+        "scheduled":"1980-01-01  13:14:00",
+        "population":"3"
+    },
+    {
+        "delta":"254",
         "scheduled":"1980-01-01  17:14:00",
         "population":"0"
     },

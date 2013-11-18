@@ -11,13 +11,15 @@
 <script>
 // sample_data is fake data loaded from sample_data.js
 
-// glyphs are placed in the element with target_id, or appended to body
+// Charts have other options not enabled here: http://www.chartjs.org/docs/
+
+// glyphs are placed in the html element with target_id, or appended to body
 // of the HTML document if target_id is not provided
 document.writeln("<div id='area1'><p>Glyph area1:</p></div>");
 document.writeln("<div id='area2'><p>Glyph area2:</p></div>");
 document.writeln("<p>Other glyphs:</p>");
 
-individual_bar_all(sample_data, 480, 320, "area1");
+individual_bar_all(sample_data, 640, 480, "area1");
 individual_bar_pop(sample_data, 480, 320, "area2");
 individual_bar_adhere(sample_data, 480, 320, "area2");
 
@@ -27,14 +29,21 @@ var extra_chart = individual_bar_adhere(sample_data, 480, 320, "area2");
 var to_remove = document.getElementById(extra_chart);
 to_remove.parentNode.removeChild(to_remove);
 
-// resizes the chart scale for all *future* charts
-set_scale_max(20);
+// individual line chart attempts to combine earlyness lateness and ridership
+individual_line_all(sample_data, 640, 480);
 
-// line chart that attempts to combine earlyness, latness, and ridership
-individual_line_all(sample_data, 480, 320);
+// aggregate bar chart buckets stops by hour
+// limits to [min_hour, max_hour) if provided
+aggregate_bar_all(sample_data, 640, 480, null, 12, 24);
+aggregate_bar_all(sample_data, 1280, 480);
 
-// aggregate bar chart bucket stops by hour
-aggregate_bar_all(sample_data, 800, 640, null, 12, 24);
+// resizes the chart scale for all future created charts
+set_scale_max(12);
+
+//radar charts are like aggregate line charts folded around a clock
+aggregate_radar_all(sample_data, 640, 480);
+aggregate_radar_adhere(sample_data, 640, 480);
+aggregate_radar_pop(sample_data, 640, 480);
 
 </script>
 
