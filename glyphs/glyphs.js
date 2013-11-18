@@ -52,9 +52,10 @@ function insert_chart(chart_data, type, width, height, target_id) {
 // 
 // NOTE: data will be displayed *in the order* given by raw_data
 function individual_bar_all(raw_data, width, height, target_id) {
-    var chart_data = {labels: [], datasets: [ {data: [], fillColor: "rgba(0,127,0,.8)"},
-                                              {data: [], fillColor: "rgba(0,0,0,.8" },
-                                              {data: [], fillColor: "rgba(127,0,0,.8"} ]};
+    var chart_data = {labels: [],
+        datasets: [ {data: [], fillColor: "rgba(0,127,0,.8)", strokeColor: "rgba(0,127,0,0)"},
+                    {data: [], fillColor: "rgba(0,0,0,.5)", strokeColor: "rgba(0,0,0,.8)" },
+                    {data: [], fillColor: "rgba(127,0,0,.8)", strokeColor: "rgba(127,0,0,0)"} ]};
     
     // format data
     raw_data.forEach(function(val) {
