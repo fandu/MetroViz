@@ -1,4 +1,4 @@
 MetroViz
 ========
-
-Visualize bus stops in Blacksburg, VA.
+MetroViz: Visual Analysis of Public Transportation Data, Blacksburg, VA.
+University of Maryland, College Park
