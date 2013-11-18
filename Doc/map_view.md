@@ -1,5 +1,7 @@
 # Using Map View
 
+# Class and ID prefix: map_
+
 ## Dependencies
 
 1. d3
@@ -12,30 +14,34 @@
 To use map view in in html file, you must include the following lines
 somewhere in the body of the page.
 
-    <div id="map"></div>
+    <div id="map_id"></div>
 
 and access to the internet.
 
 ## API
+
 function highlightStops(stopNames) {
-        for (var i = 0; i < stopNames.length; i++) {
-            var stopName = trimStopName(stopNames[i]);
-            d3.select(".map_stop."+stopName).classed("mouseon", true);
-            d3.select(".map_stop_name."+stopName).classed("mouseon", true);
-        }
+    for (var i = 0; i < stopNames.length; i++) {
+        var stopName = trimStopName(stopNames[i]);
+        d3.select(".map_marker." + stopName).classed("mouseon", true);
+        d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", true);
+        d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", true);
     }
+}
 
-    function unhighlightStops(stopNames) {
-        for (var i = 0; i < stopNames.length; i++) {
-            var stopName = trimStopName(stopNames[i]);
-            d3.select(".map_stop."+stopName).classed("mouseon", false);
-            d3.select(".map_stop_name."+stopName).classed("mouseon", false);
-        }
+function unhighlightStops(stopNames) {
+    for (var i = 0; i < stopNames.length; i++) {
+        var stopName = trimStopName(stopNames[i]);
+        d3.select(".map_marker." + stopName).classed("mouseon", false);
+        d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", false);
+        d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", false);
     }
+}
 
-    function afterClickStop(stopName){
-        alert(stopName);
-    }
+function afterClickStop(d) {
+    alert(""+d.value[0] + "," + d.value[1] + ":" + d.key);
+}
+
 ### highlightStops
 
 Highlight Stops.
