@@ -6,50 +6,54 @@
     <title>Untitled Document</title>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
     <script type="text/javascript" src="../d3.v3/d3.v3.js"></script>
-    <script type="text/javascript" src="../jQuery/jquery-2.0.3.min.js"></script>
     <style type="text/css">
-    #map * {
+    #map_id * {
         cursor: default;
     }
-    html, body, #map {
-        width: 800px;
+    html, body, #map_id {
+        width: 1200px;
         height: 600px;
         margin: 0;
         padding: 0;
     }
-    .stations, .stations svg {
+    .map_class, .map_class svg {
         position: absolute;
     }
-    .stations svg {
-        width: 200px;
-        height: 25px;
-        padding-right: 100px;
+    .map_class svg {
+        width: 20px;
+        height: 20px;
         font: 12px sans-serif;
     }
-    .stations circle {
+    .map_class svg.mouseon {
+        width: 250px;
+    }
+    .map_class circle {
         fill: brown;
         stroke: white;
         stroke-width: 3px;
         cursor: pointer !important;
     }
-    .stations text {
-        stroke: brown;
+    .map_class text {
+        stroke: blue;
         font-size: 18px;
         visibility: hidden;
     }
-    .stations circle.mouseon {
+    .map_class text.mouseon {
+        visibility: visible;
+    }
+    .map_class .map_stop.mouseon {
         fill: blue;
     }
     </style>
 </head>
 
 <body>
-    <div id="map"></div>
+    <div id="map_id"></div>
     <script type="text/javascript">
     // Create the Google Map…
-    var map = new google.maps.Map(d3.select("#map").node(), {
-        zoom: 14,
-        center: new google.maps.LatLng(37.23857, -80.40427),
+    var map = new google.maps.Map(d3.select("#map_id").node(), {
+        zoom: 13,
+        center: new google.maps.LatLng(37.22505,-80.41673),
         mapTypeId: google.maps.MapTypeId.ROADMAP
         // MapTypeId.ROADMAP displays the default road map view
         // MapTypeId.SATELLITE displays Google Earth satellite images
@@ -64,46 +68,47 @@
         // Add the container when the overlay is added to the map.
         overlay.onAdd = function() {
             var layer = d3.select(this.getPanes().overlayMouseTarget).append("div")
-                .attr("class", "stations");
+                .attr("class", "map_class");
 
-            // Draw each marker as a separate SVG element.
+            // Draw each map_marker as a separate SVG element.
             // We could use a single SVG, but what size would it have?
             overlay.draw = function() {
                 var projection = this.getProjection(),
                     padding = 10;
 
-                var marker = layer.selectAll("svg")
+                var map_marker = layer.selectAll("svg")
                     .data(d3.entries(data))
                 // for every time
                 .each(transform)
                     .enter().append("svg")
                 // for the first time
                 .each(transform)
-                    .attr("class", "marker");
+                    .attr("class", function(d) {
+                        return "map_marker " + trimStopName(d.key);
+                    });
 
                 // Add a circle.
-                marker.append("circle")
+                map_marker.append("circle")
                     .attr("r", 10)
                     .attr("cx", padding)
                     .attr("cy", padding)
+                    .attr("class", "map_stop")
                     .on("mouseover", function(d) {
-                        $(this).next("text").attr("style", "visibility: visible");
-                        d3.select(this).classed("mouseon", true);
+                        highlightStops([d.key]);
                     })
                     .on("mouseout", function(d) {
-                        $(this).next("text").attr("style", "visibility: hidden");
-                        d3.select(this).classed("mouseon", false);
+                        unhighlightStops([d.key]);
                     })
                     .on("click", function(d) {
-                        log($(this).next("text").text());
-                        alert($(this).next("text").text());
+                        afterClickStop(d);
                     });
 
                 // Add a label.
-                marker.append("text")
+                map_marker.append("text")
                     .attr("x", padding + 18)
                     .attr("y", padding)
                     .attr("dy", "7px")
+                    .attr("class", "map_stop_name")
                     .text(function(d) {
                         return d.key;
                     });
@@ -117,13 +122,35 @@
                 }
             };
         };
-
-        // Bind our overlay to the map…
         overlay.setMap(map);
     });
 
-    function log(d) {
-        console.log(d);
+    function trimStopName(str) {
+        return str.replace(/[\s\/]+/g, "_");
+    }
+
+    //APIs
+
+    function highlightStops(stopNames) {
+        for (var i = 0; i < stopNames.length; i++) {
+            var stopName = trimStopName(stopNames[i]);
+            d3.select(".map_marker." + stopName).classed("mouseon", true);
+            d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", true);
+            d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", true);
+        }
+    }
+
+    function unhighlightStops(stopNames) {
+        for (var i = 0; i < stopNames.length; i++) {
+            var stopName = trimStopName(stopNames[i]);
+            d3.select(".map_marker." + stopName).classed("mouseon", false);
+            d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", false);
+            d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", false);
+        }
+    }
+
+    function afterClickStop(d) {
+        alert(""+d.value[0] + "," + d.value[1] + ":" + d.key);
     }
     </script>
 </body>
