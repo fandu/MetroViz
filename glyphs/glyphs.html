@@ -10,11 +10,12 @@
 
 <script>
 // sample_data is fake data loaded from sample_data.js
-
+// sensible defaults are provided wherever possible
+// (first parameter raw_data is the only required parameter)
 // Charts have other options not enabled here: http://www.chartjs.org/docs/
 
-// glyphs are placed in the html element with target_id, or appended to body
-// of the HTML document if target_id is not provided
+// glyphs are placed in the html element with target_id
+// a null target_id will cause append the glyph to html <body>
 document.writeln("<div id='area1'><p>Glyph area1:</p></div>");
 document.writeln("<div id='area2'><p>Glyph area2:</p></div>");
 document.writeln("<p>Other glyphs:</p>");
@@ -29,7 +30,7 @@ var extra_chart = individual_bar_adhere(sample_data, 480, 320, "area2");
 var to_remove = document.getElementById(extra_chart);
 to_remove.parentNode.removeChild(to_remove);
 
-// individual line chart attempts to combine earlyness lateness and ridership
+// individual line chart attempts to combine earlyness, lateness and ridership
 individual_line_all(sample_data, 640, 480);
 
 // aggregate bar chart buckets stops by hour
