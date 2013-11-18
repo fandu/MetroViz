@@ -74,8 +74,8 @@ var sample_data = [
     },
 ];
 
-var bar_chart_options = {scaleOverride: true, scaleStartValue: 0, scaleStepWidth: 1,
-                         scaleSteps: 20};
+var bar_chart_options = {scaleOverride: true, scaleStartValue: 0,
+                         scaleStepWidth: 1, scaleSteps: 15};
 
 // helper function to insert chart in <div id="glyphs" />
 function insert_chart(chart_data, type, width, height, target_id) {
@@ -167,9 +167,9 @@ function individual_bar_pop(raw_data, width, height, target_id) {
     return insert_chart(chart_data, "bar", width, height, target_id);
 }
 
-individual_bar_all(sample_data, 640, 320, "area1");
-individual_bar_pop(sample_data, 640, 320, "area2");
-individual_bar_adhere(sample_data, 640, 320, "other");
+individual_bar_all(sample_data, 480, 320, "area1");
+individual_bar_pop(sample_data, 480, 320, "area2");
+individual_bar_adhere(sample_data, 480, 320, "other");
 
 </script>
 
