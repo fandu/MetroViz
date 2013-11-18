@@ -1,4 +1,3 @@
 MetroViz
 ========
-
-Visualize bus stops in Blacksburg, VA.
+MetroViz: Visual Analysis of Public Transportation Data, Blacksburg, VA.
