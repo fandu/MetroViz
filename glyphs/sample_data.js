@@ -1,13 +1,13 @@
-[
-    {
-        "delta":"194",
-        "scheduled":"1980-01-01  17:10:00",
-        "population":"5"
-    },
+sample_data = [
     {
         "delta":"254",
         "scheduled":"1980-01-01  17:14:00",
         "population":"0"
+    },
+    {
+        "delta":"194",
+        "scheduled":"1980-01-01  17:10:00",
+        "population":"5"
     },
     {
         "delta":"76",
@@ -22,12 +22,12 @@
     {
         "delta":"-160",
         "scheduled":"1980-01-01  17:30:00",
-        "population":"0"
+        "population":"1"
     },
     {
-        "delta":"-764",
+        "delta":"764",
         "scheduled":"1980-01-01  17:55:00",
-        "population":"0"
+        "population":"2"
     },
     {
         "delta":"-764",
@@ -59,4 +59,4 @@
         "scheduled":"1980-01-01  18:05:00",
         "population":"1"
     },
-]
+];
