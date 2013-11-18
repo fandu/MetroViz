@@ -1,14 +1,14 @@
 <!doctype html>
 <html>
 <head>
-    <title>Glyphs</title>
+    <title>Glyphs demo</title>
     <script src="chart.js/Chart.js"></script>
+    <script src="glyphs.js"></script>
 </head>
 <body>
 
 <div id="area1"><p>Glyph area1:</p></div>
 <div id="area2"><p>Glyph area2:</p></div>
-<div id="other"><p>Other glyphs</p></div>
 
 <script>
 var sample_data = [
@@ -35,12 +35,12 @@ var sample_data = [
     {
         "delta":"-160",
         "scheduled":"1980-01-01  17:30:00",
-        "population":"0"
+        "population":"1"
     },
     {
-        "delta":"-764",
+        "delta":"764",
         "scheduled":"1980-01-01  17:55:00",
-        "population":"0"
+        "population":"2"
     },
     {
         "delta":"-764",
@@ -74,102 +74,24 @@ var sample_data = [
     },
 ];
 
-var bar_chart_options = {scaleOverride: true, scaleStartValue: 0,
-                         scaleStepWidth: 1, scaleSteps: 15};
-
-// helper function to insert chart in <div id="glyphs" />
-function insert_chart(chart_data, type, width, height, target_id) {
-    // create canvas element
-    var canv = document.createElement('canvas');
-    canv.id = Math.random().toString(36).slice(2);
-    canv.height = height;
-    canv.width = width;
-    document.getElementById(target_id).appendChild(canv); 
-    
-    // add chart
-    var ctx = canv.getContext("2d");
-    switch (type) {
-    case "bar":
-        new Chart(ctx).Bar(chart_data, bar_chart_options);
-        break;
-    
-    default:
-        throw "Invalid chart type"
-    }
-    return canv.id;
-}
-                     
-// Create a new bar chart displaying each stop individually.
-// Chart will be placed in the HTML element with id=target_id
-// Returns the chart's unique id
-// 
-// NOTE: data will be displayed *in the order* given by raw_data
-function individual_bar_all(raw_data, width, height, target_id) {
-    var chart_data = {labels: [], datasets: [ {data: [], fillColor: "rgba(0,127,0,.8)"},
-                                              {data: [], fillColor: "rgba(0,0,0,.8" },
-                                              {data: [], fillColor: "rgba(127,0,0,.8"} ]};
-    
-    // format data
-    raw_data.forEach(function(val) {
-        var time_string = (new Date(Date.parse( val.scheduled ))).toTimeString().slice(0,5)
-        chart_data.labels.push( time_string );
-        
-        var delta = parseInt(val.delta) / 60.0;
-        if (delta < 0) {
-            chart_data.datasets[0].data.push(-delta);
-            chart_data.datasets[2].data.push(0);
-        } else {
-            chart_data.datasets[0].data.push(0);
-            chart_data.datasets[2].data.push(delta);
-        }
-        
-        chart_data.datasets[1].data.push(val.population);
-    } );
-    
-    return insert_chart(chart_data, "bar", width, height, target_id);
-}
-
-// Like individual_bar_all(), but population only
-function individual_bar_adhere(raw_data, width, height, target_id) {
-    var chart_data = {labels: [], datasets: [ {data: [], fillColor: "rgba(0,127,0,.8" },
-                                              {data: [], fillColor: "rgba(127,0,0,.8" } ]};
-    
-    // format data
-    raw_data.forEach(function(val) {
-        var time_string = (new Date(Date.parse( val.scheduled ))).toTimeString().slice(0,5)
-        chart_data.labels.push( time_string );
-        
-        var delta = parseInt(val.delta) / 60.0;
-        if (delta < 0) {
-            chart_data.datasets[0].data.push(-delta);
-            chart_data.datasets[1].data.push(0);
-        } else {
-            chart_data.datasets[0].data.push(0);
-            chart_data.datasets[1].data.push(delta);
-        }
-    } );
-    
-    return insert_chart(chart_data, "bar", width, height, target_id);
-}
-
-// Like individual_bar_all(), but adherence only
-function individual_bar_pop(raw_data, width, height, target_id) {
-    var chart_data = {labels: [], datasets: [ {data: [], fillColor: "rgba(0,0,0,.8" } ]};
-    
-    // format data
-    raw_data.forEach(function(val) {
-        var time_string = (new Date(Date.parse( val.scheduled ))).toTimeString().slice(0,5)
-        chart_data.labels.push( time_string );
-        
-        chart_data.datasets[0].data.push(val.population);
-    } );
-    
-    return insert_chart(chart_data, "bar", width, height, target_id);
-}
-
+// all of the glyph functions require a target_id
 individual_bar_all(sample_data, 480, 320, "area1");
 individual_bar_pop(sample_data, 480, 320, "area2");
-individual_bar_adhere(sample_data, 480, 320, "other");
+individual_bar_adhere(sample_data, 480, 320, "area2");
+
+// target_id can be created in javascript if necessary
+document.writeln("<div id='other'><p>Other glyphs:</p></div>");
+
+// charts can be removed by id
+var extra_chart = individual_bar_adhere(sample_data, 480, 320, "other");
+
+var to_remove = document.getElementById(extra_chart);
+to_remove.parentNode.removeChild(to_remove); // have to do it this way to follow DOM standards
+
+set_scale_max(20);
+
+// line chart that attempts to combine earlyness, latness, and ridership
+individual_line_all(sample_data, 480, 320, "other");
 
 </script>
 
