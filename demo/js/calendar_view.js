@@ -71,10 +71,10 @@
 
         var adherence = function (d) {
             var delta_sum = 0;
-            for (var i = 0; i < d.length; d++) {
+            for (var i = 0; i < d.length; i++) {
                 delta_sum += Math.abs(d[i]["scheduled"] - d[i]["actual"]);
             }
-            return delta_sum;
+            return delta_sum / d.length;
         };
 
         var maxAdherence = d3.max(data, function (d) {
@@ -82,7 +82,7 @@
         });
 
         var color = d3.scale.quantize()
-            .domain([0.0, maxAdherence])
+            .domain([maxAdherence, 0.0])
             .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
             var minYear = d3.min(data, function (d) { return +d.date.getUTCFullYear(); });
@@ -128,6 +128,33 @@
               .attr("class", function(d) { return "day " + color(adherence(nested_data[d])); })
             .select("title")
             .text(function(d) { return d + ": " + percent(adherence(nested_data[d])); });
+
+            var spectrum = d3.range(0.0, maxAdherence, maxAdherence / 4);
+            var legend = d3.select("#calendar-container")
+                .append("div")
+                .attr("id", "legend");
+
+            legend.append("p")
+                .text("Average difference between scheduled and actual arrival times: ");
+
+            legend.append("span")
+                .text("0 ");
+
+            legend.append("svg")
+                .style("width", cellSize * 4.1)
+                .style("height", cellSize * 1.1)
+                .attr("class", "RdYlGn")
+                .selectAll(".day")
+                .data(spectrum)
+                .enter().append("rect")
+                .attr("width", cellSize)
+                .attr("height", cellSize)
+                .attr("x", function(d) { return cellSize * spectrum.indexOf(d); })
+                .attr("class", function(d) { console.log(d); return "day " + color(d); })
+                .text(function(d) { return d + ": " + percent(d); }); ;
+
+            legend.append("span")
+                .text(" " + maxAdherence);
         };
 
         function monthPath(t0) {
