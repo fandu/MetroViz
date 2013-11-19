@@ -131,7 +131,7 @@
 
             var spectrum = d3.range(0.0, maxAdherence, maxAdherence / 4);
             var legend = d3.select("#calendar-container")
-                .append("div")
+                .insert("div", "svg")
                 .attr("id", "legend");
 
             legend.append("p")

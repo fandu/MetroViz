@@ -38,7 +38,8 @@
 
     var svg = d3.select("#trip-container").append("svg")
         .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        //.attr("height", height + margin.top + margin.bottom)
+        .attr("height", height)// + margin.top + margin.bottom)
         .style("margin-left", margin.left + "px")
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -58,6 +59,7 @@
 
         var maxPassengers = d3.max(data, function(d) { return d.passengers; });
         var maxAdherence = d3.max(data, function(d) { return Math.abs(d.scheduled - d.actual); });
+
 
         var rScale = d3.scale.linear()
             .domain([0, maxPassengers])
@@ -182,5 +184,53 @@
             d3.select(g).selectAll("circle").style("display","block");
             d3.select(g).selectAll("text.value").style("display","none");
         }
+
+            var spectrum = d3.range(0.0, 1.0, 0.25);
+            d3.select("#trip-legend").remove();
+            var legend = d3.select("#trip-container")
+                .insert("div", "svg")
+                .attr("id", "trip-legend");
+
+            legend.append("p")
+                .text("Average difference between scheduled and actual arrival times: ");
+
+            legend.append("span")
+                .text("0 ");
+
+            var cellSize = 12;
+            legend.append("svg")
+                .style("width", cellSize * 4.1)
+                .style("height", cellSize * 1.1)
+                .selectAll("box")
+                .data(spectrum)
+                .enter().append("rect")
+                .attr("width", cellSize)
+                .attr("height", cellSize)
+                .attr("x", function(d) { return cellSize * spectrum.indexOf(d); })
+                .style("fill", function (d) { return d3.hsl(0, d, 0.7); });
+
+            legend.append("span")
+                .text(" " + maxAdherence);
+
+            var spectrum = d3.range(0.0, maxPassengers, maxPassengers / 4);
+            legend.append("p")
+                .text("Average number of passengers: ");
+
+            legend.append("span")
+                .text("0 ");
+
+            legend.append("svg")
+                .style("width", 20 * 4.1)
+                .style("height", 20 * 1.1)
+                .selectAll("legend-circle")
+                .data(spectrum)
+                .enter().append("circle")
+                .attr("cx", function (d) { return d * 20 * 4 / maxPassengers + 10; })
+                .attr("cy", 10)
+                .attr("r", function (d) { return rScale(d); })
+                .style("fill", function (d) { return d3.hsl(0, 0.5, 0.7); });
+
+            legend.append("span")
+                .text(" " + maxPassengers);
     };
 })();
