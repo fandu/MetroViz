@@ -53,7 +53,7 @@
     // Create the Google Map…
     var map = new google.maps.Map(d3.select("#map_id").node(), {
         zoom: 13,
-        center: new google.maps.LatLng(37.22505,-80.41673),
+        center: new google.maps.LatLng(37.22505, -80.41673),
         mapTypeId: google.maps.MapTypeId.ROADMAP
         // MapTypeId.ROADMAP displays the default road map view
         // MapTypeId.SATELLITE displays Google Earth satellite images
@@ -126,7 +126,7 @@
     });
 
     function trimStopName(str) {
-        return str.replace(/[\s\/]+/g, "_");
+        return "s_" + str.replace(/[\s\/]+/g, "_");
     }
 
     //APIs
@@ -150,7 +150,7 @@
     }
 
     function afterClickStop(d) {
-        alert(""+d.value[0] + "," + d.value[1] + ":" + d.key);
+        alert("" + d.value[0] + "," + d.value[1] + ":" + d.key);
     }
     </script>
 </body>
