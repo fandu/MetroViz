@@ -1,6 +1,24 @@
 /**
  * glyphs.js - dynamically generated glyphs
  * 
+ * Color code:
+ * green - minutes early
+ * red - minutes late
+ * gray/black - fare count at stop
+ *
+ * Notes:
+ * Every chart function targets an html id
+ * Every chart function returns the chart's unique id for later removal
+ * Chart functions obey the following name convention:
+ *
+ * [aggregate|individual]_[line|radar|bar]_[all|adhere|pop]()
+ *
+ * (data, width, height, height, target_id, [min_hour, max_hour])
+ *
+ * Aggregate charts bucket by hour, individual charts display every stop
+ *
+ * Every parameter except data is optional, defaults will be used as necessary.
+ * 
  * @author Joshua Brule <jtcbrule@gmail.com>
  */
 
