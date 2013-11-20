@@ -59,7 +59,6 @@ class MetroViz(object):
     def getStops(self,route=None,pretty=False):
         conn = sqlite3.connect(DB)
         c = conn.cursor()
-        print "|"+route+"|"
         if route is None:
             c.execute('select t.stop,t.route,t.id,r.name,s.name from route_stops t left join routes r on r.ROWID=t.route left join stops s on s.ROWID=t.stop order by 2,3')
         else:
