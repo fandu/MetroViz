@@ -1,3 +1,4 @@
+import os
 import cherrypy
 import sqlite3
 import json
@@ -5,19 +6,6 @@ import json
 DB = 'Metroviz.db'
 
 class MetroViz(object):
-    def __init__(self):
-        conn = sqlite3.connect(DB)
-        c = conn.cursor()
-        c.execute('select name,ROWID from stops')
-        self.stops = dict(c.fetchall())
-        c.execute('select trip,route,ROWID from route_trips')
-        tmp = c.fetchall()
-        self.trips = {}
-        for elem in tmp:
-            self.trips[(elem[0],elem[1])] = elem[2];
-        c.close()
-        conn.close()
-
     @cherrypy.expose
     def index(self):
         return "Hello World!"
@@ -96,4 +84,8 @@ class MetroViz(object):
     
     
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    cherrypy.config.update({'server.socket_host': '0.0.0.0',
+                        'server.socket_port': port,
+                       })
     cherrypy.quickstart(MetroViz())
