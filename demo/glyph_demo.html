@@ -3,7 +3,7 @@
 <head>
     <title>Glyphs demo</title>
     <script src="../lib/chartjs/chart.js"></script>
-    <script src="../src/sample_data.js"></script>
+    <script src="../data/sample_rsa.js"></script>
     <script src="../src/glyphs.js"></script>
 </head>
 <body>
@@ -37,6 +37,10 @@ individual_line_all(sample_data, 640, 480);
 // limits to [min_hour, max_hour) if provided
 aggregate_bar_all(sample_data, 640, 480, null, 12, 24);
 aggregate_bar_all(sample_data, 1280, 480);
+
+// same as individual line, but bucketed by the hour
+aggregate_line_all(sample_data, 640, 480);
+aggregate_line_adhere(sample_data, 640, 480);
 
 // resizes the chart scale for all future created charts
 set_scale_max(12);
