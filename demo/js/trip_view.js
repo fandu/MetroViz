@@ -189,7 +189,7 @@
 
             var spectrum = d3.range(0.0, 1.0, 0.25);
             d3.select("#trip-legend").remove();
-            var legend = d3.select("#trip-container")
+            var legend = d3.select(sel)
                 .insert("div", "svg")
                 .attr("id", "trip-legend");
 
