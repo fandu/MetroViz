@@ -1,9 +1,9 @@
-
 /* Glyph legend*/
 
 #legend {
   padding: 1em;
   margin: 1em;
+  background-color: #ffffff;
 }
 
 #early {
