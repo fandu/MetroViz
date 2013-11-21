@@ -2,24 +2,21 @@
 <html>
 <head>
     <title>Glyphs demo</title>
-    <script src="chart.js/Chart.js"></script>
-    <script src="sample_data.js"></script>
-    <script src="glyphs.js"></script>
+    <script src="../lib/chartjs/chart.js"></script>
+    <script src="../data/sample_rsa.js"></script>
+    <script src="../src/glyphs.js"></script>
 </head>
 <body>
 
 <script>
-// sample_data is fake data loaded from sample_data.js
-// sensible defaults are provided wherever possible
-// (first parameter raw_data is the only required parameter)
-// Charts have other options not enabled here: http://www.chartjs.org/docs/
+// sample_data is fake data loaded from sample_rsa.js
 
-// glyphs are placed in the html element with target_id
-// a null target_id will cause append the glyph to html <body>
-document.writeln("<div id='area1'><p>Glyph area1:</p></div>");
-document.writeln("<div id='area2'><p>Glyph area2:</p></div>");
+// generate some target divs
+document.writeln("<div id='area1'><p>Unbucketed bar chart (red, green - adherence; gray - fare count):</p></div>");
+document.writeln("<div id='area2'><p>Population and adherence seperated:</p></div>");
 document.writeln("<p>Other glyphs:</p>");
 
+// basic bar charts
 individual_bar_all(sample_data, 640, 480, "area1");
 individual_bar_pop(sample_data, 480, 320, "area2");
 individual_bar_adhere(sample_data, 480, 320, "area2");
@@ -37,6 +34,10 @@ individual_line_all(sample_data, 640, 480);
 // limits to [min_hour, max_hour) if provided
 aggregate_bar_all(sample_data, 640, 480, null, 12, 24);
 aggregate_bar_all(sample_data, 1280, 480);
+
+// same as individual line, but bucketed by the hour
+aggregate_line_all(sample_data, 640, 480);
+aggregate_line_adhere(sample_data, 640, 480);
 
 // resizes the chart scale for all future created charts
 set_scale_max(12);

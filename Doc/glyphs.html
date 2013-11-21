@@ -1,0 +1,240 @@
+<html>
+    <head>
+        <title>glyphs.js</title>
+        <link rel = "stylesheet" type = "text/css" href = "jsdoc.css" />
+    </head>
+    <body>
+        <h1>Module documentation for glyphs.js</h1>
+<p>glyphs.js - dynamically generated glyphs</p>
+<p>
+</p>
+<p>
+</p>
+<p> Color code:
+ green - minutes early
+ red - minutes late
+ gray/black - fare count at stop</p>
+<p>
+</p>
+<p>
+</p>
+<p> Notes:
+ Every chart function targets an html id
+ Every chart function returns the chart's unique id for later removal
+ Chart functions obey the following name convention:</p>
+<p>
+</p>
+<p>
+</p>
+<p> [aggregate|individual]_[line|radar|bar]_[all|adhere|pop]()</p>
+<p>
+</p>
+<p>
+</p>
+<p> (data, width, height, height, target_id, [min_hour, max_hour])</p>
+<p>
+</p>
+<p>
+</p>
+<p> Aggregate charts bucket by hour, individual charts display every stop</p>
+<p>
+</p>
+<p>
+</p>
+<p> Every parameter except data is optional, defaults will be used as necessary.</p><h2>Module</h2>
+<dl class = "module">
+<dt>Author</dt><dd>Joshua Brule <jtcbrule@gmail.com></dd>
+
+</dl>
+<h2>Function Index</h2>
+<dl class = "functions">
+<dt><a href = "#sortByKey">sortByKey</a></dt>
+<dd>Sort array of objects by key.</dd>
+<dt><a href = "#set_scale_max">set_scale_max</a></dt>
+<dd>Sets all future glyphs to have max as the maximum scale value.</dd>
+<dt><a href = "#insert_chart">insert_chart</a></dt>
+<dd></dd>
+<dt><a href = "#individual_bar_all">individual_bar_all</a></dt>
+<dd>Create a new bar chart displaying each stop individually.</dd>
+<dt><a href = "#individual_bar_adhere">individual_bar_adhere</a></dt>
+<dd>Like individual_bar_all(), adherence only.</dd>
+<dt><a href = "#individual_bar_pop">individual_bar_pop</a></dt>
+<dd>Like individual_bar_all(), but ridership only.</dd>
+<dt><a href = "#individual_line_all">individual_line_all</a></dt>
+<dd>Create a new line chart displaying each stop individually.</dd>
+<dt><a href = "#aggregate_line_all">aggregate_line_all</a></dt>
+<dd>Create a new line chart displaying aggregate data.</dd>
+<dt><a href = "#aggregate_line_adhere">aggregate_line_adhere</a></dt>
+<dd>Like aggreagate_line_all, but with adherence data only.</dd>
+<dt><a href = "#aggregate_bar_all">aggregate_bar_all</a></dt>
+<dd>Create a new bar chart displaying aggregate data.</dd>
+<dt><a href = "#aggregate_radar_all">aggregate_radar_all</a></dt>
+<dd>Create a new radar chart displaying aggregate data.</dd>
+<dt><a href = "#aggregate_radar_adhere">aggregate_radar_adhere</a></dt>
+<dd>Like aggregate_radar_all, adherence only.</dd>
+<dt><a href = "#aggregate_radar_pop">aggregate_radar_pop</a></dt>
+<dd>Like aggregate_radar_all, ridership only.</dd>
+</dl><h2>Functions</h2>
+<a name = "sortByKey" />
+<div class = "function">
+<h4>sortByKey</h4>
+<p>Sort array of objects by key.</p>
+<h5>Params</h5>
+<dl class = "params"><dt>array</dt><dd></dd>
+<dt>key</dt><dd></dd></dl>
+</div>
+
+<a name = "set_scale_max" />
+<div class = "function">
+<h4>set_scale_max</h4>
+<p>Sets all future glyphs to have max as the maximum scale value.</p>
+<h5>Params</h5>
+<dl class = "params"><dt>max</dt><dd></dd></dl>
+</div>
+
+<a name = "insert_chart" />
+<div class = "function">
+<h4>insert_chart</h4>
+<p>Insert chart in html element with id=target_id (helper function)</p>
+<h5>Params</h5>
+<dl class = "params"><dt>chart_data</dt><dd></dd>
+<dt>type</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd></dl>
+</div>
+
+<a name = "individual_bar_all" />
+<div class = "function">
+<h4>individual_bar_all</h4>
+<p>Create a new bar chart displaying each stop individually.
+ Chart will be placed in the HTML element with id=target_id
+ Returns the chart's unique id.</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd></dl>
+</div>
+
+<a name = "individual_bar_adhere" />
+<div class = "function">
+<h4>individual_bar_adhere</h4>
+<p>Like individual_bar_all(), adherence only.</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd></dl>
+</div>
+
+<a name = "individual_bar_pop" />
+<div class = "function">
+<h4>individual_bar_pop</h4>
+<p>Like individual_bar_all(), but ridership only.</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd></dl>
+</div>
+
+<a name = "individual_line_all" />
+<div class = "function">
+<h4>individual_line_all</h4>
+<p>Create a new line chart displaying each stop individually.
+ Chart will be placed in the HTML element with id=target_id
+ Returns the chart's unique id</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd></dl>
+</div>
+
+<a name = "aggregate_line_all" />
+<div class = "function">
+<h4>aggregate_line_all</h4>
+<p>Create a new line chart displaying aggregate data.
+ Stop data is bucketed by hour (truncated) and adherence/ridership is averaged
+ Hours displayed are [min_hour, max_hour)
+ Chart will be placed in the HTML element with id=target_id
+ Returns the chart's unique id</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd>
+<dt>min_hour</dt><dd></dd>
+<dt>max_hour</dt><dd></dd></dl>
+</div>
+
+<a name = "aggregate_line_adhere" />
+<div class = "function">
+<h4>aggregate_line_adhere</h4>
+<p>Like aggreagate_line_all, but with adherence data only.</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd>
+<dt>min_hour</dt><dd></dd>
+<dt>max_hour</dt><dd></dd></dl>
+</div>
+
+<a name = "aggregate_bar_all" />
+<div class = "function">
+<h4>aggregate_bar_all</h4>
+<p>Create a new bar chart displaying aggregate data.
+ Stop data is bucketed by hour (truncated) and adherence/ridership is averaged
+ Hours displayed are [min_hour, max_hour)
+ Chart will be placed in the HTML element with id=target_id
+ Returns the chart's unique id</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd>
+<dt>min_hour</dt><dd></dd>
+<dt>max_hour</dt><dd></dd></dl>
+</div>
+
+<a name = "aggregate_radar_all" />
+<div class = "function">
+<h4>aggregate_radar_all</h4>
+<p>Create a new radar chart displaying aggregate data.
+ Stop data is bucketed by hour (truncated) and adherence/ridership is averaged
+ Hours displayed are [min_hour, max_hour)
+ Chart will be placed in the HTML element with id=target_id
+ Returns the chart's unique id</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd></dl>
+</div>
+
+<a name = "aggregate_radar_adhere" />
+<div class = "function">
+<h4>aggregate_radar_adhere</h4>
+<p>Like aggregate_radar_all, adherence only.</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd></dl>
+</div>
+
+<a name = "aggregate_radar_pop" />
+<div class = "function">
+<h4>aggregate_radar_pop</h4>
+<p>Like aggregate_radar_all, ridership only.</p>
+<h5>Params</h5>
+<dl class = "params"><dt>raw_data</dt><dd></dd>
+<dt>width</dt><dd></dd>
+<dt>height</dt><dd></dd>
+<dt>target_id</dt><dd></dd></dl>
+</div>
+
+    </body>
+</html>
