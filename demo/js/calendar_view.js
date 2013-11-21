@@ -24,8 +24,8 @@
                 tmp.setHours(tmp.getHours() + 1);
                 console.log(tmp);
                 for (var stop = 0; stop < routes[route].length; stop++) {
-                    sched += Math.floor(Math.random() * 50);
-                    actual += Math.floor(Math.random() * 50);
+                    sched += Math.floor(Math.random() * 1000);
+                    actual += Math.floor(Math.random() * 1000);
                     fake_cal_data.push({
                         "route": route,
                         "date": tmp,
