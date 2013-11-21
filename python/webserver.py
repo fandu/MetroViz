@@ -81,6 +81,31 @@ class MetroViz(object):
         conn.close()
         return s
     
+    @cherrypy.expose
+    def getAdherence(self,route,stop,trip=None,pretty=False):
+        conn = sqlite3.connect(DB)
+        c = conn.cursor()
+        if trip is None:
+            c.execute('select t.trip,a.year,a.month,a.day,a.hour, a.min, a.adherence from adherence a left join route_trips t on t.ROWID=a.trip where a.route=? and a.stop=? order by 1,2,3',(route,stop,))
+        else:
+            c.execute('select t.trip,a.year,a.month,a.day,a.hour, a.min, a.adherence from adherence a left join route_trips t on t.ROWID=a.trip where a.route=? and a.stop=? and a.trip=? order by 1,2,3',(route,stop,trip,))
+        d = {}
+        row = c.fetchone()
+        while row is not None:
+            (trip,year,month,day,hour,min,delta) = row
+            if trip not in d:
+                d[trip] = []
+            d[trip].append({'date':'{}{:02}{:02}'.format(year,month,day),'ScheduledTime':str(hour)+":"+str(min),'adherence':delta})
+            row = c.fetchone()
+            
+        s = json.dumps({'adherence':d}, sort_keys=True, indent=4, separators=(',', ': '))
+        if pretty:
+            s = "<pre>"+s+"</pre>"
+        
+        c.close()
+        conn.close()
+        return s
+    
     
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
