@@ -22,7 +22,6 @@
             for (var trip = 0; trip < 3; trip++) {
                 tmp = new Date(tmp.getTime());
                 tmp.setHours(tmp.getHours() + 1);
-                console.log(tmp);
                 for (var stop = 0; stop < routes[route].length; stop++) {
                     sched += Math.floor(Math.random() * 1000);
                     actual += Math.floor(Math.random() * 1000);

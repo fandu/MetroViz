@@ -36,6 +36,7 @@
 
     var switchToTripView = function () {
         clearSubview();
+        $("#subview-container").text("Trip View");
         changeSubviewUpdate(function (d) {
             updateTripView(d, "#subview-container");
         });
@@ -43,6 +44,7 @@
 
     var switchToStopView = function () {
         clearSubview();
+        $("#subview-container").text("Stop View");
         changeSubviewUpdate(function (d) {
             individual_bar_all(d, 500, 200, "subview-container");
         });
