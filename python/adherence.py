@@ -1,7 +1,7 @@
 import sqlite3
 import time
 
-conn = sqlite3.connect('Metroviz.db')
+conn = sqlite3.connect('Metroviz.db.back')
 c = conn.cursor()
 c.execute('select name,ROWID from routes')
 routes = dict(c.fetchall())
@@ -23,15 +23,16 @@ for elem in tmp:
 print patterns
 print "Got patterns"
 
-c.execute('select RouteName text,TripName text,PatternName text,StopName text,ScheduledDepartTime text,DepartDelta int from RSA_data')
+c.execute('select RouteName text,TripName text,PatternName text,StopName text,ScheduledDepartTime text,ActualDepartTime,DepartDelta int from RSA_data')
 print "Got Data"
 
 row = c.fetchone()
 res = []
 while (row is not None):
-    (route,trip,pattern,stop,scheduledTime,delta) = row
-    t = time.strptime(scheduledTime, "%Y-%m-%d %H:%M:%S.000")
-    res.append((routes[route], patterns[(pattern,routes[route])], trips[(trip,routes[route])], stops[stop], t[0], t[1], t[2], t[6], t[3], t[4], delta))
+    (route,trip,pattern,stop,scheduledTime,actualTime,delta) = row
+    s = time.strptime(scheduledTime[:-4], "%Y-%m-%d %H:%M:%S")
+    a = time.strptime(actualTime[:-4], "%Y-%m-%d %H:%M:%S")
+    res.append((routes[route], patterns[(pattern,routes[route])], trips[(trip,routes[route])], stops[stop], a[0], a[1], a[2], a[6], s[3], s[4], delta))
     row = c.fetchone()
 
 print "Done processing"    
