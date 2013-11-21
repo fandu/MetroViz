@@ -10,6 +10,13 @@ class MetroViz(object):
     def index(self):
         return "Hello World!"
     
+    def createJSON(self,title,d,pretty,):
+        if d == [] or d == {}:
+            return {}
+        if pretty:
+            return "<pre>"+json.dumps({title:d}, sort_keys=True, indent=4, separators=(',', ': '))+"</pre>"
+        return json.dumps({title:d}, sort_keys=True, indent=0, separators=(',', ':'))
+    
     @cherrypy.expose
     def getRoutes(self, pretty=False):
         conn = sqlite3.connect(DB)
@@ -21,9 +28,7 @@ class MetroViz(object):
             d.append({'id':row[2],'name':row[0],'display':row[1]})
             row = c.fetchone()
             
-        s = json.dumps({'routes':d}, sort_keys=True, indent=4, separators=(',', ': '))
-        if pretty:
-            s = "<pre>"+s+"</pre>"
+        s = self.createJSON('routes',d,pretty)
         
         c.close()
         conn.close()
@@ -47,9 +52,7 @@ class MetroViz(object):
                 
             row = c.fetchone()
             
-        s = json.dumps({'trips':d}, sort_keys=True, indent=4, separators=(',', ': '))
-        if pretty:
-            s = "<pre>"+s+"</pre>"
+        s = self.createJSON('trips',d,pretty)
         
         c.close()
         conn.close()
@@ -73,22 +76,24 @@ class MetroViz(object):
                 
             row = c.fetchone()
             
-        s = json.dumps({'stops':d}, sort_keys=True, indent=4, separators=(',', ': '))
-        if pretty:
-            s = "<pre>"+s+"</pre>"
+        s = self.createJSON('stops',d,pretty)
         
         c.close()
         conn.close()
         return s
     
     @cherrypy.expose
-    def getAdherence(self,route,stop,trip=None,pretty=False):
+    def getAdherence(self,route,stop,trip=None,startDate=None,endDate=None,pretty=False):
         conn = sqlite3.connect(DB)
         c = conn.cursor()
-        if trip is None:
-            c.execute('select t.trip,a.year,a.month,a.day,a.hour, a.min, a.adherence from adherence a left join route_trips t on t.ROWID=a.trip where a.route=? and a.stop=? order by 1,2,3',(route,stop,))
-        else:
+        if trip is not None:
             c.execute('select t.trip,a.year,a.month,a.day,a.hour, a.min, a.adherence from adherence a left join route_trips t on t.ROWID=a.trip where a.route=? and a.stop=? and a.trip=? order by 1,2,3',(route,stop,trip,))
+        elif (startDate is not None) or (endDate is not None):
+            start = 0 if startDate is None else int(startDate)
+            end =   99999999 if endDate is None else int(endDate)
+            c.execute('select t.trip,a.year,a.month,a.day,a.hour, a.min, a.adherence from adherence a left join route_trips t on t.ROWID=a.trip where a.route=? and a.stop=? and 10000*year+100*month+day between ? and ? order by 1,2,3',(route,stop,start,end,))
+        else:
+            c.execute('select t.trip,a.year,a.month,a.day,a.hour, a.min, a.adherence from adherence a left join route_trips t on t.ROWID=a.trip where a.route=? and a.stop=? order by 1,2,3',(route,stop,))
         d = {}
         row = c.fetchone()
         while row is not None:
@@ -98,14 +103,10 @@ class MetroViz(object):
             d[trip].append({'date':'{}{:02}{:02}'.format(year,month,day),'ScheduledTime':str(hour)+":"+str(min),'adherence':delta})
             row = c.fetchone()
             
-        s = json.dumps({'adherence':d}, sort_keys=True, indent=4, separators=(',', ': '))
-        if pretty:
-            s = "<pre>"+s+"</pre>"
-        
+        s = self.createJSON('adherence',d,pretty)
         c.close()
         conn.close()
         return s
-    
     
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
