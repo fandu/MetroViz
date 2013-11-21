@@ -142,6 +142,16 @@
                         return "map_marker " + trimStopName(d.key);
                     });
 
+                // Add a background.
+                map_marker.append("rect")
+                    .attr("x", padding + 40)
+                    .attr("y", padding - 4)
+                    .attr("width", function(d) {
+                        return d.key.length * 9;
+                    })
+                    .attr("height", 20)
+                    .attr("fill", "white")
+                    .attr("class", "map_stop_info");
 
                 // Add a label.
                 map_marker.append("text")
@@ -152,7 +162,7 @@
                     .text(function(d) {
                         return d.key;
                     });
-                    
+
                 // Add a circle.
                 map_marker.append("circle")
                     .attr("r", map_stop_radius)
@@ -197,20 +207,20 @@
     //APIs
 
     function highlightStops(stopNames) {
+        d3.selectAll(".map_stop").classed("fade", true);
         for (var i = 0; i < stopNames.length; i++) {
             var stopName = trimStopName(stopNames[i]);
             d3.selectAll("." + stopName).classed("mouseon", true);
-            d3.selectAll(".map_stop").classed("fade", true);
             d3.selectAll("." + stopName + " .map_stop").classed("mouseon", true);
             d3.selectAll("." + stopName + " .map_stop_info").classed("mouseon", true);
         }
     }
 
     function unhighlightStops(stopNames) {
+        d3.selectAll(".map_stop").classed("fade", false);
         for (var i = 0; i < stopNames.length; i++) {
             var stopName = trimStopName(stopNames[i]);
             d3.selectAll("." + stopName).classed("mouseon", false);
-            d3.selectAll(".map_stop").classed("fade", false);
             d3.selectAll("." + stopName + " .map_stop").classed("mouseon", false);
             d3.selectAll("." + stopName + " .map_stop_info").classed("mouseon", false);
         }
