@@ -27,9 +27,8 @@
                         "date": dt,
                         "trip": trip,
                         "stop": routes[route][stop],
-                        "scheduled": sched,
-                        "actual": actual,
-                        "passengers": Math.floor(Math.random() * 30)
+                        "delta": sched - actual,
+                        "boarded": Math.floor(Math.random() * 30)
                     });
                 }
             }
@@ -44,7 +43,8 @@
         percent = d3.format(".1%"),
         format = d3.time.format("%Y-%m-%d");
 
-    var width = 960,
+    var nested_data = {},
+        width = 960,
         height = 136,
         cellSize = 17; // cell size
 
@@ -57,7 +57,7 @@
             return this.toISOString().slice(0, 10);
         };
 
-        var nested_data = d3.nest()
+        nested_data = d3.nest()
             .key(function(d) { return d["date"]._cView_toISO(); })
             .map(data);
 
@@ -72,7 +72,8 @@
         var adherence = function (d) {
             var delta_sum = 0;
             for (var i = 0; i < d.length; i++) {
-                delta_sum += Math.abs(d[i]["scheduled"] - d[i]["actual"]);
+                //delta_sum += Math.abs(d[i]["scheduled"] - d[i]["actual"]);
+                delta_sum += Math.abs(d[i]["delta"]);
             }
             return delta_sum / d.length;
         };
@@ -155,6 +156,11 @@
 
             legend.append("span")
                 .text(" " + maxAdherence);
+        };
+
+        changeSubviewUpdate = function(subviewUpdate) {
+            d3.selectAll("rect")
+                .on("click", function (d) { subviewUpdate(nested_data[d]); });
         };
 
         function monthPath(t0) {

@@ -22,9 +22,8 @@
             fake_data.push({
                         "trip": i,
                         "stop": stops[j],
-                        "scheduled": time,
-                        "actual": actual,
-                        "passengers": Math.floor(Math.random() * 50)
+                        "delta": time - actual,
+                        "boarded": Math.floor(Math.random() * 50)
                     });
         }
     }
@@ -36,7 +35,10 @@
         width = 300,
         height = 650;
 
-    var svg = d3.select("#trip-container").append("svg")
+    updateTripView = function (data, sel) {
+        d3.select(sel).select("svg").remove();
+
+        var svg = d3.select(sel).append("svg")
         .attr("width", width + margin.left + margin.right)
         //.attr("height", height + margin.top + margin.bottom)
         .attr("height", height)// + margin.top + margin.bottom)
@@ -44,7 +46,7 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    updateTripView = function (data) {
+
         var c = d3.scale.category20c();
 
         var x = d3.scale.linear()
@@ -57,8 +59,8 @@
             }
         }
 
-        var maxPassengers = d3.max(data, function(d) { return d.passengers; });
-        var maxAdherence = d3.max(data, function(d) { return Math.abs(d.scheduled - d.actual); });
+        var maxPassengers = d3.max(data, function(d) { return d.boarded; });
+        var maxAdherence = d3.max(data, function(d) { return Math.abs(d["delta"]); });
 
 
         var rScale = d3.scale.linear()
@@ -67,13 +69,13 @@
 
         x = d3.scale.ordinal()
             .domain(stops)
-            .range(_.range(stops.length));
+            .range(d3.range(stops.length));
 
         xAxis = d3.svg.axis()
             .scale(x)
             .orient("top");
 
-        d3.selectAll(".journal").remove();
+        //d3.selectAll(".journal").remove();
 
         data = d3.nest()
             .key(function (d) { return d["trip"]; })
@@ -112,13 +114,13 @@
 
         var avePassengers = function (d) {
             return d.entries.reduce(function (acc, curr) {
-                return acc + curr.passengers;
+                return acc + curr.boarded;
             }, 0) / d.entries.length;
         };
 
         var aveAdherence = function (d) {
             return d.entries.reduce(function (prev, curr) {
-                return prev + Math.abs(curr.scheduled - curr.actual);
+                return prev + Math.abs(curr.delta);
             }, 0) / d.entries.length;
         };
 

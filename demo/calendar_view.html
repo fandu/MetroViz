@@ -12,14 +12,41 @@
     <button onclick="showDow(5)">All Fridays</button>
     <button onclick="showDow(6)">All Saturdays</button>
     <br>
+    <button onclick="clearSubview()">Clear</button>
+    <button onclick="switchToTripView()">Trip View</button>
+    <button onclick="switchToStopView()">Stop View</button>
     <div id="calendar-container"></div>
-    <div id="trip-container"></div>
+    <div id="subview-container"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://underscorejs.org/underscore-min.js"></script>
+<script src="../jQuery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="./js/calendar_view.js"></script>
 <script type="text/javascript" src="./js/trip_view.js"></script>
+<script type="text/javascript" src="../src/glyphs.js"></script>
+<script type="text/javascript" src="../lib/chartjs/chart.js"></script>
 <script>
-    displayCalendar(fake_cal_data, updateTripView);
+    //displayCalendar(fake_cal_data, updateTripView);
+    var clearSubview = function () {
+        $("#subview-container").empty();
+    };
+
+    displayCalendar(fake_cal_data, function (d) {
+        updateTripView(d, "#subview-container");
+        //individual_bar_all(d, 500, 200, "subview-container");
+    });
+
+    var switchToTripView = function () {
+        clearSubview();
+        changeSubviewUpdate(function (d) {
+            updateTripView(d, "#subview-container");
+        });
+    };
+
+    var switchToStopView = function () {
+        clearSubview();
+        changeSubviewUpdate(function (d) {
+            individual_bar_all(d, 500, 200, "subview-container");
+        });
+    };
 </script>
 
 </body>

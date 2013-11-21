@@ -23,9 +23,9 @@
  */
 
 // JSON attribute names
-var SCHEDULED = "scheduled";
+var SCHEDULED = "date";
 var DELTA = "delta";
-var POPULATION = "population";
+var POPULATION = "boarded";
 
 // default chart options
 var DEFAULT_WIDTH = 480;
