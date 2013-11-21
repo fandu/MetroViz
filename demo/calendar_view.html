@@ -3,6 +3,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="./css/trip_view.css">
 <link rel="stylesheet" type="text/css" href="./css/calendar_view.css">
+<link rel="stylesheet" type="text/css" href="./css/glyph_legend.css">
 <body>
     <button onclick="showDow(0)">All Sundays</button>
     <button onclick="showDow(1)">All Mondays</button>
@@ -36,7 +37,7 @@
 
     var switchToTripView = function () {
         clearSubview();
-        $("#subview-container").text("Trip View");
+        //$("#subview-container").text("Trip View");
         changeSubviewUpdate(function (d) {
             updateTripView(d, "#subview-container");
         });
@@ -44,9 +45,14 @@
 
     var switchToStopView = function () {
         clearSubview();
-        $("#subview-container").text("Stop View");
+        
+        $("#subview-container").append("<div id='legend'>"
+        + "<span id='early'>Average earlyness (minutes)</span> "
+        + "<span id='late'>Average lateness (minutes)</span> "
+        + "<span id='boarded'>Average boarded (farecount)</span></div>");
+        
         changeSubviewUpdate(function (d) {
-            aggregate_bar_all(d, 500, 200, "subview-container");
+            aggregate_bar_all(d, 500, 320, "subview-container");
         });
     };
 </script>

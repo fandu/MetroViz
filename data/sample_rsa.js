@@ -15,7 +15,7 @@ sample_data = [
         "boarded":"4"
     },
     {
-        "delta":"-254",
+        "delta":"254",
         "date":"1980-01-01  11:14:00",
         "boarded":"2"
     },
