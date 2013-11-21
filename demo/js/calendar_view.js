@@ -18,13 +18,17 @@
         for (var route in routes) {
             sched = 0;
             actual = 0;
+            var tmp = dt;
             for (var trip = 0; trip < 3; trip++) {
+                tmp = new Date(tmp.getTime());
+                tmp.setHours(tmp.getHours() + 1);
+                console.log(tmp);
                 for (var stop = 0; stop < routes[route].length; stop++) {
                     sched += Math.floor(Math.random() * 50);
                     actual += Math.floor(Math.random() * 50);
                     fake_cal_data.push({
                         "route": route,
-                        "date": dt,
+                        "date": tmp,
                         "trip": trip,
                         "stop": routes[route][stop],
                         "delta": sched - actual,
@@ -43,12 +47,14 @@
         percent = d3.format(".1%"),
         format = d3.time.format("%Y-%m-%d");
 
-    var nested_data = {},
+    var subviewUpdate,
+        nested_data = {},
         width = 960,
         height = 136,
         cellSize = 17; // cell size
 
-    displayCalendar = function(data, subviewUpdate) {
+    displayCalendar = function(data, svUpdate) {
+        subviewUpdate = svUpdate;
         if (!subviewUpdate) {
             subviewUpdate = function () {};
         }
@@ -66,6 +72,7 @@
             .map(data);
 
         showDow = function (dow) {
+            console.log(data_by_dow["" + dow]);
             subviewUpdate(data_by_dow["" + dow]);
         };
 
@@ -158,9 +165,8 @@
                 .text(" " + maxAdherence);
         };
 
-        changeSubviewUpdate = function(subviewUpdate) {
-            d3.selectAll("rect")
-                .on("click", function (d) { subviewUpdate(nested_data[d]); });
+        changeSubviewUpdate = function(svUpdate) {
+            subviewUpdate = svUpdate;
         };
 
         function monthPath(t0) {
