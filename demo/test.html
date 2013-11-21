@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Untitled Document</title>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script type="text/javascript" src="../d3.v3/d3.v3.js"></script>
+</head>
+
+<body>
+    <div id="map_id"></div>
+    <!DOCTYPE html>
+    <meta charset="utf-8">
+    <style>
+    .arc path {
+        stroke: #fff;
+    }
+    </style>
+
+    <body>
+        <script>
+        drawPiechart(100,100);
+        function drawPiechart(x, y) {
+            var piechart_width = 960,
+                piechart_height = 500,
+                radius = 100;
+
+            var color = d3.scale.ordinal()
+                .range(["#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F"]);
+
+            var arc = d3.svg.arc()
+                .outerRadius(radius - 10)
+                .innerRadius(radius - 40);
+
+            var pie = d3.layout.pie()
+                .sort(null)
+                .value(function(d) {
+                    return d.farecount;
+                });
+
+            var svg = d3.select("body").append("svg")
+                .attr("width", piechart_width)
+                .attr("height", piechart_height)
+                .append("g")
+                .attr("transform", "translate(" + x + "," + y + ")");
+
+            d3.csv("../data/data.csv", function(error, data) {
+                console.log(data);
+
+                var g = svg.selectAll(".map_piechar")
+                    .data(pie(data))
+                    .enter().append("g")
+                    .attr("class", "map_piechar");
+
+                g.append("path")
+                    .attr("d", arc)
+                    .style("fill", function(d) {
+                        return color(d.data.faretype);
+                    });
+            });
+        }
+        </script>
+
+    </body>
+
+</html>

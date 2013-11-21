@@ -19,30 +19,40 @@
     .map_class, .map_class svg {
         position: absolute;
     }
-    .map_class svg {
-        width: 20px;
-        height: 20px;
-        font: 12px sans-serif;
+    .map_class svg.map_marker {
+        width: 10px;
+        height: 10px;
     }
-    .map_class svg.mouseon {
+    .map_class svg.map_marker2 {
         width: 500px;
+        height: 500px;
     }
-    .map_class circle {
-        fill: red;
+    .map_class svg.map_marker.mouseon {
+        width: 500px;
+        height: 500px;
+    }
+    .map_stop {
+        fill: gray;
         stroke: white;
-        stroke-width: 3px;
+        stroke-width: 1px;
         cursor: pointer !important;
     }
-    .map_class text {
-        stroke: blue;
+    .map_stop.fade {
+        stroke: none;
+        fill-opacity: 0.2;
+    }
+    .map_stop.mouseon {
+        fill: red;
+        fill-opacity: 1.0;
+    }
+    text.map_stop_info {
         font-size: 18px;
+    }
+    .map_stop_info {
         visibility: hidden;
     }
-    .map_class text.mouseon {
+    .map_stop_info.mouseon {
         visibility: visible;
-    }
-    .map_class .map_stop.mouseon {
-        fill: blue;
     }
     </style>
 </head>
@@ -73,23 +83,89 @@
             // Draw each map_marker as a separate SVG element.
             // We could use a single SVG, but what size would it have?
             overlay.draw = function() {
-                var projection = this.getProjection(),
-                    padding = 10;
-
-                var map_marker = layer.selectAll("svg")
+                var projection = this.getProjection();
+                /*---------------------------------------------------------------*/
+                var piechart_radius = 40;
+                var padding2 = piechart_radius;
+                var map_marker2 = layer.selectAll("svg.map_marker2")
                     .data(d3.entries(data))
                 // for every time
-                .each(transform)
+                .each(transform2)
                     .enter().append("svg")
                 // for the first time
-                .each(transform)
+                .each(transform2)
+                    .attr("class", function(d) {
+                        return "map_marker2 " + trimStopName(d.key);
+                    });
+
+                // Add piechart
+                var piechart_color = d3.scale.ordinal()
+                    .range(["#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F"]);
+
+                var arc = d3.svg.arc()
+                    .outerRadius(piechart_radius * 1)
+                    .innerRadius(piechart_radius * 0.5);
+
+                var pie = d3.layout.pie()
+                    .sort(null)
+                    .value(function(d) {
+                        return d.farecount;
+                    });
+
+                var map_piechart = map_marker2.append("g")
+                    .attr("class", "map_stop_info map_piechart")
+                    .attr("transform", "translate(" + (padding2) + "," + (padding2) + ")");
+
+                d3.csv("../data/data.csv", function(error, data) {
+                    var map_piechart_unit = map_piechart.selectAll(".map_piechart_unit")
+                        .data(pie(data))
+                        .enter().append("g")
+                        .attr("class", "map_piechart_unit")
+                        .append("path")
+                        .attr("d", arc)
+                        .style("fill", function(d) {
+                            return piechart_color(d.data.faretype);
+                        });
+                });
+
+                /*---------------------------------------------------------------*/
+                var map_stop_radius = 5;
+                var padding = map_stop_radius;
+                var map_marker = layer.selectAll("svg.map_marker")
+                    .data(d3.entries(data))
+                // for every time
+                .each(transform, padding)
+                    .enter().append("svg")
+                // for the first time
+                .each(transform, padding)
                     .attr("class", function(d) {
                         return "map_marker " + trimStopName(d.key);
                     });
 
+                // Add a background.
+                map_marker.append("rect")
+                    .attr("x", padding + 40)
+                    .attr("y", padding - 4)
+                    .attr("width", function(d) {
+                        return d.key.length * 9;
+                    })
+                    .attr("height", 20)
+                    .attr("fill", "white")
+                    .attr("class", "map_stop_info");
+
+                // Add a label.
+                map_marker.append("text")
+                    .attr("x", padding + 40)
+                    .attr("y", padding + 5)
+                    .attr("dy", "7px")
+                    .attr("class", "map_stop_info")
+                    .text(function(d) {
+                        return d.key;
+                    });
+
                 // Add a circle.
                 map_marker.append("circle")
-                    .attr("r", 10)
+                    .attr("r", map_stop_radius)
                     .attr("cx", padding)
                     .attr("cy", padding)
                     .attr("class", "map_stop")
@@ -102,16 +178,7 @@
                     .on("click", function(d) {
                         afterClickStop(d);
                     });
-
-                // Add a label.
-                map_marker.append("text")
-                    .attr("x", padding + 18)
-                    .attr("y", padding)
-                    .attr("dy", "7px")
-                    .attr("class", "map_stop_name")
-                    .text(function(d) {
-                        return d.key;
-                    });
+                /*---------------------------------------------------------------*/
 
                 function transform(d) {
                     d = new google.maps.LatLng(d.value[0], d.value[1]);
@@ -119,6 +186,14 @@
                     return d3.select(this)
                         .style("left", (d.x - padding) + "px")
                         .style("top", (d.y - padding) + "px");
+                }
+
+                function transform2(d) {
+                    d = new google.maps.LatLng(d.value[0], d.value[1]);
+                    d = projection.fromLatLngToDivPixel(d);
+                    return d3.select(this)
+                        .style("left", (d.x - padding2) + "px")
+                        .style("top", (d.y - padding2) + "px");
                 }
             };
         };
@@ -132,20 +207,22 @@
     //APIs
 
     function highlightStops(stopNames) {
+        d3.selectAll(".map_stop").classed("fade", true);
         for (var i = 0; i < stopNames.length; i++) {
             var stopName = trimStopName(stopNames[i]);
-            d3.select(".map_marker." + stopName).classed("mouseon", true);
-            d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", true);
-            d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", true);
+            d3.selectAll("." + stopName).classed("mouseon", true);
+            d3.selectAll("." + stopName + " .map_stop").classed("mouseon", true);
+            d3.selectAll("." + stopName + " .map_stop_info").classed("mouseon", true);
         }
     }
 
     function unhighlightStops(stopNames) {
+        d3.selectAll(".map_stop").classed("fade", false);
         for (var i = 0; i < stopNames.length; i++) {
             var stopName = trimStopName(stopNames[i]);
-            d3.select(".map_marker." + stopName).classed("mouseon", false);
-            d3.select(".map_marker." + stopName + " .map_stop").classed("mouseon", false);
-            d3.select(".map_marker." + stopName + " .map_stop_name").classed("mouseon", false);
+            d3.selectAll("." + stopName).classed("mouseon", false);
+            d3.selectAll("." + stopName + " .map_stop").classed("mouseon", false);
+            d3.selectAll("." + stopName + " .map_stop_info").classed("mouseon", false);
         }
     }
 
