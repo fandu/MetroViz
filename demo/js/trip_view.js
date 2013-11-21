@@ -36,15 +36,15 @@
         height = 650;
 
     updateTripView = function (data, sel) {
-        d3.select(sel).select("svg").remove();
+        d3.select(sel).selectAll("svg").remove();
 
         var svg = d3.select(sel).append("svg")
-        .attr("width", width + margin.left + margin.right)
-        //.attr("height", height + margin.top + margin.bottom)
-        .attr("height", height)// + margin.top + margin.bottom)
-        .style("margin-left", margin.left + "px")
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("width", width + margin.left + margin.right)
+            //.attr("height", height + margin.top + margin.bottom)
+            .attr("height", height)// + margin.top + margin.bottom)
+            .style("margin-left", margin.left + "px")
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
         var c = d3.scale.category20c();
