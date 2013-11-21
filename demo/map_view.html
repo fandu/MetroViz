@@ -22,7 +22,6 @@
     .map_class svg.map_marker {
         width: 10px;
         height: 10px;
-        font: 12px sans-serif;
     }
     .map_class svg.map_marker2 {
         width: 500px;
@@ -32,14 +31,21 @@
         width: 500px;
         height: 500px;
     }
-    circle.map_stop {
-        fill: red;
+    .map_stop {
+        fill: gray;
         stroke: white;
         stroke-width: 1px;
         cursor: pointer !important;
     }
+    .map_stop.fade {
+        stroke: none;
+        fill-opacity: 0.2;
+    }
+    .map_stop.mouseon {
+        fill: red;
+        fill-opacity: 1.0;
+    }
     text.map_stop_info {
-        stroke: blue;
         font-size: 18px;
     }
     .map_stop_info {
@@ -47,9 +53,6 @@
     }
     .map_stop_info.mouseon {
         visibility: visible;
-    }
-    .map_stop.mouseon {
-        fill: blue;
     }
     </style>
 </head>
@@ -82,7 +85,8 @@
             overlay.draw = function() {
                 var projection = this.getProjection();
                 /*---------------------------------------------------------------*/
-                var padding2 = 30;
+                var piechart_radius = 40;
+                var padding2 = piechart_radius;
                 var map_marker2 = layer.selectAll("svg.map_marker2")
                     .data(d3.entries(data))
                 // for every time
@@ -95,8 +99,6 @@
                     });
 
                 // Add piechart
-                var piechart_radius = 30;
-
                 var piechart_color = d3.scale.ordinal()
                     .range(["#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F"]);
 
@@ -127,7 +129,8 @@
                 });
 
                 /*---------------------------------------------------------------*/
-                var padding = 5;
+                var map_stop_radius = 5;
+                var padding = map_stop_radius;
                 var map_marker = layer.selectAll("svg.map_marker")
                     .data(d3.entries(data))
                 // for every time
@@ -142,7 +145,7 @@
 
                 // Add a label.
                 map_marker.append("text")
-                    .attr("x", padding + 30)
+                    .attr("x", padding + 40)
                     .attr("y", padding + 5)
                     .attr("dy", "7px")
                     .attr("class", "map_stop_info")
@@ -152,7 +155,7 @@
                     
                 // Add a circle.
                 map_marker.append("circle")
-                    .attr("r", 5)
+                    .attr("r", map_stop_radius)
                     .attr("cx", padding)
                     .attr("cy", padding)
                     .attr("class", "map_stop")
@@ -197,6 +200,7 @@
         for (var i = 0; i < stopNames.length; i++) {
             var stopName = trimStopName(stopNames[i]);
             d3.selectAll("." + stopName).classed("mouseon", true);
+            d3.selectAll(".map_stop").classed("fade", true);
             d3.selectAll("." + stopName + " .map_stop").classed("mouseon", true);
             d3.selectAll("." + stopName + " .map_stop_info").classed("mouseon", true);
         }
@@ -206,6 +210,7 @@
         for (var i = 0; i < stopNames.length; i++) {
             var stopName = trimStopName(stopNames[i]);
             d3.selectAll("." + stopName).classed("mouseon", false);
+            d3.selectAll(".map_stop").classed("fade", false);
             d3.selectAll("." + stopName + " .map_stop").classed("mouseon", false);
             d3.selectAll("." + stopName + " .map_stop_info").classed("mouseon", false);
         }
