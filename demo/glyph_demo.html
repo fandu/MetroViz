@@ -2,24 +2,31 @@
 <html>
 <head>
     <title>Glyphs demo</title>
+    <link rel="stylesheet" type="text/css" href="./css/glyph_legend.css">
     <script src="../lib/chartjs/chart.js"></script>
     <script src="../data/sample_rsa.js"></script>
     <script src="../src/glyphs.js"></script>
 </head>
 <body>
 
+<div id="legend">
+<span id="early">Average earlyness (minutes)</span>
+<span id="late">Average lateness (minutes)</span>
+<span id="boarded">Average boarded (farecount)</span>
+</div>
+
 <script>
 // sample_data is fake data loaded from sample_rsa.js
 
 // generate some target divs
-document.writeln("<div id='area1'><p>Unbucketed bar chart (red, green - adherence; gray - fare count):</p></div>");
-document.writeln("<div id='area2'><p>Population and adherence seperated:</p></div>");
+document.writeln("<div id='area1'></div>");
+document.writeln("<div id='area2'></div>");
 document.writeln("<p>Other glyphs:</p>");
 
 // basic bar charts
 individual_bar_all(sample_data, 640, 480, "area1");
-individual_bar_pop(sample_data, 480, 320, "area2");
-individual_bar_adhere(sample_data, 480, 320, "area2");
+individual_bar_pop(sample_data, 640, 480, "area2");
+individual_bar_adhere(sample_data, 640, 480, "area2");
 
 // every chart has a unique ID to allow later removal
 var extra_chart = individual_bar_adhere(sample_data, 480, 320, "area2");

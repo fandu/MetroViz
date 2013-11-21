@@ -12,7 +12,7 @@ class MetroViz(object):
     
     def createJSON(self,title,d,pretty,):
         if d == [] or d == {}:
-            return {}
+            return "{}"
         if pretty:
             return "<pre>"+json.dumps({title:d}, sort_keys=True, indent=4, separators=(',', ': '))+"</pre>"
         return json.dumps({title:d}, sort_keys=True, indent=0, separators=(',', ':'))
@@ -100,13 +100,40 @@ class MetroViz(object):
             (trip,year,month,day,hour,min,delta) = row
             if trip not in d:
                 d[trip] = []
-            d[trip].append({'date':'{}{:02}{:02}'.format(year,month,day),'ScheduledTime':str(hour)+":"+str(min),'adherence':delta})
+            d[trip].append({'date':'{}{:02}{:02}'.format(year,month,day),'ScheduledTime':"{:02}:{:02}".format(hour,min),'adherence':delta})
             row = c.fetchone()
             
         s = self.createJSON('adherence',d,pretty)
         c.close()
         conn.close()
         return s
+
+    @cherrypy.expose
+    def getRidership(self,route,stop,trip=None,startDate=None,endDate=None,pretty=False):
+        conn = sqlite3.connect(DB)
+        c = conn.cursor()
+        if trip is not None:
+            c.execute('select t.trip,r.year,r.month,r.day,r.hour, r.min, r.boarding,r.alighting from ridership r left join route_trips t on t.ROWID=r.trip where r.route=? and r.stop=? and r.trip=? order by 1,2,3',(route,stop,trip,))
+        elif (startDate is not None) or (endDate is not None):
+            start = 0 if startDate is None else int(startDate)
+            end = 99999999 if endDate is None else int(endDate)
+            c.execute('select t.trip,r.year,r.month,r.day,r.hour, r.min, r.boarding,r.alighting from ridership r left join route_trips t on t.ROWID=r.trip where r.route=? and r.stop=? and 10000*r.year+100*r.month+r.day between ? and ? order by 1,2,3',(route,stop,start,end,))
+        else:
+            c.execute('select t.trip,r.year,r.month,r.day,r.hour, r.min, r.boarding,r.alighting from ridership r left join route_trips t on t.ROWID=r.trip where r.route=? and r.stop=? order by 1,2,3',(route,stop,))
+        d = {}
+        row = c.fetchone()
+        while row is not None:
+            (trip,year,month,day,hour,min,board,alight) = row
+            if trip not in d:
+                d[trip] = []
+            d[trip].append({'date':'{}{:02}{:02}'.format(year,month,day),'DepartTime':"{:02}:{:02}".format(hour,min),'boarded':board, 'alighted':alight})
+            row = c.fetchone()
+            
+        s = self.createJSON('ridership',d,pretty)
+        c.close()
+        conn.close()
+        return s
+    
     
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
