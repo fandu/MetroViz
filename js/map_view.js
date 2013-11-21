@@ -168,5 +168,6 @@ function unhighlightStops(stopNames) {
 }
 
 function afterClickStop(d) {
-    alert("" + d.value[0] + "," + d.value[1] + ":" + d.key);
+    //alert("" + d.value[0] + "," + d.value[1] + ":" + d.key);
+    send_to_route_view(d.key);
 }
