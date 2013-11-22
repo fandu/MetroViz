@@ -137,7 +137,7 @@ d3.json("../data/routes2.json", function(data) {
             function(d, i) {
                 //console.log(d);
                 if (d == stop_name) {
-                    return 3;
+                    return 1;
                 } else {
                     return 1;
                 }
@@ -177,7 +177,7 @@ d3.json("../data/routes2.json", function(data) {
             function(d, i) {
                 //console.log(d);
                 if (d == stop_name) {
-                    return 3;
+                    return 1;
                 } else {
                     return 1;
                 }
@@ -208,14 +208,15 @@ d3.json("../data/routes2.json", function(data) {
 
     function mouseover() {
         var g = d3.select(this).node().parentNode;
-        d3.select(g).selectAll("circle").attr("stroke-width", 3);
+        d3.select(g).selectAll("circle").attr("stroke-width", 1);
         var ypos = d3.select(this).attr("y");
         yindex = Math.round((ypos - 25) / 40);
         //console.log(yindex);
         //console.log(data[yindex].routes);
         map_highlightStopsCircleOnly(data[yindex].routes);
 
-        d3.select(this).attr("fill", "red");
+        d3.select(this).style("font-weight", "bold");
+        d3.select(this).style("text-decoration", "underline");
     }
 
     function mouseout() {
@@ -225,6 +226,8 @@ d3.json("../data/routes2.json", function(data) {
         yindex = Math.round((ypos - 25) / 40);
         map_unhighlightStops(data[yindex].routes);
 
+        d3.select(this).style("font-weight", "normal");
+        d3.select(this).style("text-decoration", "none");
     }
 
     function textmouseclick() {
