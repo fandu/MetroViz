@@ -9,6 +9,41 @@ var map = new google.maps.Map(d3.select("#map_id").node(), {
     // MapTypeId.TERRAIN displays a physical map based on terrain information.
 });
 
+var fareTypeColor = []
+fareTypeColor.push({
+    "type": "Student",
+    "color": "#A6CEE3"
+});
+fareTypeColor.push({
+    "type": "Full Pass",
+    "color": "#1F78B4"
+});
+fareTypeColor.push({
+    "type": "Faculty Staff",
+    "color": "#B2DF8A"
+});
+fareTypeColor.push({
+    "type": "Full Fare",
+    "color": "#33A02C"
+});
+fareTypeColor.push({
+    "type": "Reboard",
+    "color": "#FB9A99"
+});
+fareTypeColor.push({
+    "type": "Half Fare",
+    "color": "#E31A1C"
+});
+fareTypeColor.push({
+    "type": "Half Pass",
+    "color": "#FDBF6F"
+});
+
+function getFareTypeColor(i) {
+    if (i > 0 && i < fareTypeColor.length) return fareTypeColor[i].color;
+    else return "#DDD";
+}
+
 // Load the station data. When the data comes back, create an overlay.
 d3.json("../data/stops.json", function(data) {
     var overlay = new google.maps.OverlayView();
@@ -37,10 +72,6 @@ d3.json("../data/stops.json", function(data) {
                     return "map_marker2 " + trimStopName(d.key);
                 });
 
-            // Add piechart
-            var piechart_color = d3.scale.ordinal()
-                .range(["#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F"]);
-
             var arc = d3.svg.arc()
                 .outerRadius(piechart_radius * 1)
                 .innerRadius(piechart_radius * 0.5);
@@ -63,7 +94,7 @@ d3.json("../data/stops.json", function(data) {
                     .append("path")
                     .attr("d", arc)
                     .style("fill", function(d) {
-                        return piechart_color(d.data.faretype);
+                        return getFareTypeColor(d.data.faretype);
                     });
             });
 
@@ -123,7 +154,6 @@ d3.json("../data/stops.json", function(data) {
                     afterClickStop(d);
                 });
             /*---------------------------------------------------------------*/
-
             function transform(d) {
                 d = new google.maps.LatLng(d.value[0], d.value[1]);
                 d = projection.fromLatLngToDivPixel(d);
@@ -162,7 +192,6 @@ function highlightStopsAnimate(stopNames) {
 
         if (i == parseInt(stopNames.length / 2)) {
             var marker = d3.select(".map_marker." + stopName);
-            console.log(".map_marker." + stopName);
             map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
         }
     }
@@ -178,7 +207,6 @@ function highlightStopsTextOnlyAnimate(stopNames) {
 
         if (i == parseInt(stopNames.length / 2)) {
             var marker = d3.select(".map_marker." + stopName);
-            console.log(".map_marker." + stopName);
             map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
         }
     }
@@ -206,6 +234,6 @@ function unhighlightStops(stopNames) {
 }
 
 function afterClickStop(d) {
-    //alert("" + d.value[0] + "," + d.value[1] + ":" + d.key);
+    console.log("" + d.value[0] + "," + d.value[1] + ":" + d.key);
     send_to_route_view(d.key);
 }
