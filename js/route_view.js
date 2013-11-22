@@ -201,7 +201,7 @@ d3.json("../data/routes2.json", function(data) {
         stop_name = data[yindex].routes[xindex];
         map_unhighlightStops([stop_name]);
 
-        d3.select(this).attr("stroke-width", 1).style("fill", "#6cb3f8").attr("r", "5");
+        d3.selectAll("circle").attr("stroke-width", 1).style("fill", "#6cb3f8").attr("r", "5");
         d3.select("text").text(null);
 
     }
