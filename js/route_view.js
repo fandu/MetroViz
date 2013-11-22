@@ -131,8 +131,8 @@ d3.json("../data/routes2.json", function(data) {
 
     api_highlight_given_name = highlight_given_name;
 
-    function highlight_given_name(stop_name){
-        d3.selectAll("circle").transition().duration(250).attr("stroke-width",1).attr("r",5).style("fill","6cb3f8");
+    function highlight_given_name(stop_name) {
+        d3.selectAll("circle").transition().duration(250).attr("stroke-width", 1).attr("r", 5).style("fill", "#6cb3f8");
         d3.selectAll("circle").transition().duration(250).attr("stroke-width",
             function(d, i) {
                 //console.log(d);
@@ -148,13 +148,13 @@ d3.json("../data/routes2.json", function(data) {
             } else {
                 return 5;
             }
-        }).style("fill",function(d, i) {
+        }).style("fill", function(d, i) {
             if (d == stop_name) {
-                return "red";
+                return "#6cb3f8";
             } else {
-                return "6cb3f8";
-            });
-
+                return "#6cb3f8";
+            }
+        });
     }
 
     function circle_mouseover() {
@@ -165,7 +165,7 @@ d3.json("../data/routes2.json", function(data) {
         yindex = Math.round((ypos - 25) / 40);
         stop_name = data[yindex].routes[xindex];
 
-        d3.select(this).transition().duration(250).style("fill","red").attr("stroke-width", 1).attr("r", 10);
+        d3.select(this).transition().duration(250).style("fill", "#6cb3f8").attr("stroke-width", 1).attr("r", 10);
 
         map_highlightStops([stop_name]);
 
@@ -201,7 +201,7 @@ d3.json("../data/routes2.json", function(data) {
         stop_name = data[yindex].routes[xindex];
         map_unhighlightStops([stop_name]);
 
-        d3.select(this).attr("stroke-width", 1).style("fill","#6cb3f8").attr("r","5");
+        d3.select(this).attr("stroke-width", 1).style("fill", "#6cb3f8").attr("r", "5");
         d3.select("text").text(null);
 
     }
@@ -215,6 +215,7 @@ d3.json("../data/routes2.json", function(data) {
         //console.log(data[yindex].routes);
         map_highlightStopsCircleOnly(data[yindex].routes);
 
+        d3.select(this).attr("fill", "red");
     }
 
     function mouseout() {
@@ -223,7 +224,7 @@ d3.json("../data/routes2.json", function(data) {
         var ypos = d3.select(this).attr("y");
         yindex = Math.round((ypos - 25) / 40);
         map_unhighlightStops(data[yindex].routes);
-        
+
     }
 
     function textmouseclick() {
@@ -242,9 +243,9 @@ d3.json("../data/routes2.json", function(data) {
         xindex = Math.round(xpos / 23.07); //these numbers are really important
         yindex = Math.round((ypos - 25) / 40);
         var selected_stop_name = data[yindex].routes[xindex];
-//        console.log("" + data[yindex].routes[xindex]);
+        //        console.log("" + data[yindex].routes[xindex]);
         list_of_stops = search_for_stopname_json(selected_stop_name);
- //       console.log(list_of_stops);
+        //       console.log(list_of_stops);
         also_highlight(list_of_stops);
     }
 

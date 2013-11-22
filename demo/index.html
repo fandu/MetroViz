@@ -20,7 +20,7 @@
 <script type="text/javascript" src="../js/route_view.js"></script>
 
 <script>
-$('#search_box').live("keypress", function(e) {
+$('#search_box').keydown(function(e) {
     if (e.keyCode == 13) {
         search_highlight();
         return false;
