@@ -5,14 +5,37 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="../css/map_view.css">
     <link rel="stylesheet" type="text/css" href="../css/route_view.css">
+    <script type="text/javascript" src="../jQuery/jquery-2.0.3.min.js"></script>
 </head>
 
 <body>
     <div id="map_id"></div>
+    <input type="text" id="search_box"></input>
+    <button id="search_button">Search</button>
     <div id="route_id"></div>
 </body>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="../d3.v3/d3.v3.js"></script>
-    <script type="text/javascript" src="../js/map_view.js"></script>
-    <script type="text/javascript" src="../js/route_view.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript" src="../d3.v3/d3.v3.js"></script>
+<script type="text/javascript" src="../js/map_view.js"></script>
+<script type="text/javascript" src="../js/route_view.js"></script>
+
+<script>
+$('#search_box').live("keypress", function(e) {
+    if (e.keyCode == 13) {
+        search_highlight();
+        return false;
+    }
+});
+$("#search_button").click(function() {
+    search_highlight();
+    return false;
+});
+
+function search_highlight() {
+    var text = $("#search_box").val();
+    map_highlightStops([text]);
+    api_highlight_given_name(text);
+}
+</script>
+
 </html>

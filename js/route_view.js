@@ -182,7 +182,7 @@ d3.json("../data/routes2.json", function(data) {
         yindex = Math.round((ypos - 25) / 40);
         //console.log(yindex);
         //console.log(data[yindex].routes);
-        map_highlightStopsTextOnly(data[yindex].routes);
+        map_highlightStopsCircleOnly(data[yindex].routes);
 
     }
 
@@ -191,7 +191,7 @@ d3.json("../data/routes2.json", function(data) {
         d3.select(g).selectAll("circle").transition().delay(250).attr("stroke-width", 1);
         var ypos = d3.select(this).attr("y");
         yindex = Math.round((ypos - 25) / 40);
-        map_unhighlightStopsTextOnly(data[yindex].routes);
+        map_unhighlightStops(data[yindex].routes);
         
     }
 

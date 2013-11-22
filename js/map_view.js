@@ -59,6 +59,8 @@ d3.json("../data/stops.json", function(data) {
     overlay.onAdd = function() {
         var layer = d3.select(this.getPanes().overlayMouseTarget).append("div")
             .attr("class", "map_class");
+        var layer2 = d3.select(this.getPanes().mapPane).append("div")
+            .attr("class", "map_class");
 
         // Draw each map_marker as a separate SVG element.
         // We could use a single SVG, but what size would it have?
@@ -66,7 +68,7 @@ d3.json("../data/stops.json", function(data) {
             var projection = this.getProjection();
 
             /*---------------------------------------------------------------*/
-            var map_legend = layer.selectAll("svg.map_legend")
+            var map_legend = layer2.selectAll("svg.map_legend")
                 .data(fareTypeColor).enter()
                 .append("svg")
                 .attr("class", "map_legend")
@@ -214,9 +216,11 @@ function trimStopName(str) {
 //APIs
 map_highlightStops = highlightStopsAnimate;
 map_highlightStopsTextOnly = highlightStopsTextOnlyAnimate;
+map_highlightStopsCircleOnly = highlightStopsCircleOnlyAnimate;
 map_unhighlightStops = unhighlightStops;
 
 function highlightStopsAnimate(stopNames) {
+    unhighlightAllStops();
     d3.selectAll(".map_stop").classed("fade", true);
     for (var i = 0; i < stopNames.length; i++) {
         var stopName = trimStopName(stopNames[i]);
@@ -232,13 +236,13 @@ function highlightStopsAnimate(stopNames) {
 }
 
 function highlightStopsTextOnlyAnimate(stopNames) {
+    unhighlightAllStops();
     d3.selectAll(".map_stop").classed("fade", true);
     for (var i = 0; i < stopNames.length; i++) {
         var stopName = trimStopName(stopNames[i]);
         d3.selectAll("." + stopName).classed("mouseon", true);
         d3.selectAll("." + stopName + " .map_stop").classed("mouseon", true);
         d3.selectAll("." + stopName + " .map_stop_info_text").classed("mouseon", true);
-
 
         if (i == parseInt(stopNames.length / 2)) {
             var marker = d3.select(".map_marker." + stopName);
@@ -247,8 +251,23 @@ function highlightStopsTextOnlyAnimate(stopNames) {
     }
 }
 
+function highlightStopsCircleOnlyAnimate(stopNames) {
+    unhighlightAllStops();
+    d3.selectAll(".map_stop").classed("fade", true);
+    for (var i = 0; i < stopNames.length; i++) {
+        var stopName = trimStopName(stopNames[i]);
+        d3.selectAll("." + stopName).classed("mouseon", true);
+        d3.selectAll("." + stopName + " .map_stop").classed("mouseon", true);
+
+        if (i == parseInt(stopNames.length / 2)) {
+            var marker = d3.select(".map_marker." + stopName);
+            map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
+        }
+    }
+}
 
 function highlightStops(stopNames) {
+    unhighlightAllStops();
     d3.selectAll(".map_stop").classed("fade", true);
     for (var i = 0; i < stopNames.length; i++) {
         var stopName = trimStopName(stopNames[i]);
@@ -267,6 +286,15 @@ function unhighlightStops(stopNames) {
         d3.selectAll("." + stopName + " .map_stop_info").classed("mouseon", false);
     }
 }
+
+function unhighlightAllStops() {
+    d3.selectAll(".map_stop").classed("fade", false);
+    d3.selectAll(".map_marker").classed("mouseon", false);
+    d3.selectAll(".map_marker2").classed("mouseon", false);
+    d3.selectAll(".map_stop").classed("mouseon", false);
+    d3.selectAll(".map_stop_info").classed("mouseon", false);
+}
+
 
 function afterClickStop(d) {
     console.log("" + d.value[0] + "," + d.value[1] + ":" + d.key);
