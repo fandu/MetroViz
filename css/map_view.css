@@ -23,7 +23,7 @@
     height: 500px;
 }
 #map_id .map_stop {
-    fill: gray;
+    fill: #6cb3f8;
     stroke: white;
     stroke-width: 1px;
     cursor: pointer !important;

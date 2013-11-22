@@ -12,6 +12,7 @@ var map = new google.maps.Map(d3.select("#map_id").node(), {
 // Load the station data. When the data comes back, create an overlay.
 d3.json("../data/stops.json", function(data) {
     var overlay = new google.maps.OverlayView();
+    overlay.setMap(map);
 
     // Add the container when the overlay is added to the map.
     overlay.onAdd = function() {
@@ -78,6 +79,11 @@ d3.json("../data/stops.json", function(data) {
             .each(transform, padding)
                 .attr("class", function(d) {
                     return "map_marker " + trimStopName(d.key);
+                }).attr("lat", function(d) {
+                    return d.value[0];
+                })
+                .attr("lng", function(d) {
+                    return d.value[1];
                 });
 
             // Add a background.
@@ -89,14 +95,14 @@ d3.json("../data/stops.json", function(data) {
                 })
                 .attr("height", 20)
                 .attr("fill", "white")
-                .attr("class", "map_stop_info");
+                .attr("class", "map_stop_info map_stop_info_text");
 
             // Add a label.
             map_marker.append("text")
                 .attr("x", padding + 40)
                 .attr("y", padding + 5)
                 .attr("dy", "7px")
-                .attr("class", "map_stop_info")
+                .attr("class", "map_stop_info map_stop_info_text")
                 .text(function(d) {
                     return d.key;
                 });
@@ -135,7 +141,6 @@ d3.json("../data/stops.json", function(data) {
             }
         };
     };
-    overlay.setMap(map);
 });
 
 function trimStopName(str) {
@@ -143,9 +148,42 @@ function trimStopName(str) {
 }
 
 //APIs
-
-map_highlightStops = highlightStops;
+map_highlightStops = highlightStopsAnimate;
+map_highlightStopsTextOnly = highlightStopsTextOnlyAnimate;
 map_unhighlightStops = unhighlightStops;
+
+function highlightStopsAnimate(stopNames) {
+    d3.selectAll(".map_stop").classed("fade", true);
+    for (var i = 0; i < stopNames.length; i++) {
+        var stopName = trimStopName(stopNames[i]);
+        d3.selectAll("." + stopName).classed("mouseon", true);
+        d3.selectAll("." + stopName + " .map_stop").classed("mouseon", true);
+        d3.selectAll("." + stopName + " .map_stop_info").classed("mouseon", true);
+
+        if (i == parseInt(stopNames.length / 2)) {
+            var marker = d3.select(".map_marker." + stopName);
+            console.log(".map_marker." + stopName);
+            map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
+        }
+    }
+}
+
+function highlightStopsTextOnlyAnimate(stopNames) {
+    d3.selectAll(".map_stop").classed("fade", true);
+    for (var i = 0; i < stopNames.length; i++) {
+        var stopName = trimStopName(stopNames[i]);
+        d3.selectAll("." + stopName).classed("mouseon", true);
+        d3.selectAll("." + stopName + " .map_stop").classed("mouseon", true);
+        d3.selectAll("." + stopName + " .map_stop_info_text").classed("mouseon", true);
+
+        if (i == parseInt(stopNames.length / 2)) {
+            var marker = d3.select(".map_marker." + stopName);
+            console.log(".map_marker." + stopName);
+            map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
+        }
+    }
+}
+
 
 function highlightStops(stopNames) {
     d3.selectAll(".map_stop").classed("fade", true);
