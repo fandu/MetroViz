@@ -181,9 +181,11 @@ d3.json("../data/stops.json", function(data) {
                 .attr("class", "map_stop")
                 .on("mouseover", function(d) {
                     highlightStops([d.key]);
+                    afterMouseOver(d);
                 })
                 .on("mouseout", function(d) {
                     unhighlightStops([d.key]);
+                    afterMouseOut(d);
                 })
                 .on("click", function(d) {
                     afterClickStop(d);
@@ -297,6 +299,11 @@ function unhighlightAllStops() {
 
 
 function afterClickStop(d) {
+    console.log("" + d.value[0] + "," + d.value[1] + ":" + d.key);
+    send_to_route_view(d.key);
+}
+
+function afterMouseOver(d) {
     console.log("" + d.value[0] + "," + d.value[1] + ":" + d.key);
     send_to_route_view(d.key);
 }
