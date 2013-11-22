@@ -58,6 +58,33 @@ d3.json("../data/stops.json", function(data) {
         // We could use a single SVG, but what size would it have?
         overlay.draw = function() {
             var projection = this.getProjection();
+
+            /*---------------------------------------------------------------*/
+            var map_legend = layer.selectAll("svg.map_legend")
+                .data(fareTypeColor).enter()
+                .append("svg")
+                .attr("class", "map_legend")
+                .style("left", 820).style("top", 40);
+
+            map_legend.append("rect")
+                .attr("x", 0)
+                .attr("y", function(d, i) {
+                    return 30 * i;
+                })
+                .attr("width", 72)
+                .attr("height", 18)
+                .attr("fill", function(d) {
+                    return d.color;
+                });
+
+            map_legend.append("text")
+                .attr("x", 2)
+                .attr("y", function(d, i) {
+                    return 30 * i + 13;
+                })
+                .text(function(d) {
+                    return d.type;
+                });
             /*---------------------------------------------------------------*/
             var piechart_radius = 40;
             var padding2 = piechart_radius;
@@ -154,6 +181,7 @@ d3.json("../data/stops.json", function(data) {
                     afterClickStop(d);
                 });
             /*---------------------------------------------------------------*/
+
             function transform(d) {
                 d = new google.maps.LatLng(d.value[0], d.value[1]);
                 d = projection.fromLatLngToDivPixel(d);
@@ -204,6 +232,7 @@ function highlightStopsTextOnlyAnimate(stopNames) {
         d3.selectAll("." + stopName).classed("mouseon", true);
         d3.selectAll("." + stopName + " .map_stop").classed("mouseon", true);
         d3.selectAll("." + stopName + " .map_stop_info_text").classed("mouseon", true);
+
 
         if (i == parseInt(stopNames.length / 2)) {
             var marker = d3.select(".map_marker." + stopName);

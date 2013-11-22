@@ -18,6 +18,11 @@
     width: 500px;
     height: 500px;
 }
+#map_id .map_class svg.map_legend {
+    width: 500px;
+    height: 500px;
+    font-size: 12px;
+}
 #map_id .map_class svg.map_marker.mouseon {
     width: 500px;
     height: 500px;
