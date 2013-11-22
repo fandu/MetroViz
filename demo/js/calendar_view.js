@@ -18,18 +18,20 @@
         for (var route in routes) {
             sched = 0;
             actual = 0;
+            var tmp = dt;
             for (var trip = 0; trip < 3; trip++) {
+                tmp = new Date(tmp.getTime());
+                tmp.setHours(tmp.getHours() + 1);
                 for (var stop = 0; stop < routes[route].length; stop++) {
-                    sched += Math.floor(Math.random() * 50);
-                    actual += Math.floor(Math.random() * 50);
+                    sched += Math.floor(Math.random() * 1000);
+                    actual += Math.floor(Math.random() * 1000);
                     fake_cal_data.push({
                         "route": route,
-                        "date": dt,
+                        "date": tmp,
                         "trip": trip,
                         "stop": routes[route][stop],
-                        "scheduled": sched,
-                        "actual": actual,
-                        "passengers": Math.floor(Math.random() * 30)
+                        "delta": sched - actual,
+                        "boarded": Math.floor(Math.random() * 30)
                     });
                 }
             }
@@ -44,11 +46,14 @@
         percent = d3.format(".1%"),
         format = d3.time.format("%Y-%m-%d");
 
-    var width = 960,
+    var subviewUpdate,
+        nested_data = {},
+        width = 960,
         height = 136,
         cellSize = 17; // cell size
 
-    displayCalendar = function(data, subviewUpdate) {
+    displayCalendar = function(data, svUpdate) {
+        subviewUpdate = svUpdate;
         if (!subviewUpdate) {
             subviewUpdate = function () {};
         }
@@ -57,7 +62,7 @@
             return this.toISOString().slice(0, 10);
         };
 
-        var nested_data = d3.nest()
+        nested_data = d3.nest()
             .key(function(d) { return d["date"]._cView_toISO(); })
             .map(data);
 
@@ -66,13 +71,15 @@
             .map(data);
 
         showDow = function (dow) {
+            console.log(data_by_dow["" + dow]);
             subviewUpdate(data_by_dow["" + dow]);
         };
 
         var adherence = function (d) {
             var delta_sum = 0;
             for (var i = 0; i < d.length; i++) {
-                delta_sum += Math.abs(d[i]["scheduled"] - d[i]["actual"]);
+                //delta_sum += Math.abs(d[i]["scheduled"] - d[i]["actual"]);
+                delta_sum += Math.abs(d[i]["delta"]);
             }
             return delta_sum / d.length;
         };
@@ -155,6 +162,10 @@
 
             legend.append("span")
                 .text(" " + maxAdherence);
+        };
+
+        changeSubviewUpdate = function(svUpdate) {
+            subviewUpdate = svUpdate;
         };
 
         function monthPath(t0) {

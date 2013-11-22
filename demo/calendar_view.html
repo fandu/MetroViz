@@ -3,6 +3,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="./css/trip_view.css">
 <link rel="stylesheet" type="text/css" href="./css/calendar_view.css">
+<link rel="stylesheet" type="text/css" href="./css/glyph_legend.css">
 <body>
     <button onclick="showDow(0)">All Sundays</button>
     <button onclick="showDow(1)">All Mondays</button>
@@ -12,14 +13,48 @@
     <button onclick="showDow(5)">All Fridays</button>
     <button onclick="showDow(6)">All Saturdays</button>
     <br>
+    <button onclick="clearSubview()">Clear</button>
+    <button onclick="switchToTripView()">Trip View</button>
+    <button onclick="switchToStopView()">Stop View</button>
     <div id="calendar-container"></div>
-    <div id="trip-container"></div>
+    <div id="subview-container"></div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="http://underscorejs.org/underscore-min.js"></script>
+<script src="../jQuery/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="./js/calendar_view.js"></script>
 <script type="text/javascript" src="./js/trip_view.js"></script>
+<script type="text/javascript" src="../src/glyphs.js"></script>
+<script type="text/javascript" src="../lib/chartjs/chart.js"></script>
 <script>
-    displayCalendar(fake_cal_data, updateTripView);
+    //displayCalendar(fake_cal_data, updateTripView);
+    var clearSubview = function () {
+        $("#subview-container").empty();
+    };
+
+    displayCalendar(fake_cal_data, function (d) {
+        updateTripView(d, "#subview-container");
+        //individual_bar_all(d, 500, 200, "subview-container");
+    });
+
+    var switchToTripView = function () {
+        clearSubview();
+        //$("#subview-container").text("Trip View");
+        changeSubviewUpdate(function (d) {
+            updateTripView(d, "#subview-container");
+        });
+    };
+
+    var switchToStopView = function () {
+        clearSubview();
+        
+        $("#subview-container").append("<div id='legend'>"
+        + "<span id='early'>Average earlyness (minutes)</span> "
+        + "<span id='late'>Average lateness (minutes)</span> "
+        + "<span id='boarded'>Average boarded (farecount)</span></div>");
+        
+        changeSubviewUpdate(function (d) {
+            aggregate_bar_all(d, 500, 320, "subview-container");
+        });
+    };
 </script>
 
 </body>

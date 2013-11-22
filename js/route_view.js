@@ -102,6 +102,23 @@ d3.json("../data/routes2.json", function(data) {
 
     };
 
+    // API 
+    send_to_route_view = send_to_r_v;
+
+    function send_to_r_v(stop_name){
+        // highlight the stops
+        d3.selectAll("circle").transition().duration(250).attr("stroke-width", 
+            function(d,i){
+            console.log(stop_name);
+            if(d == stop_name)
+                {return 3;}
+            else
+                {return 1;}
+            }
+        ).attr("r",function(d,i){if(d == stop_name){return 10;}else{return 5;}});
+
+    }
+
     function circle_mouseover() {
 
         var xpos = d3.select(this).attr("cx");
@@ -110,14 +127,24 @@ d3.json("../data/routes2.json", function(data) {
         yindex = Math.round((ypos - 25) / 40);
         stop_name = data[yindex].routes[xindex];
 
-        d3.select(this).attr("stroke-width", 3);
+        d3.select(this).transition().duration(250).attr("stroke-width", 3).attr("r",10);
 
         map_highlightStops([stop_name]);
 
-        // TODO
         var map_height = parseInt(d3.select("#map_id").style("height"));
-        d3.select("text").text(stop_name).style("fill", "black").attr("x", xpos + 35).attr("y", map_height + ypos + 24);
-        console.log((xpos + 35) + "," + (map_height + ypos + 24));
+        d3.select("text").text("Hello World").style("fill", "black").attr("x",500).attr("y",500).attr("x", xpos + 35).attr("y", 500);//(map_height + ypos + 24));
+        //console.log(stop_name+" "+(xpos + 35) + "," + (parseFloat(map_height) + parseFloat(ypos) + 24));
+
+        d3.selectAll("circle").transition().duration(250).attr("stroke-width", 
+            function(d,i){
+            //console.log(d);
+            if(d == stop_name)
+                {return 3;}
+            else
+                {return 1;}
+            }
+        ).attr("r",function(d,i){if(d == stop_name){return 10;}else{return 5;}});
+
     }
 
 
@@ -129,7 +156,7 @@ d3.json("../data/routes2.json", function(data) {
         stop_name = data[yindex].routes[xindex];
         map_unhighlightStops([stop_name]);
 
-        d3.select(this).attr("stroke-width", 1);
+        d3.selectAll("circle").attr("stroke-width", 1);
         d3.select("text").text(null);
     }
 
@@ -140,7 +167,7 @@ d3.json("../data/routes2.json", function(data) {
 
     function mouseout() {
         var g = d3.select(this).node().parentNode;
-        d3.select(g).selectAll("circle").attr("stroke-width", 1);
+        d3.select(g).selectAll("circle").transition().delay(250).attr("stroke-width", 1);
     }
 
     function textmouseclick() {
