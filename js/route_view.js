@@ -10,7 +10,8 @@ var margin = {
 var first_stop = 1,
     last_stop = 40;
 
-var c = d3.scale.category20c();
+var c = d3.scale.ordinal()
+    .range(["#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99", "#E31A1C", "#FDBF6F"]);
 
 var x = d3.scale.linear()
     .range([0, width]);
@@ -77,9 +78,9 @@ d3.json("../data/routes2.json", function(data) {
             .attr("cy", j * 40 + 25)
             .attr("r", 5)
             .style("fill", function(d) {
-                return c(j);
+                return "#6cb3f8";
             })
-            .attr("stroke", "gray")
+            .attr("stroke", "white")
             .attr("stroke-width", 1)
         //          .attr("class", function (d) { return d.name; };)
         .on("mouseover", circle_mouseover)
@@ -93,7 +94,7 @@ d3.json("../data/routes2.json", function(data) {
             .attr("class", "label")
             .text(data[j]['name'])
             .style("fill", function(d) {
-                return c(j);
+                return "black";
             })
             .on("mouseover", mouseover)
             .on("mouseout", mouseout)
@@ -134,7 +135,7 @@ d3.json("../data/routes2.json", function(data) {
         yindex = Math.round((ypos - 25) / 40);
         stop_name = data[yindex].routes[xindex];
 
-        d3.select(this).transition().duration(250).attr("stroke-width", 3).attr("r", 10);
+        d3.select(this).transition().duration(250).attr("stroke-width", 1).attr("r", 10);
 
         map_highlightStops([stop_name]);
 

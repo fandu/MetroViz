@@ -1,3 +1,9 @@
+// var head = document.getElementsByTagName('head');
+// var testScript = document.createElement('script');
+// testScript.src = '../js/route_view.js';
+// testScript.type = 'text/javascript';
+// head[0].appendChild(testScript);
+
 // Create the Google Map…
 var map = new google.maps.Map(d3.select("#map_id").node(), {
     zoom: 13,
