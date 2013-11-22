@@ -1,0 +1,178 @@
+
+<html>
+<head>
+<script src="./jquery.min.js"></script>
+<script src="./scripts.js"></script>
+<script type="text/javascript" src="d3/d3.v3.js"></script>
+<style type="text/css">
+body{font-family: Arial, sans-serif;font-size:10px;}
+.axis path,.axis line {fill: none;stroke:#b6b6b6;shape-rendering: crispEdges;}
+/*.tick line{fill:none;stroke:none;}*/
+.tick text{fill:#999;}
+g.journal.active{cursor:pointer;}
+text.label{font-size:12px;font-weight:bold;cursor:pointer;}
+text.value{font-size:12px;font-weight:bold;}
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+<!--function truncate(str, maxLength, suffix) {-->
+<!--	if(str.length > maxLength) {-->
+<!--		str = str.substring(0, maxLength + 1); -->
+<!--		str = str.substring(0, Math.min(str.length, str.lastIndexOf(" ")));-->
+<!--		str = str + suffix;-->
+<!--	}-->
+<!--	return str;-->
+<!--}-->
+
+var margin = {top: 20, right: 200, bottom: 0, left: 20},
+	width = 900,
+	height = 650;
+
+var start_year = 1,
+	end_year = 40;
+
+var c = d3.scale.category20c();
+
+var x = d3.scale.linear()
+	.range([0, width]);
+
+var xAxis = d3.svg.axis()
+	.scale(x)
+	.orient("top")
+	.ticks(40);
+
+var formatYears = d3.format("00");
+xAxis.tickFormat(formatYears);
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width + margin.left + margin.right)
+	.attr("height", height + margin.top + margin.bottom)
+	.style("margin-left", margin.left + "px")
+	.append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+//var dataset = [[ [2002, 8], [2003, 1], [2004, 1], [2005, 1], [2006, 3], [2007, 3], [2009, 3], [2013, 3]], [ [2004, 5], [2005, 1], [2006, 2], [2010, 20], [2011, 3] ] ,[ [2001, 5], [2005, 15], [2006, 2], [2010, 20], [2012, 25] ]];
+//var dataset = [ [2001, 5], [2005, 15], [2006, 2], [2010, 20], [2012, 25] ];
+
+d3.json("routes2.json", function(data) {
+	x.domain([start_year, end_year]);
+	
+	var xScale = d3.scale.linear()
+		.domain([start_year, end_year])
+		.range([0, width]);
+		
+
+	svg.append("g")
+		.attr("class", "x axis")
+		.attr("transform", "translate(0," + 0 + ")")
+		.call(xAxis);
+
+	var nstops = [1,2,3,4,5,4,3,2,2];
+	for (var k = 0;k < data.length; k++) {
+		nstops[k] = data[k]['total'];
+//		console.log(nstops[k]);
+	}
+	
+//	now create an array for xpositions of circles. For example, if nstops[0] = 15, then xpositions are
+//	0,20,40,60.....
+
+	for (var j = 0; j < data.length; j++) {
+		
+		var g = svg.append("g").attr("class","journal");
+
+		var circles = g.selectAll("circle")
+			.data(data[j]['routes'])
+			.enter()//.append("svg:title")
+			.append("circle");
+			//.append("svg:title")
+			//.text("Something");
+			
+			  // .text("Something");//function(d) { return "Something"; });
+
+		var text = g.selectAll("text")
+			.data(data[j]['routes'])
+			.enter()
+			.append("text");
+
+		var xAxisScale = d3.scale.linear()
+				.domain([0, nstops[j]])
+				.range([0, nstops[j]*23.07]);
+
+	
+		var rScale = d3.scale.linear()
+			.domain([0, d3.max(data[j]['routes'], function(d) { return d[1]; })])
+			.range([2, 9]);
+
+		//circles
+			//.attr("cx", function(d, i) { return xScale(d[0]); })
+			//.attr("cy", j*20+20)
+			//.attr("r", function(d) { return rScale(d[1]); })
+			//.style("fill", function(d) { return c(j); });
+
+		circles
+			.attr("cx",function(d,i){return xAxisScale(i);})
+			.attr("cy",j*40+25)
+			.attr("r",5)
+			.style("fill", function(d) { return c(j); })
+			.attr("stroke", "gray")
+			.attr("stroke-width",1)
+			.on("mouseover",circle_mouseover)
+			.on("mouseout", circle_mouseout);
+
+		text
+			.attr("y", j*20+25)
+			.attr("x",function(d, i) { return xScale(d[0])-5; })
+			.attr("class","value")
+			.text(function(d){ return d[1]; })
+			.style("fill", function(d) { return c(j); })
+			.style("display","none")
+
+
+		g.append("text")
+			.attr("y", j*40+25)
+			.attr("x",width+20)
+			.attr("class","label")
+			.text(data[j]['name'])
+			.style("fill", function(d) { return c(j); })
+			.on("mouseover", mouseover)
+			.on("mouseout", mouseout);
+
+	};
+
+	function circle_mouseover(p,data) {
+		var xpos = d3.mouse(this)[0];
+		var ypos = d3.mouse(this)[1];
+		//console.log(data[j]['name']);
+		//var g = d3.select(this).node().parentNode;
+		d3.select(this).attr("stroke-width",3);
+		d3.select("text").text("Something").attr("fill","black").attr("x",d3.mouse(this)[0]+35).attr("y",d3.mouse(this)[1]+20);
+		//d3.select(g).selectAll("text.value").style("display","block");
+	}
+
+	function circle_mouseout(p) {
+		//var g = d3.select(this).node().parentNode;
+		d3.select(this).attr("stroke-width",1);
+		d3.select("text").text(null);
+		//d3.select(g).selectAll("text.value").style("display","block");
+	}
+
+	function mouseover(p) {
+		var g = d3.select(this).node().parentNode;
+		d3.select(g).selectAll("circle").attr("stroke-width",3);
+		//d3.select(g).selectAll("text.value").style("display","block");
+//		console.log(text.value);
+	}
+
+	function mouseout(p) {
+		var g = d3.select(this).node().parentNode;
+		d3.select(g).selectAll("circle").attr("stroke-width",1);
+		//d3.select(g).selectAll("text.value").style("display","none");
+	}
+});
+
+</script>
+
+</body>
+</html>
