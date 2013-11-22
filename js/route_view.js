@@ -207,6 +207,7 @@ d3.json("../data/routes2.json", function(data) {
     }
 
     function mouseover() {
+        d3.selectAll("#route_id circle").attr("stroke-width", 1).attr("r", "5");
         var g = d3.select(this).node().parentNode;
         d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "10");
         var ypos = d3.select(this).attr("y");
