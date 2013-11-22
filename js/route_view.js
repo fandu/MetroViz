@@ -127,6 +127,36 @@ d3.json("../data/routes2.json", function(data) {
 
     }
 
+    //API
+
+    api_highlight_given_name = highlight_given_name;
+
+    function highlight_given_name(stop_name){
+        d3.selectAll("circle").transition().duration(250).attr("stroke-width",1).attr("r",5).style("fill","6cb3f8");
+        d3.selectAll("circle").transition().duration(250).attr("stroke-width",
+            function(d, i) {
+                //console.log(d);
+                if (d == stop_name) {
+                    return 3;
+                } else {
+                    return 1;
+                }
+            }
+        ).attr("r", function(d, i) {
+            if (d == stop_name) {
+                return 10;
+            } else {
+                return 5;
+            }
+        }).style("fill",function(d, i) {
+            if (d == stop_name) {
+                return "red";
+            } else {
+                return "6cb3f8";
+            });
+
+    }
+
     function circle_mouseover() {
 
         var xpos = d3.select(this).attr("cx");
@@ -173,7 +203,7 @@ d3.json("../data/routes2.json", function(data) {
 
         d3.select(this).attr("stroke-width", 1).style("fill","#6cb3f8").attr("r","5");
         d3.select("text").text(null);
-        
+
     }
 
     function mouseover() {
