@@ -56,9 +56,9 @@
 
     var subviewUpdate,
         nested_data = {},
-        width = 960,
-        height = 136,
-        cellSize = 17; // cell size
+        cellSize = 17,
+        width = cellSize * 9,
+        height = cellSize * 55;
 
     displayCalendar = function(data, svUpdate) {
         subviewUpdate = svUpdate;
@@ -110,10 +110,11 @@
             .attr("height", height)
             .attr("class", "RdYlGn")
           .append("g")
-            .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
+            //.attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
+            .attr("transform", "translate(" + 10 + "," + 15 + ")");
 
         svg.append("text")
-            .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+            .attr("transform", "translate(" + cellSize * 3.5 + "," + -5 + ")")
             .style("text-anchor", "middle")
             .text(function(d) { return d; });
 
@@ -123,8 +124,8 @@
             .attr("class", "day")
             .attr("width", cellSize)
             .attr("height", cellSize)
-            .attr("x", function(d) { return week(d) * cellSize; })
-            .attr("y", function(d) { return day(d) * cellSize; })
+            .attr("y", function(d) { return week(d) * cellSize; })
+            .attr("x", function(d) { return day(d) * cellSize; })
             .datum(format)
             //.on("mouseover", function (d) { console.log("Mouseover " + d); })
             .on("click", function (d) { subviewUpdate(nested_data[d]); });
@@ -176,15 +177,19 @@
             subviewUpdate = svUpdate;
         };
 
+        /*
+         * This function returns an SVG path starting at (d0 * cellSize, w1 * cellSize)
+         * and moving in horizontal / vertial line segments from there.
+         */
         function monthPath(t0) {
           var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
               d0 = +day(t0), w0 = +week(t0),
               d1 = +day(t1), w1 = +week(t1);
-          return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize +
-              "H" + w0 * cellSize + "V" + 7 * cellSize +
-              "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize +
-              "H" + (w1 + 1) * cellSize + "V" + 0 +
-              "H" + (w0 + 1) * cellSize + "Z";
+          return "M" + d0 * cellSize + "," + w0 * cellSize +
+              "H" + 7 * cellSize + "V" + w1 * cellSize +
+              "H" + (d1 + 1) * cellSize + "V" + (w1 + 1) * cellSize +
+              "H" + 0 + "V" + (w0 + 1) * cellSize +
+              "H" + d0 * cellSize + "Z";
         }
 
         d3.select(self.frameElement).style("height", "2910px");
