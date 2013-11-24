@@ -2,6 +2,7 @@ import os
 import cherrypy
 import sqlite3
 import json
+import time
 
 DB = 'Metroviz.db'
 
@@ -84,36 +85,57 @@ class MetroViz(object):
     
     @cherrypy.expose
     def getAdherenceRidership(self,route,stop,trip=None,startDate=None,endDate=None,pretty=False):
+        t = time.time()
         conn = sqlite3.connect(DB)
         c = conn.cursor()
-        query = 'select t.trip,a.year,a.month,a.day,a.hour, a.min,r.hour,r.min, a.adherence, r.fareCount, r.boarding, r.alighting from adherence a left join ridership r on (r.year=a.year and r.month=a.month and r.day=a.day and r.route=a.route and r.stop=a.stop and r.trip=a.trip) left join route_trips t on t.ROWID=a.trip where a.route=? and a.stop=?'
+        query = 'select d.trip,year,month,day,hour, min,adherence, fareCount, boarding, alighting from data d left join route_trips t on t.ROWID=d.trip where d.route=? and d.stop=?'
         params = [route,stop,]
         if trip is not None:
-             query += ' and a.trip=?'
-             params.append[trip]
+             query += ' and d.trip=?'
+             params.append(trip)
         elif (startDate is not None) or (endDate is not None):
             start = 0 if startDate is None else int(startDate)
             end =   99999999 if endDate is None else int(endDate)
-            query += ' and 10000*a.year+100*a.month+a.day between ? and ?'
+            query += ' and 10000*d.year+100*d.month+d.day between ? and ?'
             params.extend([start,end,])
         query +=  ' order by 1,2,3'
         c.execute(query,tuple(params))
         row = c.fetchone()
         d = {}
         while row is not None:
-            (trip,syear,smonth,sday,shour,smin,ahour,amin,delta,fare,boarding,alighting) = row
+            (trip,syear,smonth,sday,shour,smin,delta,fare,boarding,alighting) = row
             if trip not in d:
                 d[trip] = []
-            d[trip].append({'date':'{}{:02}{:02}'.format(syear,smonth,sday),'ScheduledTime':"{:02}:{:02}".format(shour,smin),'ActualTime':"{:02}:{:02}".format(ahour,amin),'adherence':delta, 'fareCount':fare,'boarded':boarding,'alighted':alighting})
+            d[trip].append({'date':'{}{:02}{:02}'.format(syear,smonth,sday),'ScheduledTime':"{:02}:{:02}".format(shour,smin),'adherence':delta, 'fareCount':fare,'boarded':boarding,'alighted':alighting})
             row = c.fetchone()
             
         s = self.createJSON('data',d,pretty)
         c.close()
         conn.close()
+        print time.time()-t
         return s
     
     @cherrypy.expose
-    def getAdherence(self,route,stop,trip=None,startDate=None,endDate=None,pretty=False):
+    def getAdherenceRidership2(self,route,stop,trip=None,startDate=None,endDate=None,pretty=False):
+        t = time.time()
+        adherence = self.getAdherenceData(route,stop,trip,startDate,endDate)
+        ridership = self.getRidershipData(route,stop,trip,startDate,endDate)
+        d = {}
+        for trip,lst in adherence.iteritems():
+            d[trip] = []
+            lst2 = ridership[trip]
+            for elem in lst:
+                for elem2 in lst2:
+                    if elem2['date'] == elem['date']:
+                        d[trip].append(dict(elem.items() + elem2.items()))
+                        break
+            
+        s = self.createJSON('data',d,pretty)
+        print time.time()-t
+        return s
+    
+    def getAdherenceData(self,route,stop,trip=None,startDate=None,endDate=None):
+        t = time.time()
         conn = sqlite3.connect(DB)
         c = conn.cursor()
         if trip is not None:
@@ -132,14 +154,19 @@ class MetroViz(object):
                 d[trip] = []
             d[trip].append({'date':'{}{:02}{:02}'.format(year,month,day),'ScheduledTime':"{:02}:{:02}".format(hour,min),'adherence':delta})
             row = c.fetchone()
-            
-        s = self.createJSON('adherence',d,pretty)
         c.close()
         conn.close()
+        print time.time()-t
+        return d
+    
+    @cherrypy.expose
+    def getAdherence(self,route,stop,trip=None,startDate=None,endDate=None,pretty=False):
+        d = self.getAdherenceData(route,stop,trip,startDate,endDate)
+        s = self.createJSON('adherence',d,pretty)
         return s
 
-    @cherrypy.expose
-    def getRidership(self,route,stop,trip=None,startDate=None,endDate=None,pretty=False):
+    def getRidershipData(self,route,stop,trip,startDate,endDate):
+        t = time.time()
         conn = sqlite3.connect(DB)
         c = conn.cursor()
         if trip is not None:
@@ -159,11 +186,16 @@ class MetroViz(object):
             d[trip].append({'date':'{}{:02}{:02}'.format(year,month,day),'DepartTime':"{:02}:{:02}".format(hour,min),'boarded':board, 'alighted':alight})
             row = c.fetchone()
             
-        s = self.createJSON('ridership',d,pretty)
         c.close()
         conn.close()
-        return s
+        print time.time() - t
+        return d
     
+    @cherrypy.expose
+    def getRidership(self,route,stop,trip=None,startDate=None,endDate=None,pretty=False):
+        d = self.getRidershipData(route, stop, trip, startDate, endDate)    
+        s = self.createJSON('ridership',d,pretty)
+        return s
     
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
