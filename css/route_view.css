@@ -16,7 +16,6 @@
 }
 #route_id text.label {
     font-size:12px;
-    font-weight:bold;
     cursor:pointer;
 }
 #route_id text.value {

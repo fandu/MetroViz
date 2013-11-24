@@ -18,12 +18,17 @@
     width: 500px;
     height: 500px;
 }
+#map_id .map_class svg.map_legend {
+    width: 500px;
+    height: 500px;
+    font-size: 12px;
+}
 #map_id .map_class svg.map_marker.mouseon {
     width: 500px;
     height: 500px;
 }
 #map_id .map_stop {
-    fill: gray;
+    fill: #6cb3f8;
     stroke: white;
     stroke-width: 1px;
     cursor: pointer !important;

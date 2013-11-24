@@ -365,9 +365,9 @@ function aggregate_bar_all(raw_data, width, height, target_id, min_hour, max_hou
     var chart_data = {
         labels: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
                  "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
-        datasets: [{data: empty.slice(0), fillColor: "rgba(0,127,0,.5)", strokeColor: "rgba(0,127,0,0)"},
+        datasets: [{data: empty.slice(0), fillColor: "rgba(0,127,0,.5)", strokeColor: "rgba(0,127,0,.5)"},
                    {data: empty.slice(0), fillColor: "rgba(0,0,0,.5)", strokeColor: "rgba(0,0,0,.8)"},
-                   {data: empty.slice(0), fillColor: "rgba(127,0,0,.5)", strokeColor: "rgba(127,0,0,0)"} ]};
+                   {data: empty.slice(0), fillColor: "rgba(127,0,0,.5)", strokeColor: "rgba(127,0,0,.5)"} ]};
     
     if (width == null) width = DEFAULT_WIDTH;
     if (height == null) height = DEFAULT_HEIGHT;

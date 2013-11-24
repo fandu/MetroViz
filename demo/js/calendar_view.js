@@ -22,10 +22,17 @@
             for (var trip = 0; trip < 3; trip++) {
                 tmp = new Date(tmp.getTime());
                 tmp.setHours(tmp.getHours() + 1);
-                console.log(tmp);
                 for (var stop = 0; stop < routes[route].length; stop++) {
-                    sched += Math.floor(Math.random() * 50);
-                    actual += Math.floor(Math.random() * 50);
+                    if (dt.getMonth() == 9) {
+                        sched = 1000;
+                        actual = Math.random() * 2000;
+                    } else if (dt.getMonth() == 6) {
+                        sched = 1000;
+                        actual = 400 + Math.random() * 1200;
+                    } else {
+                        sched = 1000;
+                        actual = 600 + Math.random() * 800;
+                    }
                     fake_cal_data.push({
                         "route": route,
                         "date": tmp,
