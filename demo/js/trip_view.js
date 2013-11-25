@@ -33,19 +33,20 @@
     var xAxis,
         margin = {top: 20, right: 200, bottom: 0, left: 20},
         width = 300,
-        height = 650;
+        height = 650
+        cellSize = 40;
 
     updateTripView = function (data, sel) {
         d3.select(sel).selectAll("svg").remove();
 
         var svg = d3.select(sel).append("svg")
+            .attr("class", "RdYlGn")
             .attr("width", width + margin.left + margin.right)
             //.attr("height", height + margin.top + margin.bottom)
             .attr("height", height)// + margin.top + margin.bottom)
             .style("margin-left", margin.left + "px")
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
 
         var c = d3.scale.category20c();
 
@@ -62,10 +63,15 @@
         var maxPassengers = d3.max(data, function(d) { return d.boarded; });
         var maxAdherence = d3.max(data, function(d) { return Math.abs(d["delta"]); });
 
+        var color = d3.scale.quantize()
+            .domain([maxAdherence, 0.0])
+            .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
         var rScale = d3.scale.linear()
             .domain([0, maxPassengers])
-            .range([2, 9]);
+            .range([2, cellSize]);
+
+        drawGrid(svg, 0, 0, rScale(maxPassengers));
 
         x = d3.scale.ordinal()
             .domain(stops)
@@ -75,8 +81,6 @@
             .scale(x)
             .orient("top");
 
-        //d3.selectAll(".journal").remove();
-
         data = d3.nest()
             .key(function (d) { return d["trip"]; })
             .key(function (d) { return d["stop"]; })
@@ -84,32 +88,22 @@
 
         var xScale = d3.scale.linear()
             .domain([x(stops[0]), x(stops[stops.length - 1])])
-            .range([0, width]);
+            .range([0, stops.length * cellSize]);
 
         var abbr = function (str) {
             var words = str.split(' ');
             return words.map(function (word) { return word[0]; }).join('');
         };
 
-        var g = svg.append("g").attr("class","journal");
-        var text = g.selectAll("text")
-            .data(stops)
-            .enter()
-            .append("text");
-
-        text
-            .attr("y", 0)
-            .attr("x",function(d, i) { return 50 + xScale(x(d))-5; })
-            .attr("class","value")
-            .style("fill", function () { return d3.hsl("#4A4A4A"); })
-            .text(function(d){ return abbr(d); });
+        var g = svg.append("g")
+            .attr("class","journal");
 
         var stopList = function (obj) {
             return Object.keys(obj).map(function (key) {
                 return {"stop": key,
                     "entries": obj[key]
                 };
-                });
+            });
         };
 
         var avePassengers = function (d) {
@@ -133,18 +127,23 @@
         };
 
         var circleX = function (d) {
-            return 50 + xScale(x(d.stop));
+            return /*50 +*/ cellSize * x(d.stop) + (cellSize - circleRadius(d)) / 2;
+        };
+
+        var circleY = function (d) {
+            return (cellSize - circleRadius(d)) / 2;
         };
 
         for (var trip_no in data) {
             var trip = stopList(data[trip_no]);
 
-            g = svg.append("g").attr("class","journal");
+            g = svg.append("g").attr("class","journal")
+            .attr("transform", "translate(" + 0 + "," + trip_no * cellSize + ")");
 
-            var circles = g.selectAll("circle")
+            var circles = g.selectAll("rect")
                 .data(trip)
                 .enter()
-                .append("circle");
+                .append("rect");
 
             text = g.selectAll("text")
                 .data(trip)
@@ -152,55 +151,57 @@
                 .append("text");
 
             circles
-                .attr("cx", circleX)
-                .attr("cy", trip_no*20+20)
-                .attr("r", circleRadius)
-                .style("fill", circleFill);
-
-            text
-                .attr("y", trip_no*20+25)
-                .attr("x",function(d, i) { return 50 + xScale(x(d.stop))-5; })
-                .attr("class","value")
-                .text(function(d){ return ("" + avePassengers(d)).slice(0,5); })
-                .style("fill", circleFill)
-                .style("display","none");
-
-            g.append("text")
-                .attr("y", trip_no*20+25)
-                .attr("x", 0)
-                .attr("class","label")
-                .text(truncate("Trip " + trip_no,30,"..."))
-                .style("fill", function(d) { return d3.hsl("#4A4A4A"); })
-                .on("mouseover", mouseover)
-                .on("mouseout", mouseout);
+                .attr("x", circleX)
+                .attr("y", circleY)
+                .attr("width", circleRadius)
+                .attr("height", circleRadius)
+                .attr("class", function(d) { return "day " + color(aveAdherence(d)); });
         }
 
-        function mouseover(p) {
-            var g = d3.select(this).node().parentNode;
-            d3.select(g).selectAll("circle").style("display","none");
-            d3.select(g).selectAll("text.value").style("display","block");
-        }
-
-        function mouseout(p) {
-            var g = d3.select(this).node().parentNode;
-            d3.select(g).selectAll("circle").style("display","block");
-            d3.select(g).selectAll("text.value").style("display","none");
-        }
-
-            var spectrum = d3.range(0.0, 1.0, 0.25);
-            d3.select("#trip-legend").remove();
-            var legend = d3.select(sel)
+        d3.select("#trip-legend").remove();
+        var legendDiv = d3.select(sel)
                 .insert("div", "svg")
-                .attr("id", "trip-legend");
+                .attr("id", "trip-legend")
+                .attr("class", "RdYlGn");
 
-            legend.append("p")
-                .text("Average difference between scheduled and actual arrival times: ");
+        insertLegend(legendDiv,
+            "Average difference between scheduled and actual arrival times: ",
+            0,
+            maxAdherence,
+            squareLegend(function (node) {
+                node.attr("class", function(d) { return "day " + color(d); });
+                //node.style("fill", function (d) { return d3.hsl(0, d / maxAdherence, 0.7); });
+            }));
 
-            legend.append("span")
-                .text("0 ");
+        insertLegend(legendDiv,
+            "Number of passengers: ",
+            0,
+            maxPassengers,
+            squareLegend(function (node) {
+                node
+                    .attr("height", function (d) { return rScale(d); })
+                    .attr("width", function (d) { return rScale(d); });
+            }));
+    };
 
-            var cellSize = 12;
-            legend.append("svg")
+    function insertLegend(div, label, min, max, showSpectrum) {
+            div.append("p")
+                .text(label);
+
+            div.append("span")
+                .text(min);
+
+            showSpectrum(div, min, max);
+
+            div.append("span")
+                .text(" " + max);
+    }
+
+    function squareLegend(toBeNamed) {
+        return function (legend, min, max) {
+            var cellSize = 12,
+                spectrum = d3.range(min, max, (max - min) / 4);
+            toBeNamed(legend.append("svg")
                 .style("width", cellSize * 4.1)
                 .style("height", cellSize * 1.1)
                 .selectAll("box")
@@ -208,31 +209,57 @@
                 .enter().append("rect")
                 .attr("width", cellSize)
                 .attr("height", cellSize)
-                .attr("x", function(d) { return cellSize * spectrum.indexOf(d); })
-                .style("fill", function (d) { return d3.hsl(0, d, 0.7); });
+                .attr("x", function(d) { return cellSize * spectrum.indexOf(d); }));
+        };
+    }
 
-            legend.append("span")
-                .text(" " + maxAdherence);
-
-            var spectrum = d3.range(0.0, maxPassengers, maxPassengers / 4);
-            legend.append("p")
-                .text("Average number of passengers: ");
-
-            legend.append("span")
-                .text("0 ");
-
-            legend.append("svg")
+    function circleLegend(toBeNamed) {
+        return function (legend, min, max) {
+            var spectrum = d3.range(min, max, (max - min) / 4);
+            toBeNamed(legend.append("svg")
                 .style("width", 20 * 4.1)
                 .style("height", 20 * 1.1)
                 .selectAll("legend-circle")
                 .data(spectrum)
                 .enter().append("circle")
-                .attr("cx", function (d) { return d * 20 * 4 / maxPassengers + 10; })
+                .attr("cx", function (d) { return d * 20 * 4 / max + 10; })
                 .attr("cy", 10)
-                .attr("r", function (d) { return rScale(d); })
-                .style("fill", function (d) { return d3.hsl(0, 0.5, 0.7); });
+                .style("fill", function (d) { return d3.hsl(0, 0.5, 0.7); }));
+        };
+    }
 
-            legend.append("span")
-                .text(" " + maxPassengers);
+    var drawGrid = function (svg, x, y, cellSize) {
+        svg.selectAll(".vline").data(d3.range(26)).enter()
+            .append("line")
+            .attr("x1", function (d) {
+                return x + d * cellSize;
+            })
+            .attr("x2", function (d) {
+                return x + d * cellSize;
+            })
+            .attr("y1", function (d) {
+                return y + 0;
+            })
+            .attr("y2", function (d) {
+                return y + 500;
+            })
+            .style("stroke", "#eee");
+
+        // horizontal lines
+        svg.selectAll(".vline").data(d3.range(26)).enter()
+            .append("line")
+            .attr("y1", function (d) {
+                return y + d * cellSize;
+            })
+            .attr("y2", function (d) {
+                return y + d * cellSize;
+            })
+            .attr("x1", function (d) {
+                return x + 0;
+            })
+            .attr("x2", function (d) {
+                return x + 500;
+            })
+            .style("stroke", "#eee");
     };
 })();

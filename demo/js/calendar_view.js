@@ -4,6 +4,7 @@
     // LocalStorage
 
     fake_cal_data = [];
+    fake_cal_data2 = [];
 
     var routes = {
         "Hethwood A": ["Burruss Hall", "Stroubles Circle"],
@@ -33,6 +34,17 @@
                         sched = 1000;
                         actual = 600 + Math.random() * 800;
                     }
+                    if (dt.getMonth() > 3) {
+                    fake_cal_data2.push({
+                        "route": route,
+                        "date": tmp,
+                        "trip": trip,
+                        "stop": routes[route][stop],
+                        "delta": sched - actual,
+                        "boarded": Math.floor(Math.random() * 30)
+                    });
+
+                    }
                     fake_cal_data.push({
                         "route": route,
                         "date": tmp,
@@ -54,54 +66,81 @@
         percent = d3.format(".1%"),
         format = d3.time.format("%Y-%m-%d");
 
-    var subviewUpdate,
-        nested_data = {},
+    var subviewUpdate = function () {},
         cellSize = 17,
         width = cellSize * 9,
         height = cellSize * 55;
 
-    displayCalendar = function(data, svUpdate) {
-        subviewUpdate = svUpdate;
-        if (!subviewUpdate) {
-            subviewUpdate = function () {};
+    function aveAdherence (d) {
+        var delta_sum = 0;
+        for (var i = 0; i < d.length; i++) {
+            delta_sum += Math.abs(d[i]["delta"]);
         }
+        return delta_sum / d.length;
+    }
 
-        Date.prototype._cView_toISO = function () {
-            return this.toISOString().slice(0, 10);
-        };
+    /*
+     * This function returns an SVG path starting at (d0 * cellSize, w1 * cellSize)
+     * and moving in horizontal / vertial line segments from there.
+     */
+    function monthPath(t0) {
+      var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
+          d0 = +day(t0), w0 = +week(t0),
+          d1 = +day(t1), w1 = +week(t1);
+      return "M" + d0 * cellSize + "," + w0 * cellSize +
+          "H" + 7 * cellSize + "V" + w1 * cellSize +
+          "H" + (d1 + 1) * cellSize + "V" + (w1 + 1) * cellSize +
+          "H" + 0 + "V" + (w0 + 1) * cellSize +
+          "H" + d0 * cellSize + "Z";
+    }
 
-        nested_data = d3.nest()
-            .key(function(d) { return d["date"]._cView_toISO(); })
+    function toISOStringWithoutTime (date) {
+        return date.toISOString().slice(0, 10);
+    }
+
+    function insertLegend (spectrum, scale, min, max) {
+        var legend = d3.select("#calendar-container")
+            .insert("div", "svg")
+            .attr("id", "legend");
+
+        legend.append("p")
+            .text("Average difference between scheduled and actual arrival times: ");
+
+        legend.append("span")
+            .text(min + " ");
+
+        legend.append("svg")
+            .style("width", cellSize * 4.1)
+            .style("height", cellSize * 1.1)
+            .attr("class", "RdYlGn")
+            .selectAll(".day")
+            .data(spectrum)
+            .enter().append("rect")
+            .attr("width", cellSize)
+            .attr("height", cellSize)
+            .attr("x", function(d) { return cellSize * spectrum.indexOf(d); })
+            .attr("class", function(d) { console.log(d); return "day " + scale(d); })
+            .text(function(d) { return d + ": " + percent(d); });
+
+        legend.append("span")
+            .text(" " + max);
+    }
+
+    displayCalendar = function(data) {
+        var nested_data = d3.nest()
+            .key(function(d) { return toISOStringWithoutTime(d["date"]); })
             .map(data);
-
-        var data_by_dow = d3.nest()
-            .key(function(d) { return day(d["date"]); })
-            .map(data);
-
-        showDow = function (dow) {
-            console.log(data_by_dow["" + dow]);
-            subviewUpdate(data_by_dow["" + dow]);
-        };
-
-        var adherence = function (d) {
-            var delta_sum = 0;
-            for (var i = 0; i < d.length; i++) {
-                //delta_sum += Math.abs(d[i]["scheduled"] - d[i]["actual"]);
-                delta_sum += Math.abs(d[i]["delta"]);
-            }
-            return delta_sum / d.length;
-        };
 
         var maxAdherence = d3.max(data, function (d) {
-            return adherence(nested_data[d["date"]._cView_toISO()]);
+            return aveAdherence(nested_data[toISOStringWithoutTime(d["date"])]);
         });
 
         var color = d3.scale.quantize()
             .domain([maxAdherence, 0.0])
             .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
-            var minYear = d3.min(data, function (d) { return +d.date.getUTCFullYear(); });
-            var maxYear = d3.max(data, function (d) { return +d.date.getUTCFullYear(); }) + 1;
+        var minYear = d3.min(data, function (d) { return +d.date.getUTCFullYear(); }),
+            maxYear = d3.max(data, function (d) { return +d.date.getUTCFullYear(); }) + 1;
 
         var svg = d3.select("#calendar-container").selectAll("svg")
             .data(d3.range(minYear, maxYear))
@@ -110,7 +149,6 @@
             .attr("height", height)
             .attr("class", "RdYlGn")
           .append("g")
-            //.attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
             .attr("transform", "translate(" + 10 + "," + 15 + ")");
 
         svg.append("text")
@@ -127,7 +165,6 @@
             .attr("y", function(d) { return week(d) * cellSize; })
             .attr("x", function(d) { return day(d) * cellSize; })
             .datum(format)
-            //.on("mouseover", function (d) { console.log("Mouseover " + d); })
             .on("click", function (d) { subviewUpdate(nested_data[d]); });
 
         rect.append("title")
@@ -139,58 +176,15 @@
             .attr("class", "month")
             .attr("d", monthPath);
 
-
-          rect.filter(function(d) { return d in nested_data; })
-              .attr("class", function(d) { return "day " + color(adherence(nested_data[d])); })
+        rect.filter(function(d) { return d in nested_data; })
+            .attr("class", function(d) { return "day " + color(aveAdherence(nested_data[d])); })
             .select("title")
-            .text(function(d) { return d + ": " + percent(adherence(nested_data[d])); });
+            .text(function(d) { return d + ": " + aveAdherence(nested_data[d]); });
 
-            var spectrum = d3.range(0.0, maxAdherence, maxAdherence / 4);
-            var legend = d3.select("#calendar-container")
-                .insert("div", "svg")
-                .attr("id", "legend");
+        insertLegend(d3.range(0.0, maxAdherence, maxAdherence / 4), color, 0, maxAdherence);
+    };
 
-            legend.append("p")
-                .text("Average difference between scheduled and actual arrival times: ");
-
-            legend.append("span")
-                .text("0 ");
-
-            legend.append("svg")
-                .style("width", cellSize * 4.1)
-                .style("height", cellSize * 1.1)
-                .attr("class", "RdYlGn")
-                .selectAll(".day")
-                .data(spectrum)
-                .enter().append("rect")
-                .attr("width", cellSize)
-                .attr("height", cellSize)
-                .attr("x", function(d) { return cellSize * spectrum.indexOf(d); })
-                .attr("class", function(d) { console.log(d); return "day " + color(d); })
-                .text(function(d) { return d + ": " + percent(d); }); ;
-
-            legend.append("span")
-                .text(" " + maxAdherence);
-        };
-
-        changeSubviewUpdate = function(svUpdate) {
-            subviewUpdate = svUpdate;
-        };
-
-        /*
-         * This function returns an SVG path starting at (d0 * cellSize, w1 * cellSize)
-         * and moving in horizontal / vertial line segments from there.
-         */
-        function monthPath(t0) {
-          var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
-              d0 = +day(t0), w0 = +week(t0),
-              d1 = +day(t1), w1 = +week(t1);
-          return "M" + d0 * cellSize + "," + w0 * cellSize +
-              "H" + 7 * cellSize + "V" + w1 * cellSize +
-              "H" + (d1 + 1) * cellSize + "V" + (w1 + 1) * cellSize +
-              "H" + 0 + "V" + (w0 + 1) * cellSize +
-              "H" + d0 * cellSize + "Z";
-        }
-
-        d3.select(self.frameElement).style("height", "2910px");
+    changeSubviewUpdate = function(updateCb) {
+        subviewUpdate = updateCb;
+    };
 })();
