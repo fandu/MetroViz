@@ -40,7 +40,7 @@
         d3.select(sel).selectAll("svg").remove();
 
         var svg = d3.select(sel).append("svg")
-            .attr("class", "RdYlGn")
+            .attr("class", "RdYlBl")
             .attr("width", width + margin.left + margin.right)
             //.attr("height", height + margin.top + margin.bottom)
             .attr("height", height)// + margin.top + margin.bottom)
@@ -162,7 +162,7 @@
         var legendDiv = d3.select(sel)
                 .insert("div", "svg")
                 .attr("id", "trip-legend")
-                .attr("class", "RdYlGn");
+                .attr("class", "RdYlBl");
 
         insertLegend(legendDiv,
             "Average difference between scheduled and actual arrival times: ",
@@ -200,9 +200,9 @@
     function squareLegend(toBeNamed) {
         return function (legend, min, max) {
             var cellSize = 12,
-                spectrum = d3.range(min, max, (max - min) / 4);
+                spectrum = d3.range(min + (max - min) / 5, max + (max - min) / 5, (max - min) / 5);
             toBeNamed(legend.append("svg")
-                .style("width", cellSize * 4.1)
+                .style("width", cellSize * 5.0)
                 .style("height", cellSize * 1.1)
                 .selectAll("box")
                 .data(spectrum)

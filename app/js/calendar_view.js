@@ -110,7 +110,7 @@
             .text(min + " ");
 
         legend.append("svg")
-            .style("width", cellSize * 5.1)
+            .style("width", cellSize * 5.0)
             .style("height", cellSize * 1.1)
             .attr("class", "RdYlBl")
             .selectAll(".day")
