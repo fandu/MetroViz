@@ -51,7 +51,7 @@ function getFareTypeColor(i) {
 }
 
 // Load the station data. When the data comes back, create an overlay.
-d3.json("../data/stops.json", function(data) {
+d3.json("./data/stops.json", function(data) {
     var overlay = new google.maps.OverlayView();
     overlay.setMap(map);
 
@@ -121,7 +121,7 @@ d3.json("../data/stops.json", function(data) {
                 .attr("class", "map_stop_info map_piechart")
                 .attr("transform", "translate(" + (padding2) + "," + (padding2) + ")");
 
-            d3.csv("../data/data.csv", function(error, data) {
+            d3.csv("./data/data.csv", function(error, data) {
                 var map_piechart_unit = map_piechart.selectAll(".map_piechart_unit")
                     .data(pie(data))
                     .enter().append("g")
