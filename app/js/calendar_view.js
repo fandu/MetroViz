@@ -110,9 +110,9 @@
             .text(min + " ");
 
         legend.append("svg")
-            .style("width", cellSize * 4.1)
+            .style("width", cellSize * 5.1)
             .style("height", cellSize * 1.1)
-            .attr("class", "RdYlGn")
+            .attr("class", "RdYlBl")
             .selectAll(".day")
             .data(spectrum)
             .enter().append("rect")
@@ -147,7 +147,7 @@
           .enter().append("svg")
             .attr("width", width)
             .attr("height", height)
-            .attr("class", "RdYlGn")
+            .attr("class", "RdYlBl")
           .append("g")
             .attr("transform", "translate(" + 10 + "," + 15 + ")");
 
@@ -181,7 +181,7 @@
             .select("title")
             .text(function(d) { return d + ": " + aveAdherence(nested_data[d]); });
 
-        insertLegend(d3.range(0.0, maxAdherence, maxAdherence / 4), color, 0, maxAdherence);
+        insertLegend(d3.range(maxAdherence / 5, maxAdherence + maxAdherence / 5, maxAdherence / 5), color, 0, maxAdherence);
     };
 
     changeSubviewUpdate = function(updateCb) {
