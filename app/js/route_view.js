@@ -32,7 +32,7 @@ var svg = d3.select("#route_id").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-d3.json("../data/routes2.json", function(data) {
+d3.json("./data/routes2.json", function(data) {
     x.domain([first_stop, last_stop]);
 
     var xScale = d3.scale.linear()
