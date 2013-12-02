@@ -32,7 +32,7 @@
 
     var xAxis,
         margin = {top: 20, right: 200, bottom: 0, left: 20},
-        width = 300,
+        width = 500,
         height = 650
         cellSize = 40;
 
@@ -66,12 +66,6 @@
         var color = d3.scale.quantize()
             .domain([maxAdherence, 0.0])
             .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
-
-        var rScale = d3.scale.linear()
-            .domain([0, maxPassengers])
-            .range([2, cellSize]);
-
-        drawGrid(svg, 0, 0, rScale(maxPassengers));
 
         x = d3.scale.ordinal()
             .domain(stops)
@@ -118,45 +112,51 @@
             }, 0) / d.entries.length;
         };
 
-        var circleFill = function (d) {
-            return d3.hsl(0, aveAdherence(d) / maxAdherence, 0.7);
+        var outerx = function (d) {
+            return cellSize * x(d.stop);
         };
 
-        var circleRadius = function (d) {
-            return rScale(avePassengers(d));
+        var outery = function (trip) {
+            return trip * cellSize;
         };
 
-        var circleX = function (d) {
-            return /*50 +*/ cellSize * x(d.stop) + (cellSize - circleRadius(d)) / 2;
-        };
+        var innerx = function(d) {
+            var person = d.num;
+            return (person % 6) * (cellSize / 6);
+        }
 
-        var circleY = function (d) {
-            return (cellSize - circleRadius(d)) / 2;
-        };
+        var innery = function(d) {
+            var person = d.num;
+            return (Math.floor(person / 6)) * (cellSize / 6);
+        }
 
         for (var trip_no in data) {
-            var trip = stopList(data[trip_no]);
+            var trip = stopList(data[trip_no]),
+                people = [],
+                nodes;
 
-            g = svg.append("g").attr("class","journal")
-            .attr("transform", "translate(" + 0 + "," + trip_no * cellSize + ")");
+            for (var idx = 0; idx < trip.length; idx++) {
+                g = svg.append("g").attr("class","journal")
+                .attr("transform", "translate(" + outerx(trip[idx]) + "," + outery(trip_no) + ")");
 
-            var circles = g.selectAll("rect")
-                .data(trip)
-                .enter()
-                .append("rect");
+                people = d3.range(avePassengers(trip[idx])).map(function(x) { return {num: x, pid: trip_no + "-" + idx + "-" + x}; });
 
-            text = g.selectAll("text")
-                .data(trip)
-                .enter()
-                .append("text");
-
-            circles
-                .attr("x", circleX)
-                .attr("y", circleY)
-                .attr("width", circleRadius)
-                .attr("height", circleRadius)
-                .attr("class", function(d) { return "day " + color(aveAdherence(d)); });
+                nodes = g.selectAll("rect")
+                    .data(people)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d) { return innerx(d); })
+                    .attr("y", function(d) { return innery(d); })
+                    //.attr("y", circleY)
+                    .attr("width", function() { return cellSize / 6; })
+                    .attr("height", function() { return cellSize / 6; })
+                    //.attr("height", circleRadius)
+                    .attr("class", function(d) { return "day " + color(aveAdherence(trip[idx])); });
+            }
         }
+
+        drawGrid(svg, 40 / 6, 30 * 6, "#eee");
+        drawGrid(svg, cellSize, 30, "#111");
 
         d3.select("#trip-legend").remove();
         var legendDiv = d3.select(sel)
@@ -173,7 +173,7 @@
                 //node.style("fill", function (d) { return d3.hsl(0, d / maxAdherence, 0.7); });
             }));
 
-        insertLegend(legendDiv,
+        /*insertLegend(legendDiv,
             "Number of passengers: ",
             0,
             maxPassengers,
@@ -181,7 +181,7 @@
                 node
                     .attr("height", function (d) { return rScale(d); })
                     .attr("width", function (d) { return rScale(d); });
-            }));
+            }));*/
     };
 
     function insertLegend(div, label, min, max, showSpectrum) {
@@ -228,38 +228,38 @@
         };
     }
 
-    var drawGrid = function (svg, x, y, cellSize) {
-        svg.selectAll(".vline").data(d3.range(26)).enter()
+    var drawGrid = function (svg, cellSize, numCells, color) {
+        svg.selectAll(".vline").data(d3.range(numCells)).enter()
             .append("line")
             .attr("x1", function (d) {
-                return x + d * cellSize;
+                return d * cellSize;
             })
             .attr("x2", function (d) {
-                return x + d * cellSize;
+                return d * cellSize;
             })
             .attr("y1", function (d) {
-                return y + 0;
+                return 0;
             })
             .attr("y2", function (d) {
-                return y + 500;
+                return numCells * cellSize;
             })
-            .style("stroke", "#eee");
+            .style("stroke", color);
 
         // horizontal lines
-        svg.selectAll(".vline").data(d3.range(26)).enter()
+        svg.selectAll(".vline").data(d3.range(numCells)).enter()
             .append("line")
             .attr("y1", function (d) {
-                return y + d * cellSize;
+                return d * cellSize;
             })
             .attr("y2", function (d) {
-                return y + d * cellSize;
+                return d * cellSize;
             })
             .attr("x1", function (d) {
-                return x + 0;
+                return 0;
             })
             .attr("x2", function (d) {
-                return x + 500;
+                return numCells * cellSize;
             })
-            .style("stroke", "#eee");
+            .style("stroke", color);
     };
 })();
