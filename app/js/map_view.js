@@ -181,11 +181,9 @@ d3.json("./data/stops.json", function(data) {
                 .attr("class", "map_stop")
                 .on("mouseover", function(d) {
                     highlightStops([d.key]);
-                    afterMouseOver(d);
                 })
                 .on("mouseout", function(d) {
                     unhighlightStops([d.key]);
-                    afterMouseOut(d);
                 })
                 .on("click", function(d) {
                     afterClickStop(d);
