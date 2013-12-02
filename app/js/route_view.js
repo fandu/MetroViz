@@ -80,7 +80,7 @@ d3.json("./data/routes2.json", function(data) {
             .style("fill", function(d) {
                 return "#6cb3f8";
             })
-            .attr("stroke", "white")
+            .attr("stroke", "gray")
             .attr("stroke-width", 1)
         //          .attr("class", function (d) { return d.name; };)
         .on("mouseover", circle_mouseover)
@@ -98,7 +98,9 @@ d3.json("./data/routes2.json", function(data) {
             })
             .on("mouseover", mouseover)
             .on("mouseout", mouseout)
-            .on("click", textmouseclick);
+            .on("click", textmouseclick)
+            .style("font-weight", "normal")
+        	.style("text-decoration", "none");
 
 
     };
@@ -159,15 +161,31 @@ d3.json("./data/routes2.json", function(data) {
 
     function circle_mouseover() {
 
+    	d3.select(this).transition().style("fill", "red").attr("stroke-width", 1).attr("r", "10");
         var xpos = d3.select(this).attr("cx");
         var ypos = d3.select(this).attr("cy");
         xindex = Math.round(xpos / 23.07); //these numbers are really important
         yindex = Math.round((ypos - 25) / 40);
         stop_name = data[yindex].routes[xindex];
+        tool_tip_x = xpos+22;
+        tool_tip_y = ypos-10;
 
-        d3.select(this).transition().style("fill", "#6cb3f8").attr("stroke-width", 1).attr("r", "10");
+		//Create the tooltip label
+        svg.append("text")
+            .attr("id", "tooltip")
+            .attr("x", tool_tip_x)
+            .attr("y", tool_tip_y)
+            .attr("text-anchor", "middle")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "11px")
+            .attr("font-weight", "bold")
+            .attr("fill", "black")
+            .text(stop_name);
 
-        map_highlightStops([stop_name]);
+
+
+
+		map_highlightStops([stop_name]);
 
         var map_height = parseInt(d3.select("#map_id").style("height"));
         d3.select("text").text("Hello World").style("fill", "black").attr("x", xpos + 35).attr("y", (map_height + ypos + 24));
@@ -194,6 +212,7 @@ d3.json("./data/routes2.json", function(data) {
 
 
     function circle_mouseout() {
+    	d3.select("#tooltip").remove();
         var xpos = d3.select(this).attr("cx");
         var ypos = d3.select(this).attr("cy");
         xindex = Math.round(xpos / 23.07); //these numbers are really important
