@@ -308,7 +308,8 @@ d3.json("./data/routes3.json", function(data) {
         //console.log("Route ID is "+selected_route_ID);
         switchToTripView();
         processRouteAdherenceRidership(selected_route_ID, function(data) {
-        	displayCalendar(data);
+            var cvfmt = convertToCalViewFmt(data);
+        	displayCalendar(cvfmt);
         });
     }
 
@@ -322,6 +323,10 @@ d3.json("./data/routes3.json", function(data) {
         var selected_stop_ID = data[yindex].routes[xindex].stopId;
         //console.log(selected_stop_ID);
         switchToStopView();
+        processStopAdherenceRidership(selected_stop_ID, function(data) {
+            var cvfmt = convertToCalViewFmt(data);
+        	displayCalendar(cvfmt);
+        });
     }
 
     // helper function which highlights other routes with the same stop
