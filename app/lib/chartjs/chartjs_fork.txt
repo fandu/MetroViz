@@ -1,0 +1,4 @@
+This is a fork of the original chartjs:
+https://github.com/WimAtIHomer/Chart.js
+
+There are also some additional custom modifications to the library.

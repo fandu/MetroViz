@@ -31,19 +31,14 @@ var POPULATION = "boarded";
 var DEFAULT_WIDTH = 480;
 var DEFAULT_HEIGHT = 320;
 var scale_max = 20;
-var radar_max = 5;
-var bar_chart_options = {scaleOverride: true, scaleStartValue: 0,
-                         scaleStepWidth: 1, scaleSteps: scale_max, scaleFontSize: 10};
-var bar_chart_options_pop = {scaleOverride: true, scaleStartValue: 0,
-                             scaleStepWidth: 1, scaleSteps: scale_max, scaleFontSize: 10};
-var bar_chart_options_stacked = {scaleOverride: true, scaleStartValue: -scale_max, stacked: true,
-                                 scaleStepWidth: 1, scaleSteps: scale_max * 2, scaleFontSize: 10};
+var bar_chart_options = {scaleOverride: true, scaleStartValue: -scale_max,
+                         scaleStepWidth: 1, scaleSteps: scale_max * 2, scaleFontSize: 10};
 var line_chart_options = {scaleOverride: true, scaleStartValue: -scale_max,
                           scaleStepWidth: 1, scaleSteps: scale_max * 2, scaleFontSize: 10};
-var radar_chart_options = {scaleOverride: true, pointDotRadius: 3, pointDotStrokeWidth: 0, datasetStrokeWidth: 5, angleShowLineOut: true,
-                           datasetStroke: false,
-                           scaleStepWidth: 1, scaleSteps: radar_max, scaleFontSize: 10};
+var radar_chart_options = {scaleOverride: true, scaleStartValue: 0, 
+                           scaleStepWidth: 1, scaleSteps: scale_max, scaleFontSize: 10};
 
+ 
 /**
  * Sort array of objects by key.
  */
@@ -67,6 +62,7 @@ function set_scale_max(max) {
         
     bar_chart_options.scaleSteps = scale_max;
     line_chart_options.scaleSteps = scale_max;
+    radar_chart_options.scaleSteps = scale_max;
     
     return scale_max;
 }
@@ -92,14 +88,6 @@ function insert_chart(chart_data, type, width, height, target_id) {
     switch (type) {
     case "bar":
         new Chart(ctx).Bar(chart_data, bar_chart_options);
-        break;
-        
-    case "bar-stacked":
-        new Chart(ctx).Bar(chart_data, bar_chart_options_stacked);
-        break;
-        
-    case "bar-pop":
-        new Chart(ctx).Bar(chart_data, bar_chart_options_pop);
         break;
     
     case "line":
@@ -140,7 +128,7 @@ function individual_bar_all(raw_data, width, height, target_id) {
         
         var delta = parseInt(val[DELTA]) / 60.0;
         if (delta < 0) {
-            chart_data.datasets[0].data.push(-delta);
+            chart_data.datasets[0].data.push(delta);
             chart_data.datasets[2].data.push(0);
         } else {
             chart_data.datasets[0].data.push(0);
@@ -157,8 +145,8 @@ function individual_bar_all(raw_data, width, height, target_id) {
  * Like individual_bar_all(), adherence only.
  */
 function individual_bar_adhere(raw_data, width, height, target_id) {
-    var chart_data = {labels: [], datasets: [ {data: [], fillColor: "rgba(0,127,0,.8)", strokeColor: "rgba(0, 127, 0, 0)" },
-                                              {data: [], fillColor: "rgba(127,0,0,.8)", strokeColor: "rgba(127,0,0,0)" } ]};
+    var chart_data = {labels: [], datasets: [ {data: [], fillColor: "rgba(0,127,0,.8)" },
+                                              {data: [], fillColor: "rgba(127,0,0,.8)" } ]};
     
     if (width == null) width = DEFAULT_WIDTH;
     if (height == null) height = DEFAULT_HEIGHT;
@@ -180,7 +168,7 @@ function individual_bar_adhere(raw_data, width, height, target_id) {
         }
     } );
     
-    return insert_chart(chart_data, "bar-stacked", width, height, target_id);
+    return insert_chart(chart_data, "bar", width, height, target_id);
 }
 
 /**
@@ -202,7 +190,7 @@ function individual_bar_pop(raw_data, width, height, target_id) {
         chart_data.datasets[0].data.push(Number(val[POPULATION]));
     } );
     
-    return insert_chart(chart_data, "bar-pop", width, height, target_id);
+    return insert_chart(chart_data, "bar", width, height, target_id);
 }
 
 
@@ -395,7 +383,7 @@ function aggregate_bar_all(raw_data, width, height, target_id, min_hour, max_hou
         
         var delta = parseInt(val[DELTA]) / 60.0;
         if (delta < 0) {
-            chart_data.datasets[0].data[hour] += -delta;
+            chart_data.datasets[0].data[hour] += delta;
         } else {
             chart_data.datasets[2].data[hour] += delta;
         }
@@ -481,7 +469,7 @@ function aggregate_bar_adhere(raw_data, width, height, target_id, min_hour, max_
         chart_data.datasets[1].data = chart_data.datasets[1].data.slice(min_hour, max_hour);
     }
     
-    return insert_chart(chart_data, "bar-stacked", width, height, target_id);
+    return insert_chart(chart_data, "bar", width, height, target_id);
 }
 
 /**
@@ -543,17 +531,15 @@ function aggregate_radar_all(raw_data, width, height, target_id) {
  * Like aggregate_radar_all, adherence only.
  */
 function aggregate_radar_adhere(raw_data, width, height, target_id) {
-    var empty = new Array(48+1).join('0').split('').map(parseFloat);
+    var empty = new Array(24+1).join('0').split('').map(parseFloat);
 
     var chart_data = {
-        labels: ["00", "", "01", "", "02", "", "03", "", "04", "", "05", "",
-                 "06", "", "07", "", "08", "", "09", "", "10", "", "11", "",
-                 "12", "", "13", "", "14", "", "15", "", "16", "", "17", "",
-                 "18", "", "19", "", "20", "", "21", "", "22", "", "23", ""],
-        datasets: [{data: empty.slice(0), fillColor: "rgba(0,127,0,0)", pointColor: "rgba(0,127,0,1)",
-                    strokeColor: "rgba(0,127,0,.5)", pointStrokeColor: "rgba(0,127,0,1)"},
-                   {data: empty.slice(0), fillColor: "rgba(127,0,0,0)", pointColor: "rgba(127,0,0,1)",
-                    strokeColor: "rgba(127,0,0,.5)", pointStrokeColor: "rgba(127,0,0,1)"} ]};
+        labels: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+                 "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+        datasets: [{data: empty.slice(0), fillColor: "rgba(0,127,0,.5)", pointColor: "rgba(0,127,0,.5)",
+                    strokeColor: "rgba(0,127,0,.5)", pointStrokeColor: "rgba(0,127,0,0)"},
+                   {data: empty.slice(0), fillColor: "rgba(127,0,0,.5)", pointColor: "rgba(127,0,0,.5)",
+                    strokeColor: "rgba(127,0,0,.5)", pointStrokeColor: "rgba(127,0,0,0)"} ]};
     
     if (width == null) width = DEFAULT_WIDTH;
     if (height == null) height = DEFAULT_HEIGHT;
@@ -568,61 +554,20 @@ function aggregate_radar_adhere(raw_data, width, height, target_id) {
         
         var delta = parseInt(val[DELTA]) / 60.0;
         if (delta < 0) {
-            chart_data.datasets[0].data[hour * 2 + 1] += -delta;
+            chart_data.datasets[0].data[hour] += -delta;
         } else {
-            chart_data.datasets[1].data[hour * 2 + 1] += delta;
+            chart_data.datasets[1].data[hour] += delta;
         }
         
-        bucket_count[hour * 2 + 1] += 1;
+        bucket_count[hour] += 1;
     } );
     
     // average each bucket (hour)
-    for (var i = 0; i < bucket_count.length; i++) {
+    for (var i = 0; i < 24; i++) {
         if (bucket_count[i] == 0) continue;
         
         chart_data.datasets[0].data[i] /= bucket_count[i];
         chart_data.datasets[1].data[i] /= bucket_count[i];
-    }
-
-    return insert_chart(chart_data, "radar", width, height, target_id);
-}
-
-/**
- * Like aggregate_radar_all, ridership only.
- */
-function aggregate_clock_pop(raw_data, width, height, target_id) {
-    var empty = new Array(48+1).join('0').split('').map(parseFloat);
-
-    var chart_data = {
-        labels: ["00", "", "01", "", "02", "", "03", "", "04", "", "05", "",
-                 "06", "", "07", "", "08", "", "09", "", "10", "", "11", "",
-                 "12", "", "13", "", "14", "", "15", "", "16", "", "17", "",
-                 "18", "", "19", "", "20", "", "21", "", "22", "", "23", ""],
-        datasets: [{data: empty.slice(0), fillColor: "rgba(0,0,0,0)", pointColor: "rgba(0,0,0,1)",
-                    strokeColor: "rgba(0,0,0,.8)", pointStrokeColor: "rgba(0,0,0,1)"} ]};
-    
-    if (width == null) width = DEFAULT_WIDTH;
-    if (height == null) height = DEFAULT_HEIGHT;
-    
-    sortByKey(raw_data, SCHEDULED);
-    
-    var bucket_count = empty.slice(0);
-    
-    // format data
-    raw_data.forEach(function(val) {
-        var hour = (new Date(Date.parse( val[SCHEDULED] ))).getHours();
-        
-        var pop = parseInt(val[POPULATION]);
-        chart_data.datasets[0].data[hour * 2 + 1] += pop;
-
-        bucket_count[hour * 2 + 1] += 1;
-    } );
-    
-    // average each bucket (hour)
-    for (var i = 0; i < bucket_count.length; i++) {
-        if (bucket_count[i] == 0) continue;
-        
-        chart_data.datasets[0].data[i] /= bucket_count[i];
     }
 
     return insert_chart(chart_data, "radar", width, height, target_id);
@@ -637,8 +582,8 @@ function aggregate_radar_pop(raw_data, width, height, target_id) {
     var chart_data = {
         labels: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
                  "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
-        datasets: [{data: empty.slice(0), fillColor: "rgba(0,0,0,.8)", pointColor: "rgba(0,0,0,1)",
-                    strokeColor: "rgba(0,0,0,1)", pointStrokeColor: "rgba(0,0,0,1)"} ]};
+        datasets: [{data: empty.slice(0), fillColor: "rgba(0,0,0,.5)", pointColor: "rgba(0,0,0,.5)",
+                    strokeColor: "rgba(0,0,0,.5)", pointStrokeColor: "rgba(0,0,0,0)"}] };
     
     if (width == null) width = DEFAULT_WIDTH;
     if (height == null) height = DEFAULT_HEIGHT;
@@ -651,14 +596,13 @@ function aggregate_radar_pop(raw_data, width, height, target_id) {
     raw_data.forEach(function(val) {
         var hour = (new Date(Date.parse( val[SCHEDULED] ))).getHours();
         
-        var pop = parseInt(val[POPULATION]);
-        chart_data.datasets[0].data[hour] += pop;
-
+        chart_data.datasets[0].data[hour] += Number(val[POPULATION]);
+        
         bucket_count[hour] += 1;
     } );
     
     // average each bucket (hour)
-    for (var i = 0; i < bucket_count.length; i++) {
+    for (var i = 0; i < 24; i++) {
         if (bucket_count[i] == 0) continue;
         
         chart_data.datasets[0].data[i] /= bucket_count[i];
@@ -666,3 +610,4 @@ function aggregate_radar_pop(raw_data, width, height, target_id) {
 
     return insert_chart(chart_data, "radar", width, height, target_id);
 }
+
