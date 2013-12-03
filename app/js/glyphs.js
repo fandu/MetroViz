@@ -1,10 +1,5 @@
 /**
  * glyphs.js - dynamically generated glyphs
- * 
- * Color code:
- * green - minutes early
- * red - minutes late
- * gray/black - fare count at stop
  *
  * Notes:
  * Every chart function targets an html id
@@ -16,6 +11,8 @@
  * (data, width, height, height, target_id, [min_hour, max_hour])
  *
  * Aggregate charts bucket by hour, individual charts display every stop
+ *
+ * set_scale_max(max) and set_pop_max(max) set the maximum height of the charts
  *
  * Every parameter except data is optional, defaults will be used as necessary.
  * 
@@ -31,18 +28,18 @@ var POPULATION = "boarded";
 var DEFAULT_WIDTH = 480;
 var DEFAULT_HEIGHT = 320;
 var scale_max = 20;
-var radar_max = 5;
+var pop_max = 10;
 var bar_chart_options = {scaleOverride: true, scaleStartValue: 0,
                          scaleStepWidth: 1, scaleSteps: scale_max, scaleFontSize: 10};
-var bar_chart_options_pop = {scaleOverride: true, scaleStartValue: 0,
-                             scaleStepWidth: 1, scaleSteps: scale_max, scaleFontSize: 10};
-var bar_chart_options_stacked = {scaleOverride: true, scaleStartValue: -scale_max, stacked: true,
+var bar_chart_options_pop = {scaleOverride: true, scaleStartValue: 0, scaleLineColor: "rgba(0,0,0,1)", scaleLineWidth: 2,
+                             scaleStepWidth: 1, scaleSteps: pop_max, scaleFontSize: 10};
+var bar_chart_options_stacked = {scaleOverride: true, scaleStartValue: -scale_max, stacked: true, scaleLineColor: "rgba(0,0,0,1)", 	                               scaleLineWidth: 2,
                                  scaleStepWidth: 1, scaleSteps: scale_max * 2, scaleFontSize: 10};
 var line_chart_options = {scaleOverride: true, scaleStartValue: -scale_max,
                           scaleStepWidth: 1, scaleSteps: scale_max * 2, scaleFontSize: 10};
-var radar_chart_options = {scaleOverride: true, pointDotRadius: 3, pointDotStrokeWidth: 0, datasetStrokeWidth: 5, angleShowLineOut: true,
+var radar_chart_options = {scaleOverride: true, pointDotRadius: 3, pointDotStrokeWidth: 0, datasetStrokeWidth: 3, angleShowLineOut: true,
                            datasetStroke: false,
-                           scaleStepWidth: 1, scaleSteps: radar_max, scaleFontSize: 10};
+                           scaleStepWidth: 1, scaleSteps: pop_max, scaleFontSize: 10};
 
 /**
  * Sort array of objects by key.
@@ -70,15 +67,15 @@ function set_scale_max(max) {
     return scale_max;
 }
 
-function set_radar_max(max) {
+function set_pop_max(max) {
     var tmp = Number(max);
     if (!isNaN(tmp) && tmp > 0) {
-        radar_max = tmp;
+        pop_max = tmp;
     }
         
-    radar_chart_options.scaleSteps = radar_max;
+    radar_chart_options.scaleSteps = pop_max;
     
-    return scale_max;
+    return pop_max;
 }
 
 /**
@@ -448,12 +445,13 @@ function aggregate_bar_adhere(raw_data, width, height, target_id, min_hour, max_
     var empty = new Array(24+1).join('0').split('').map(parseFloat);
 
     var chart_data = {
-        labels: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
-                 "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+        labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+                 "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
         /*datasets: [{data: empty.slice(0), fillColor: "rgba(0,127,0,.8)", strokeColor: "rgba(0,127,0,0)"},
                    {data: empty.slice(0), fillColor: "rgba(127,0,0,.8)", strokeColor: "rgba(127,0,0,0)"} ]};*/
-        datasets: [{data: empty.slice(0), fillColor: "rgba(215,25,28,.8)", strokeColor: "rgba(127,0,0,0)"},
-                   {data: empty.slice(0), fillColor: "rgba(215,25,28,.8)", strokeColor: "rgba(127,0,0,0)"} ]}
+                   /*215,25,28*/
+        datasets: [{data: empty.slice(0), fillColor: "rgba(268,31,35,.8)", strokeColor: "rgba(0,0,0,0)"},
+                   {data: empty.slice(0), fillColor: "rgba(268,31,35,.8)", strokeColor: "rgba(0,0,0,0)"} ]}
     
     if (width == null) width = DEFAULT_WIDTH;
     if (height == null) height = DEFAULT_HEIGHT;
@@ -544,7 +542,7 @@ function aggregate_bar_pop(raw_data, width, height, target_id, min_hour, max_hou
         chart_data.datasets[1].data = chart_data.datasets[1].data.slice(min_hour, max_hour);
     }
     
-    return insert_chart(chart_data, "bar", width, height, target_id);
+    return insert_chart(chart_data, "bar-pop", width, height, target_id);
 }
 
 /**
