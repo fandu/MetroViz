@@ -96,11 +96,12 @@ var switchToTripView = function() {
 var switchToStopView = function() {
     clearSubview();
 
-    $("#subview-container").append("<div id='legend'>" + "<span id='early'>Average earlyness (minutes)</span> " + "<span id='late'>Average lateness (minutes)</span> " + "<span id='boarded'>Average boarded (farecount)</span></div>");
+    //$("#subview-container").append("<div id='legend'>" + "<span id='early'>Average earlyness (minutes)</span> " + "<span id='late'>Average lateness (minutes)</span> " + "<span id='boarded'>Average boarded (farecount)</span></div>");
 
     changeSubviewUpdate(function(d) {
+        $("#subview-container").empty();
         $("#date").text(d[0].date.toDateString());
-        aggregate_bar_all(d, 500, 320, "subview-container");
+        aggregate_bar_adhere(d, 500, 320, "subview-container");
     });
 };
 </script>
