@@ -1,0 +1,25 @@
+/* Glyph legend*/
+
+#legend {
+  padding: 1em;
+  margin: 1em;
+  background-color: #ffffff;
+}
+
+#early {
+  padding: 1em;
+  background-color: #339933;
+  color: #ffffff;
+}
+
+#late {
+  padding: 1em;
+  background-color: #993333;
+  color: #ffffff;
+}
+
+#boarded {
+  padding: 1em;
+  background-color: #333333;
+  color: #ffffff;
+}

@@ -40,7 +40,7 @@ d3.json("./data/routes2.json", function(data) {
         .range([0, width]);
 
 
-    var xAxisG = svg.append("g")
+    svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + 0 + ")")
         .call(xAxis);
@@ -161,32 +161,21 @@ d3.json("./data/routes2.json", function(data) {
 
     function circle_mouseover() {
 
-
-    	d3.select(this).style("fill", "red").attr("stroke-width", 1).attr("r", "10");
+    	d3.select(this).transition().style("fill", "red").attr("stroke-width", 1).attr("r", "10");
         var xpos = d3.select(this).attr("cx");
         var ypos = d3.select(this).attr("cy");
         xindex = Math.round(xpos / 23.07); //these numbers are really important
         yindex = Math.round((ypos - 25) / 40);
         stop_name = data[yindex].routes[xindex];
-        tool_tip_x = xpos;
+        tool_tip_x = xpos+32;
         tool_tip_y = ypos-10;
-
-
-        xAxisG.selectAll('.tick')
-        .each(function(d,i){
-        	if(d==(xindex+1)){
-        		d3.select(this)
-        			.selectAll('text')
-        			.style("fill","red");
-        	}
-        })
 
 		//Create the tooltip label
         svg.append("text")
             .attr("id", "tooltip")
             .attr("x", tool_tip_x)
             .attr("y", tool_tip_y)
-            .attr("text-anchor", "start")
+            .attr("text-anchor", "middle")
             .attr("font-family", "sans-serif")
             .attr("font-size", "11px")
             .attr("font-weight", "bold")
@@ -203,7 +192,7 @@ d3.json("./data/routes2.json", function(data) {
        // d3.append("text").text("Hello World").style("fill", "black").attr("x", xpos + 35).attr("y", (map_height + ypos + 24));
         //console.log(stop_name+" "+(xpos + 35) + "," + (parseFloat(map_height) + parseFloat(ypos) + 24));
 
-        d3.selectAll("#route_id circle").attr("stroke-width",
+        d3.selectAll("#route_id circle").transition().attr("stroke-width",
             function(d, i) {
                 //console.log(d);
                 if (d == stop_name) {
@@ -227,34 +216,20 @@ d3.json("./data/routes2.json", function(data) {
            	}
         });
 
-        
-
     }
 
 
     function circle_mouseout() {
-
     	d3.select("#tooltip").remove();
         var xpos = d3.select(this).attr("cx");
         var ypos = d3.select(this).attr("cy");
-
         xindex = Math.round(xpos / 23.07); //these numbers are really important
         yindex = Math.round((ypos - 25) / 40);
         stop_name = data[yindex].routes[xindex];
         map_unhighlightStops([stop_name]);
 
-		xAxisG.selectAll('.tick')
-        .each(function(d,i){
-        	console.log(xindex);
-        	if(d==(xindex+1)){
-        		d3.select(this)
-        			.selectAll('text')
-        			.style("fill","gray");
-        	}
-        })
-
         d3.selectAll("#route_id circle").attr("stroke-width", 1).style("fill", "#6cb3f8").attr("r", "5");
-        //d3.select("text").text(null);
+        d3.select("text").text(null);
 
     }
 
