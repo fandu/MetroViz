@@ -1,20 +1,3 @@
-// var head = document.getElementsByTagName('head');
-// var testScript = document.createElement('script');
-// testScript.src = '../js/route_view.js';
-// testScript.type = 'text/javascript';
-// head[0].appendChild(testScript);
-
-// Create the Google Map…
-var map = new google.maps.Map(d3.select("#map_id").node(), {
-    zoom: 13,
-    center: new google.maps.LatLng(37.22505, -80.41673),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-    // MapTypeId.ROADMAP displays the default road map view
-    // MapTypeId.SATELLITE displays Google Earth satellite images
-    // MapTypeId.HYBRID displays a mixture of normal and satellite views
-    // MapTypeId.TERRAIN displays a physical map based on terrain information.
-});
-
 var fareTypeColor = []
 fareTypeColor.push({
     "type": "Student",
@@ -46,15 +29,38 @@ fareTypeColor.push({
 });
 
 function getFareTypeColor(i) {
-    if (i > 0 && i < fareTypeColor.length) return fareTypeColor[i].color;
+    if (i >= 0 && i < fareTypeColor.length) return fareTypeColor[i].color;
     else return "#DDD";
 }
 
+function getFareTypeName(i) {
+    if (i >= 0 && i < fareTypeColor.length) return fareTypeColor[i].type;
+    else return "Not Found";
+}
+
+// Create the Google Map
+var map = new google.maps.Map(d3.select("#map_id").node(), {
+    zoom: 11,
+    center: new google.maps.LatLng(37.18746, -80.4105),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+});
+
+// Create the legend and display on the map
+var legend = document.createElement('div');
+legend.id = 'legend';
+var content = [];
+content.push('<h3>Fare Types</h3>');
+for (var i = 0; i < fareTypeColor.length; i++) {
+    content.push('<p><div class="legend_color" style="background:' + getFareTypeColor(i) + '"></div>' + getFareTypeName(i) + '</p>');
+}
+legend.innerHTML = content.join('');
+legend.index = 1;
+map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
 // Load the station data. When the data comes back, create an overlay.
 d3.json("./data/stops.json", function(data) {
-    console.log("before");
+
     searchAutoComplete(data);
-    console.log("after");
 
     var overlay = new google.maps.OverlayView();
     overlay.setMap(map);
@@ -63,40 +69,12 @@ d3.json("./data/stops.json", function(data) {
     overlay.onAdd = function() {
         var layer = d3.select(this.getPanes().overlayMouseTarget).append("div")
             .attr("class", "map_class");
-        var layer2 = d3.select(this.getPanes().mapPane).append("div")
-            .attr("class", "map_class");
 
         // Draw each map_marker as a separate SVG element.
         // We could use a single SVG, but what size would it have?
         overlay.draw = function() {
             var projection = this.getProjection();
 
-            /*---------------------------------------------------------------*/
-            var map_legend = layer2.selectAll("svg.map_legend")
-                .data(fareTypeColor).enter()
-                .append("svg")
-                .attr("class", "map_legend")
-                .style("left", 820).style("top", 40);
-
-            map_legend.append("rect")
-                .attr("x", 0)
-                .attr("y", function(d, i) {
-                    return 30 * i;
-                })
-                .attr("width", 72)
-                .attr("height", 18)
-                .attr("fill", function(d) {
-                    return d.color;
-                });
-
-            map_legend.append("text")
-                .attr("x", 2)
-                .attr("y", function(d, i) {
-                    return 30 * i + 13;
-                })
-                .text(function(d) {
-                    return d.type;
-                });
             /*---------------------------------------------------------------*/
             var piechart_radius = 40;
             var padding2 = piechart_radius;
