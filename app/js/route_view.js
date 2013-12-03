@@ -184,8 +184,9 @@ d3.json("./data/routes2.json", function(data) {
 
 
 
-
+  //       console.log(stop_name);
 		map_highlightStops([stop_name]);
+  //       console.log("after");
 
         var map_height = parseInt(d3.select("#map_id").style("height"));
         d3.select("text").text("Hello World").style("fill", "black").attr("x", xpos + 35).attr("y", (map_height + ypos + 24));
