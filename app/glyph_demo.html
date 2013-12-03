@@ -24,6 +24,7 @@
 <h2>Stops bucketed by hour</h2>
 <div id='aggregate-bar-short'><p>Adherence and ridership (restricted hours):</p></div>
 <div id='aggregate-bar-long'><p>Adherence and ridership (entire day):</p></div>
+<div id='aggregate-bar-adhere'><p>Adherence level only:</p></div>
 <div id='aggregate-line'><p>Line chart versions:</p></div>
 
 <h2>Clock glyphs</h2>
@@ -49,6 +50,7 @@ individual_line_all(sample_data, 640, 480, "line-all");
 // limits to [min_hour, max_hour) if provided
 aggregate_bar_all(sample_data, 640, 480, "aggregate-bar-short", 12, 24);
 aggregate_bar_all(sample_data, 1280, 480, "aggregate-bar-long");
+aggregate_bar_adhere(sample_data, 1280,480, "aggregate-bar-adhere");
 
 // same as individual line, but bucketed by the hour
 aggregate_line_all(sample_data, 640, 480, "aggregate-line");
