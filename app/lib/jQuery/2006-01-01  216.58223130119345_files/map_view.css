@@ -1,0 +1,52 @@
+#map_id * {
+    cursor: default;
+}
+#map_id {
+    width: 900px;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+}
+#map_id .map_class, .map_class svg {
+    position: absolute;
+}
+#map_id .map_class svg.map_marker {
+    width: 10px;
+    height: 10px;
+}
+#map_id .map_class svg.map_marker2 {
+    width: 500px;
+    height: 500px;
+}
+#map_id .map_class svg.map_legend {
+    width: 500px;
+    height: 500px;
+    font-size: 12px;
+}
+#map_id .map_class svg.map_marker.mouseon {
+    width: 500px;
+    height: 500px;
+}
+#map_id .map_stop {
+    fill: #6cb3f8;
+    stroke: white;
+    stroke-width: 1px;
+    cursor: pointer !important;
+}
+#map_id .map_stop.fade {
+    stroke: none;
+    fill-opacity: 0.2;
+}
+#map_id .map_stop.mouseon {
+    fill: red;
+    fill-opacity: 1.0;
+}
+#map_id text.map_stop_info {
+    font-size: 18px;
+}
+#map_id .map_stop_info {
+    visibility: hidden;
+}
+#map_id .map_stop_info.mouseon {
+    visibility: visible;
+}

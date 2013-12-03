@@ -9,13 +9,29 @@
     <link rel="stylesheet" type="text/css" href="./css/calendar_view.css">
     <link rel="stylesheet" type="text/css" href="./css/glyph_legend.css">
     <link rel="stylesheet" type="text/css" href="./css/lib/jquery-ui.css">
+    <style>
+    #search_box {
+        height: 20px;
+        width: 400px;
+        font-size: 13px;
+    }
+    #search_button {
+        font-size: 16px;
+    }
+    #search_id {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    </style>
 </head>
 
 <body>
     <div id="map_id"></div>
 
-    <input type="text" id="search_box"></input>
-    <button id="search_button">Search</button>
+    <div id="search_id">
+        <input type="text" id="search_box"></input>
+        <button id="search_button">Search</button>
+    </div>
 
     <div id="route_id"></div>
     <button onclick="clearSubview()">Clear</button>
