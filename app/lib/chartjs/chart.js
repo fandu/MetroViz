@@ -345,7 +345,9 @@ window.Chart = function(context){
 			animation : true,
 			animationSteps : 60,
 			animationEasing : "easeOutQuart",
-			onAnimationComplete : null
+			onAnimationComplete : null,
+            /*HACKED*/
+            stacked: false
 		};		
 		var config = (options) ? mergeChartConfig(chart.Bar.defaults,options) : chart.Bar.defaults;
 		
@@ -1101,6 +1103,10 @@ window.Chart = function(context){
 					ctx.strokeStyle = data.datasets[i].strokeColor;
 				for (var j=0; j<data.datasets[i].data.length; j++){
 					var barOffset = yAxisPosX + config.barValueSpacing + valueHop*j + barWidth*i + config.barDatasetSpacing*i + config.barStrokeWidth*i;
+                    /*HACKED*/
+                    if(config.stacked){
+                        barOffset = yAxisPosX + config.barValueSpacing + valueHop*j;
+                    }
 					
 					ctx.beginPath();
 					ctx.moveTo(barOffset, xAxisPosY);
@@ -1203,6 +1209,11 @@ window.Chart = function(context){
 			valueHop = Math.floor(xAxisLength/(data.labels.length));	
 			
 			barWidth = (valueHop - config.scaleGridLineWidth*2 - (config.barValueSpacing*2) - (config.barDatasetSpacing*data.datasets.length-1) - ((config.barStrokeWidth/2)*data.datasets.length-1))/data.datasets.length;
+            
+            /*HACKED*/
+            if(config.stacked){
+                barWidth = valueHop - config.scaleGridLineWidth*2 - (config.barValueSpacing*2) - ((config.barStrokeWidth/2)*data.datasets.length-1);
+            }
 			
 			yAxisPosX = width-widestXLabel/2-xAxisLength;
 			yAxisPosMin = scaleHeight + config.scaleFontSize/2;				
