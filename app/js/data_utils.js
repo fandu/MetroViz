@@ -45,6 +45,14 @@ function processAdherenceRidership(route, stop, cb) {
     fetchAndProcessData(url, cb);
 }
 
+function processStopAdherenceRidership(stop, cb) {
+    processAdherenceRidership(1, 1, cb);
+}
+
+function processRouteAdherenceRidership(route, cb) {
+    processAdherenceRidership(1, 1, cb);
+}
+
 function convertToCalViewFmt(json) {
     var arr,
         year,

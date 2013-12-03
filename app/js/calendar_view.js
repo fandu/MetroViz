@@ -67,7 +67,7 @@
         format = d3.time.format("%Y-%m-%d");
 
     var subviewUpdate = function () {},
-        cellSize = 17,
+        cellSize = 10,
         width = cellSize * 9,
         height = cellSize * 55;
 
@@ -127,6 +127,7 @@
     }
 
     displayCalendar = function(data) {
+        //$("#calendar-container").empty();
         var nested_data = d3.nest()
             .key(function(d) { return toISOStringWithoutTime(d["date"]); })
             .map(data);
@@ -141,6 +142,9 @@
 
         var minYear = d3.min(data, function (d) { return +d.date.getUTCFullYear(); }),
             maxYear = d3.max(data, function (d) { return +d.date.getUTCFullYear(); }) + 1;
+
+        d3.select("#calendar-container").selectAll("svg").remove();
+        d3.select("#calendar-container").selectAll("div").remove();
 
         var svg = d3.select("#calendar-container").selectAll("svg")
             .data(d3.range(minYear, maxYear))
