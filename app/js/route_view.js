@@ -305,7 +305,11 @@ d3.json("./data/routes3.json", function(data) {
         var g = d3.select(this).node().parentNode;
         d3.select(g).selectAll("circle").attr("stroke-width", 1);
         var selected_route_ID = data[yindex].routeId;
-        console.log("Route ID is "+selected_route_ID);
+        //console.log("Route ID is "+selected_route_ID);
+        switchToTripView();
+        processRouteAdherenceRidership(selected_route_ID, function(data) {
+        	displayCalendar(data);
+        });
     }
 
     // for the API
@@ -316,8 +320,8 @@ d3.json("./data/routes3.json", function(data) {
         xindex = Math.round(xpos / 23.07); //these numbers are really important
         yindex = Math.round((ypos - 25) / 40);
         var selected_stop_ID = data[yindex].routes[xindex].stopId;
-        console.log(selected_stop_ID);
-
+        //console.log(selected_stop_ID);
+        switchToStopView();
     }
 
     // helper function which highlights other routes with the same stop
