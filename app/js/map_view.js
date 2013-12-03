@@ -52,6 +52,10 @@ function getFareTypeColor(i) {
 
 // Load the station data. When the data comes back, create an overlay.
 d3.json("./data/stops.json", function(data) {
+    console.log("before");
+    searchAutoComplete(data);
+    console.log("after");
+
     var overlay = new google.maps.OverlayView();
     overlay.setMap(map);
 
@@ -295,7 +299,6 @@ function unhighlightAllStops() {
     d3.selectAll(".map_stop_info").classed("mouseon", false);
 }
 
-
 function afterClickStop(d) {
     console.log("" + d.value[0] + "," + d.value[1] + ":" + d.key);
     send_to_route_view(d.key);
@@ -304,4 +307,15 @@ function afterClickStop(d) {
 function afterMouseOver(d) {
     console.log("" + d.value[0] + "," + d.value[1] + ":" + d.key);
     send_to_route_view(d.key);
+}
+
+function searchAutoComplete(data) {
+    var availableTags = [];
+    for (key in data) {
+        availableTags.push(key);
+    }
+
+    $("#search_box").autocomplete({
+        source: availableTags
+    });
 }

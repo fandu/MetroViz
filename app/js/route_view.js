@@ -167,7 +167,7 @@ d3.json("./data/routes2.json", function(data) {
         xindex = Math.round(xpos / 23.07); //these numbers are really important
         yindex = Math.round((ypos - 25) / 40);
         stop_name = data[yindex].routes[xindex];
-        tool_tip_x = xpos+22;
+        tool_tip_x = xpos+32;
         tool_tip_y = ypos-10;
 
 		//Create the tooltip label
@@ -184,11 +184,12 @@ d3.json("./data/routes2.json", function(data) {
 
 
 
-
+  //       console.log(stop_name);
 		map_highlightStops([stop_name]);
+  //       console.log("after");
 
         var map_height = parseInt(d3.select("#map_id").style("height"));
-        d3.select("text").text("Hello World").style("fill", "black").attr("x", xpos + 35).attr("y", (map_height + ypos + 24));
+       // d3.append("text").text("Hello World").style("fill", "black").attr("x", xpos + 35).attr("y", (map_height + ypos + 24));
         //console.log(stop_name+" "+(xpos + 35) + "," + (parseFloat(map_height) + parseFloat(ypos) + 24));
 
         d3.selectAll("#route_id circle").transition().attr("stroke-width",
@@ -196,6 +197,7 @@ d3.json("./data/routes2.json", function(data) {
                 //console.log(d);
                 if (d == stop_name) {
                     return 1;
+   
                 } else {
                     return 1;
                 }
@@ -206,6 +208,12 @@ d3.json("./data/routes2.json", function(data) {
             } else {
                 return 5;
             }
+        }).style("fill", function(d, i){
+        	if (d == stop_name) {
+        		return "red";
+        	} else {
+        		return "#6cb3f8";
+           	}
         });
 
     }
