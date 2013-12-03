@@ -55,10 +55,7 @@ function sortByKey(array, key) {
         return ((x < y) ? -1 : ((x > y) ? 1 : 0));
     });
 }
-
-/**
- * Sets all future glyphs to have max as the maximum scale value.
- */             
+             
 function set_scale_max(max) {
     var tmp = Number(max);
     if (!isNaN(tmp) && tmp > 0) {
@@ -66,7 +63,20 @@ function set_scale_max(max) {
     }
         
     bar_chart_options.scaleSteps = scale_max;
+    bar_chart_options_pop.scaleSteps = scale_max;
+    bar_chart_options_stacked = scale_max;
     line_chart_options.scaleSteps = scale_max;
+    
+    return scale_max;
+}
+
+function set_radar_max(max) {
+    var tmp = Number(max);
+    if (!isNaN(tmp) && tmp > 0) {
+        radar_max = tmp;
+    }
+        
+    radar_chart_options.scaleSteps = radar_max;
     
     return scale_max;
 }
@@ -440,8 +450,10 @@ function aggregate_bar_adhere(raw_data, width, height, target_id, min_hour, max_
     var chart_data = {
         labels: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
                  "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
-        datasets: [{data: empty.slice(0), fillColor: "rgba(0,127,0,.8)", strokeColor: "rgba(0,127,0,0)"},
-                   {data: empty.slice(0), fillColor: "rgba(127,0,0,.8)", strokeColor: "rgba(127,0,0,0)"} ]};
+        /*datasets: [{data: empty.slice(0), fillColor: "rgba(0,127,0,.8)", strokeColor: "rgba(0,127,0,0)"},
+                   {data: empty.slice(0), fillColor: "rgba(127,0,0,.8)", strokeColor: "rgba(127,0,0,0)"} ]};*/
+        datasets: [{data: empty.slice(0), fillColor: "rgba(215,25,28,.8)", strokeColor: "rgba(127,0,0,0)"},
+                   {data: empty.slice(0), fillColor: "rgba(215,25,28,.8)", strokeColor: "rgba(127,0,0,0)"} ]}
     
     if (width == null) width = DEFAULT_WIDTH;
     if (height == null) height = DEFAULT_HEIGHT;
@@ -482,6 +494,57 @@ function aggregate_bar_adhere(raw_data, width, height, target_id, min_hour, max_
     }
     
     return insert_chart(chart_data, "bar-stacked", width, height, target_id);
+}
+
+/**
+ * Create a new bar chart displaying aggregate data.
+ * Stop data is bucketed by hour (truncated) and adherence/ridership is averaged
+ * Hours displayed are [min_hour, max_hour)
+ * Chart will be placed in the HTML element with id=target_id
+ * Returns the chart's unique id
+ */
+function aggregate_bar_pop(raw_data, width, height, target_id, min_hour, max_hour) {
+    var empty = new Array(24+1).join('0').split('').map(parseFloat);
+
+    var chart_data = {
+        labels: ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+                 "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"],
+        datasets: [{data: empty.slice(0), fillColor: "rgba(0,0,0,.8)", strokeColor: "rgba(0,0,0,0)"}]};
+    
+    if (width == null) width = DEFAULT_WIDTH;
+    if (height == null) height = DEFAULT_HEIGHT;
+    
+    sortByKey(raw_data, SCHEDULED);
+    
+    var bucket_count = empty.slice(0);
+    
+    // format data
+    raw_data.forEach(function(val) {
+        var hour = (new Date(Date.parse( val[SCHEDULED] ))).getHours();
+        
+        var pop = parseInt(val[POPULATION]);
+        chart_data.datasets[0].data[hour] += pop;
+        
+        bucket_count[hour] += 1;
+    } );
+    
+    // average each bucket (hour)
+    for (var i = 0; i < 24; i++) {
+        if (bucket_count[i] == 0) continue;
+        
+        chart_data.datasets[0].data[i] /= bucket_count[i];
+    }
+    
+    // slice the hours we want
+    if (min_hour == null) min_hour = 0;
+    if (max_hour == null) max_hour = 24;
+    if (min_hour != 0 || max_hour != 24) {
+        chart_data.labels = chart_data.labels.slice(min_hour, max_hour);
+        chart_data.datasets[0].data = chart_data.datasets[0].data.slice(min_hour, max_hour);
+        chart_data.datasets[1].data = chart_data.datasets[1].data.slice(min_hour, max_hour);
+    }
+    
+    return insert_chart(chart_data, "bar", width, height, target_id);
 }
 
 /**
