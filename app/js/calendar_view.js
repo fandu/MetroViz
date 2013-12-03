@@ -67,7 +67,7 @@
         format = d3.time.format("%Y-%m-%d");
 
     var subviewUpdate = function () {},
-        cellSize = 17,
+        cellSize = 10,
         width = cellSize * 9,
         height = cellSize * 55;
 

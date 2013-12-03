@@ -155,8 +155,7 @@
             }
         }
 
-        drawGrid(svg, 40 / 6, 30 * 6, "#eee");
-        drawGrid(svg, cellSize, 30, "#111");
+        drawFullGrid(svg, cellSize, stops.length, Object.keys(data).length, "#111");
 
         d3.select("#trip-legend").remove();
         var legendDiv = d3.select(sel)
@@ -228,8 +227,14 @@
         };
     }
 
-    var drawGrid = function (svg, cellSize, numCells, color) {
-        svg.selectAll(".vline").data(d3.range(numCells)).enter()
+    var drawFullGrid = function(svg, cellSize, numCellsX, numCellsY, color) {
+        drawGrid(svg, 40 / 6, numCellsX * 6, numCellsY * 6, "#eee");
+        drawGrid(svg, cellSize, numCellsX, numCellsY, "#111", 2);
+    }
+
+    var drawGrid = function (svg, cellSize, numCellsX, numCellsY, color, hStrokeWidth) {
+        var hsw = hStrokeWidth || 1;
+        svg.selectAll(".vline").data(d3.range(numCellsX + 1)).enter()
             .append("line")
             .attr("x1", function (d) {
                 return d * cellSize;
@@ -241,12 +246,12 @@
                 return 0;
             })
             .attr("y2", function (d) {
-                return numCells * cellSize;
+                return numCellsY * cellSize;
             })
             .style("stroke", color);
 
         // horizontal lines
-        svg.selectAll(".vline").data(d3.range(numCells)).enter()
+        svg.selectAll(".vline").data(d3.range(numCellsY + 1)).enter()
             .append("line")
             .attr("y1", function (d) {
                 return d * cellSize;
@@ -258,8 +263,9 @@
                 return 0;
             })
             .attr("x2", function (d) {
-                return numCells * cellSize;
+                return numCellsX * cellSize;
             })
+            .style("stroke-width", hsw)
             .style("stroke", color);
     };
 })();
