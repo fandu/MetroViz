@@ -50,3 +50,18 @@
 #map_id .map_stop_info.mouseon {
     visibility: visible;
 }
+#map_id .legend_color {
+    border: 1px solid;
+    height: 12px;
+    width: 12px;
+    margin-right: 3px;
+    float: left;
+}
+#map_id #legend {
+    background: #FFF;
+    padding: 5px;
+    margin-right: 5px;
+    width: 85px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+}
