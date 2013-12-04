@@ -1,4 +1,4 @@
-//var root_url = "http://metroviz.herokuapp.com/";
+// var root_url = "http://metroviz.herokuapp.com/";
 var root_url = "http://localhost:5000/";
 
 function showLoadingMessage() {
