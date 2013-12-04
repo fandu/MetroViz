@@ -177,7 +177,7 @@ d3.json("./data/routes3.json", function(data) {
     function highlight_given_name(stop_name) {
 //        d3.selectAll("#route_id circle").transition().attr("stroke-width", 1).attr("r", 5).style("fill", "#6cb3f8");
 		d3.selectAll("#tooltip2").remove();
-		console.log("inside highlight given name "+stop_name);
+		//console.log("inside highlight given name "+stop_name);
         d3.selectAll("#route_id circle").transition().attr("stroke-width",
             function(d, i) {
                 //console.log(d);
@@ -341,7 +341,7 @@ d3.json("./data/routes3.json", function(data) {
 
     function mouseover() {
     	if(isTextMouseClicked == 1){
-    		console.log("isTextMouseClicked = "+isTextMouseClicked);
+    		//console.log("isTextMouseClicked = "+isTextMouseClicked);
 	        var g = d3.select(this).node().parentNode;
 	        d3.select(g).selectAll("circle").transition().attr("stroke-width", 1).attr("r", "5");
 	        d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill","#6cb3f8");
@@ -357,7 +357,7 @@ d3.json("./data/routes3.json", function(data) {
 
 	        d3.selectAll("text").style("font-weight", "normal");
 	        d3.selectAll("text").style("text-decoration", "none");
-	        console.log("changing text colors back");
+	        //console.log("changing text colors back");
 	        d3.selectAll("#route_id circle").attr("stroke-width", 1).attr("r", "5").style("fill","#6cb3f8");
     	}
         d3.selectAll("#route_id circle").attr("stroke-width", 1).attr("r", "5");
