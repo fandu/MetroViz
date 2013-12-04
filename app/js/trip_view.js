@@ -41,9 +41,6 @@
 
         var c = d3.scale.category20c();
 
-        var x = d3.scale.linear()
-            .range([0, width]);
-
         var stops = [];
         for (var i = 0; i < data.length; i++) {
             if (stops.indexOf(data[i]["stop"]) == -1) {
@@ -56,7 +53,18 @@
 
         var color = d3.scale.quantize()
             .domain([maxAdherence, 0.0])
-            .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+            .range(d3.range(11).map(function(d) { return "tvq" + d + "-11"; }));
+
+        data = d3.nest()
+            .key(function (d) { return d["trip"]; })
+            .key(function (d) { return d["stop"]; })
+            .map(data);
+
+        width = stops.length * cellSize + 100;
+        height = Object.keys(data).length * cellSize + 140;
+
+        var x = d3.scale.linear()
+            .range([0, width]);
 
         x = d3.scale.ordinal()
             .domain(stops)
@@ -66,12 +74,6 @@
             .scale(x)
             .orient("top");
 
-        data = d3.nest()
-            .key(function (d) { return d["trip"]; })
-            .key(function (d) { return d["stop"]; })
-            .map(data);
-
-        height = Object.keys(data).length * cellSize + 140;
 
         var svg = d3.select(sel).append("svg")
             .attr("class", "RdYlBl")
@@ -133,11 +135,16 @@
         }
 
         var tripNum = 0;
+        var tripTimes = Object.keys(data);
+        tripTimes.sort();
         /* I am so ashamed of what's below. */
-        for (var tripTime in data) {
-            var trip = stopList(data[tripTime]),
+        for (var tripNum = 0; tripNum < tripTimes.length; tripNum++) {
+            var tripTime = tripTimes[tripNum],
+                trip = stopList(data[tripTime]),
                 people = [],
                 nodes;
+
+            console.log(trip);
 
             for (var idx = 0; idx < trip.length; idx++) {
                 g = svg.append("g").attr("class","journal")
@@ -164,7 +171,6 @@
                 .append("text")
                 .text(function(d) { return d; });
 
-            tripNum++;
         }
 
         g = svg.append("g").attr("class","journal")
