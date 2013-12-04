@@ -32,14 +32,14 @@ while (row is not None):
     try:
         p = patterns[(pattern,routes[route])]
         t = trips[(trip,routes[route])]
-        res.append((routes[route], p, t, stops[stop], a[0], a[1], a[2], a[6], a[3], a[4], fareCount, board, alight))
+        res.append((fareCount,board,alight, routes[route], p, t, stops[stop], a[0], a[1], a[2],))
     except:
         pass
     row = c.fetchone()
 
-print "Done processing"
-c.executemany('insert into ridership (route, pattern, trip, stop, year, month, day, dayOfWeek, hour, min, fareCount, boarding, alighting) values (?,?,?,?,?,?,?,?,?,?,?,?,?)',res)    
-print "Done inserts"
+print "Done processing" + str(len(res))+ " rows"
+c.executemany('update data set fareCount=?,boarding=?, alighting=? where route=? and pattern=? and trip=? and stop=? and year=? and month=? and day=?',res)    
+print "Done updates"
 conn.commit()
 c.close()
 conn.close()
