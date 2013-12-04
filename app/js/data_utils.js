@@ -1,5 +1,19 @@
 var root_url = "http://metroviz.herokuapp.com/";
 
+function showLoadingMessage() {
+    $("#status").text("Loading data...");
+    return setInterval(function(){
+        $("#status").animate({opacity:0}, 500, "linear", function() {
+            $(this).animate({opacity:1}, 500);
+        });
+    }, 1000);
+}
+
+function hideLoadingMessage(siId) {
+    clearInterval(siId);
+    $("#status").text("");
+}
+
 function fetchAndProcessRawData(url, cb) {
     var xhr = new XMLHttpRequest();
     xhr.open("get", url, true);
@@ -8,14 +22,16 @@ function fetchAndProcessRawData(url, cb) {
 }
 
 function fetchAndProcessData(url, cb) {
-    fetchAndProcessRawData(url, makeRawOnloadCb(cb));
+    var siId = showLoadingMessage();
+    fetchAndProcessRawData(url, makeRawOnloadCb(cb, siId));
 }
 
-function makeRawOnloadCb(cb) {
+function makeRawOnloadCb(cb, siId) {
     return function(xhr) {
         return function() {
             var json = JSON.parse(xhr.responseText);
             cb(json);
+            hideLoadingMessage(siId);
         }
     }
 }
