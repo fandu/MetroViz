@@ -1,4 +1,5 @@
-var root_url = "http://metroviz.herokuapp.com/";
+//var root_url = "http://metroviz.herokuapp.com/";
+var root_url = "http://localhost:5000/";
 
 function showLoadingMessage() {
     $("#status").text("Loading data...");
@@ -76,20 +77,24 @@ function convertToCalViewFmt(json) {
         year,
         month,
         day, 
-        rval = [];
+        rval = [],
+        hour,
+        min;
     for (var arr_num in json.data) {
         arr = json.data[arr_num];
         for (var idx = 0; idx < arr.length; idx++) {
             year = +arr[idx].date.slice(0, 4);
             month = +arr[idx].date.slice(4, 6);
             day = +arr[idx].date.slice(6, 8);
+            hour = +arr[idx]["ScheduledTime"].split(":")[0];
+            min = +arr[idx]["ScheduledTime"].split(":")[1];
             rval.push({
                 "route": 1,
                 "stop": arr[idx]["stop"],
                 "trip": arr[idx]["ScheduledTime"],
                 "delta": arr[idx]["adherence"],
                 "boarded": arr[idx]["boarded"],
-                "date": new Date(year, month, day),
+                "date": new Date(year, month, day, hour, min),
             });
         }
     }
