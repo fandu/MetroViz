@@ -1,0 +1,3164 @@
+{
+    "FareTypeCount": {
+        "1200 North Main Nbnd": {
+            "Faculty Staff": 147,
+            "Full Fare": 21,
+            "Full Pass": 18,
+            "Half Fare": 7,
+            "Reboard": 2,
+            "Student": 122,
+            "TOB ID": 1
+        },
+        "1200 North Main Sbnd": {
+            "Faculty Staff": 229,
+            "Full Fare": 291,
+            "Full Pass": 362,
+            "Half Fare": 39,
+            "Half Pass": 7,
+            "Reboard": 32,
+            "Student": 5990,
+            "TOB ID": 41,
+            "Transfer": 8
+        },
+        "1500 North Main Nbnd": {
+            "Faculty Staff": 547,
+            "Full Fare": 428,
+            "Full Pass": 152,
+            "Half Fare": 56,
+            "Half Pass": 20,
+            "Reboard": 4,
+            "Student": 5622,
+            "TOB ID": 8,
+            "Transfer": 2
+        },
+        "1500 North Main Sbnd": {
+            "Faculty Staff": 70,
+            "Full Fare": 51,
+            "Full Pass": 27,
+            "Half Fare": 6,
+            "Half Pass": 1,
+            "Reboard": 1,
+            "Student": 1380,
+            "TOB ID": 2,
+            "Transfer": 2
+        },
+        "400 Walters Wbnd": {
+            "Faculty Staff": 22
+        },
+        "813 Davis St Ebnd": {
+            "Full Fare": 2,
+            "Half Fare": 7,
+            "Half Pass": 6
+        },
+        "Airport": {
+            "Faculty Staff": 436,
+            "Full Fare": 51,
+            "Full Pass": 214,
+            "Half Fare": 1,
+            "Half Pass": 10,
+            "Student": 4569,
+            "TOB ID": 3
+        },
+        "Alumni Mall Ebnd": {
+            "Faculty Staff": 372,
+            "Full Fare": 330,
+            "Full Pass": 214,
+            "Half Fare": 51,
+            "Half Pass": 31,
+            "Reboard": 4,
+            "Student": 3768,
+            "TOB ID": 43,
+            "Transfer": 29
+        },
+        "Alumni Mall Wbnd": {
+            "Faculty Staff": 141,
+            "Full Fare": 217,
+            "Full Pass": 147,
+            "Half Fare": 27,
+            "Half Pass": 16,
+            "Reboard": 17,
+            "Student": 2457,
+            "TOB ID": 8,
+            "Transfer": 3
+        },
+        "Aquatic Center": {
+            "Faculty Staff": 4,
+            "Full Fare": 146,
+            "Full Pass": 32,
+            "Half Fare": 7,
+            "Half Pass": 8,
+            "Student": 44
+        },
+        "Arbor/Market": {
+            "Faculty Staff": 24,
+            "Full Fare": 107,
+            "Full Pass": 79,
+            "Half Fare": 12,
+            "Half Pass": 16,
+            "Reboard": 13,
+            "Student": 273,
+            "TOB ID": 4
+        },
+        "Arbor/Market Wbnd": {
+            "Faculty Staff": 3,
+            "Full Fare": 62,
+            "Full Pass": 28,
+            "Half Fare": 31,
+            "Half Pass": 7,
+            "Student": 3
+        },
+        "Ascot/Hampton": {
+            "Faculty Staff": 3115,
+            "Full Fare": 1637,
+            "Full Pass": 2993,
+            "Half Fare": 122,
+            "Half Pass": 236,
+            "Reboard": 33,
+            "Student": 73438,
+            "TOB ID": 149,
+            "Transfer": 11
+        },
+        "Ascot/Harding Ebnd": {
+            "Faculty Staff": 140,
+            "Full Fare": 155,
+            "Full Pass": 295,
+            "Half Fare": 26,
+            "Half Pass": 45,
+            "Reboard": 15,
+            "Student": 4234,
+            "TOB ID": 18
+        },
+        "Ascot/Harding Wbnd": {
+            "Faculty Staff": 1212,
+            "Full Fare": 575,
+            "Full Pass": 1308,
+            "Half Fare": 57,
+            "Half Pass": 95,
+            "Reboard": 64,
+            "Student": 28670,
+            "TOB ID": 83,
+            "Transfer": 4
+        },
+        "Berkshire/Gibson Sbnd": {
+            "Faculty Staff": 11,
+            "Full Fare": 1,
+            "Full Pass": 1,
+            "Reboard": 21,
+            "Student": 21
+        },
+        "Berkshire/Windsor Nbnd": {
+            "Faculty Staff": 25,
+            "Reboard": 1
+        },
+        "Bioinfomatics Bldg": {
+            "Faculty Staff": 4,
+            "Full Fare": 1,
+            "Student": 452
+        },
+        "Blacksburg Municipal Building": {
+            "Faculty Staff": 1423,
+            "Full Fare": 1790,
+            "Full Pass": 1997,
+            "Half Fare": 467,
+            "Half Pass": 409,
+            "Reboard": 40,
+            "Student": 6081,
+            "TOB ID": 287,
+            "Transfer": 54
+        },
+        "Blacksburg Square": {
+            "Faculty Staff": 3669,
+            "Full Fare": 5040,
+            "Full Pass": 7153,
+            "Half Fare": 719,
+            "Half Pass": 499,
+            "Reboard": 580,
+            "Student": 23816,
+            "TOB ID": 244,
+            "Transfer": 65
+        },
+        "Broce/Toms Creek Ebnd": {
+            "Faculty Staff": 1,
+            "Full Fare": 20,
+            "Full Pass": 7,
+            "Student": 28
+        },
+        "Broce/Toms Creek Wbnd": {
+            "Faculty Staff": 4,
+            "Full Fare": 10,
+            "Full Pass": 4,
+            "Student": 341
+        },
+        "Burruss Hall": {
+            "Faculty Staff": 27925,
+            "Full Fare": 16358,
+            "Full Pass": 38734,
+            "Half Fare": 1248,
+            "Half Pass": 1285,
+            "Reboard": 4173,
+            "Student": 1582155,
+            "TOB ID": 808,
+            "Transfer": 2052
+        },
+        "CTAS Institute Bldg": {
+            "Faculty Staff": 195,
+            "Full Fare": 141,
+            "Full Pass": 421,
+            "Half Fare": 11,
+            "Half Pass": 14,
+            "Reboard": 1,
+            "Student": 10599,
+            "TOB ID": 6,
+            "Transfer": 3
+        },
+        "Cambria/Henley Wbnd": {
+            "Faculty Staff": 63,
+            "Full Fare": 1,
+            "Reboard": 5,
+            "Student": 11
+        },
+        "Carson/Mountainview Wbnd": {
+            "Faculty Staff": 1,
+            "TOB ID": 1
+        },
+        "Cassell Coliseum": {
+            "Faculty Staff": 719,
+            "Full Fare": 1935,
+            "Full Pass": 339,
+            "Half Fare": 72,
+            "Half Pass": 15,
+            "Reboard": 63,
+            "Student": 92969,
+            "TOB ID": 27,
+            "Transfer": 8
+        },
+        "Christiansburg Town Hall": {
+            "Faculty Staff": 339,
+            "Full Fare": 469,
+            "Full Pass": 233,
+            "Half Fare": 36,
+            "Half Pass": 26,
+            "Reboard": 18,
+            "Student": 97,
+            "TOB ID": 3
+        },
+        "Clearview/Kamran Nbnd": {
+            "Faculty Staff": 240,
+            "Full Fare": 4,
+            "Student": 136
+        },
+        "Clearview/Williams Nbnd": {
+            "Faculty Staff": 8,
+            "Full Fare": 14,
+            "Full Pass": 5,
+            "Student": 2
+        },
+        "Coliseum Parking Lot Sbnd": {
+            "Faculty Staff": 446,
+            "Full Fare": 78,
+            "Full Pass": 168,
+            "Half Fare": 13,
+            "Half Pass": 2,
+            "Reboard": 4,
+            "Student": 7881,
+            "TOB ID": 3,
+            "Transfer": 8
+        },
+        "Conston/Spradlin Farm Wbnd": {
+            "Faculty Staff": 5,
+            "Full Fare": 257,
+            "Full Pass": 83,
+            "Half Fare": 19,
+            "Half Pass": 14,
+            "Student": 11,
+            "TOB ID": 1,
+            "Transfer": 5
+        },
+        "Crescent/Walnut Ebnd": {
+            "Faculty Staff": 7,
+            "Full Pass": 6,
+            "Reboard": 48,
+            "Student": 5
+        },
+        "DMV on Arbor": {
+            "Faculty Staff": 96,
+            "Full Fare": 177,
+            "Full Pass": 206,
+            "Half Fare": 19,
+            "Half Pass": 13,
+            "Reboard": 124,
+            "Student": 753,
+            "TOB ID": 6,
+            "Transfer": 17
+        },
+        "DMV on Arbor Nbnd": {
+            "Faculty Staff": 4,
+            "Full Fare": 94,
+            "Full Pass": 12,
+            "Half Fare": 10,
+            "Half Pass": 4,
+            "Student": 13,
+            "TOB ID": 1
+        },
+        "Davidson Hall": {
+            "Faculty Staff": 9519,
+            "Full Fare": 1364,
+            "Full Pass": 3175,
+            "Half Fare": 77,
+            "Half Pass": 64,
+            "Reboard": 76,
+            "Student": 199638,
+            "TOB ID": 91,
+            "Transfer": 46
+        },
+        "Depot/Cambria": {
+            "Full Fare": 97,
+            "Full Pass": 3,
+            "Half Fare": 2,
+            "Student": 4,
+            "TOB ID": 1
+        },
+        "Depot/Cambria Wbnd": {
+            "Faculty Staff": 2,
+            "Full Fare": 58,
+            "Full Pass": 93,
+            "Half Fare": 9,
+            "Half Pass": 3,
+            "Student": 2
+        },
+        "Depot/New": {
+            "Full Fare": 67,
+            "Full Pass": 5,
+            "Half Fare": 35,
+            "Half Pass": 3,
+            "Student": 5
+        },
+        "Depot/New Wbnd": {
+            "Faculty Staff": 1,
+            "Full Fare": 70,
+            "Full Pass": 16,
+            "Half Fare": 3,
+            "Half Pass": 3,
+            "Student": 4
+        },
+        "Eggleston Hall/Kent St": {
+            "Faculty Staff": 90,
+            "Full Fare": 130,
+            "Full Pass": 110,
+            "Half Fare": 4,
+            "Half Pass": 9,
+            "Student": 56124,
+            "TOB ID": 4,
+            "Transfer": 23
+        },
+        "Electric Way/Hubbell Wbnd": {
+            "Faculty Staff": 12,
+            "Full Fare": 50,
+            "Full Pass": 20,
+            "Half Fare": 1,
+            "Half Pass": 8,
+            "Student": 2,
+            "TOB ID": 2
+        },
+        "Eletric Way/Hubbell Wbnd": {
+            "Faculty Staff": 20,
+            "Full Fare": 239,
+            "Full Pass": 25,
+            "Half Fare": 5,
+            "Half Pass": 1,
+            "Student": 99
+        },
+        "Fairfax Circle": {
+            "Faculty Staff": 74,
+            "Full Fare": 33,
+            "Full Pass": 104,
+            "Half Fare": 17,
+            "Half Pass": 7,
+            "Student": 142,
+            "TOB ID": 4
+        },
+        "Fairfax/Ellett Ebnd": {
+            "Faculty Staff": 5523,
+            "Full Fare": 5756,
+            "Full Pass": 7466,
+            "Half Fare": 1443,
+            "Half Pass": 1025,
+            "Reboard": 167,
+            "Student": 56350,
+            "TOB ID": 169,
+            "Transfer": 71
+        },
+        "Fairfax/Ellett Wbnd": {
+            "Faculty Staff": 20,
+            "Full Fare": 5,
+            "Full Pass": 24,
+            "Half Pass": 1,
+            "Student": 136,
+            "TOB ID": 3
+        },
+        "Fairfax/New Kent Ebnd": {
+            "Faculty Staff": 468,
+            "Full Fare": 1229,
+            "Full Pass": 892,
+            "Half Fare": 312,
+            "Half Pass": 193,
+            "Reboard": 5,
+            "Student": 4219,
+            "TOB ID": 26,
+            "Transfer": 10
+        },
+        "Falling Branch Park and Ride": {
+            "Faculty Staff": 10,
+            "Full Fare": 109,
+            "Full Pass": 23,
+            "Half Fare": 4,
+            "Reboard": 3,
+            "Student": 115,
+            "TOB ID": 3
+        },
+        "Farmview/Ridinger": {
+            "Full Fare": 3,
+            "Full Pass": 2,
+            "Half Fare": 6,
+            "Reboard": 31,
+            "Student": 9
+        },
+        "Farmview/Ridinger Ebnd": {
+            "Full Fare": 61,
+            "Full Pass": 35,
+            "Half Fare": 3,
+            "Half Pass": 4,
+            "Student": 4
+        },
+        "First/Hickok Wbnd": {
+            "Faculty Staff": 1,
+            "Reboard": 1
+        },
+        "Food Science Bldg": {
+            "Faculty Staff": 33,
+            "Full Fare": 8,
+            "Full Pass": 4,
+            "Student": 5652
+        },
+        "Franklin/Sara": {
+            "Full Fare": 7,
+            "Full Pass": 2,
+            "Half Fare": 4,
+            "Half Pass": 1
+        },
+        "Gables Shopping Center": {
+            "Faculty Staff": 1718,
+            "Full Fare": 2741,
+            "Full Pass": 3500,
+            "Half Fare": 894,
+            "Half Pass": 690,
+            "Reboard": 65,
+            "Student": 6482,
+            "TOB ID": 99,
+            "Transfer": 37
+        },
+        "Gateway Plaza North": {
+            "Faculty Staff": 3,
+            "Student": 13
+        },
+        "Gilbert Linkous Nbnd": {
+            "Faculty Staff": 26,
+            "Full Fare": 14,
+            "Full Pass": 85,
+            "Half Fare": 5,
+            "Half Pass": 21,
+            "Student": 407,
+            "TOB ID": 1
+        },
+        "Gilbert Linkous Sbnd": {
+            "Faculty Staff": 220,
+            "Full Fare": 34,
+            "Full Pass": 30,
+            "Half Fare": 12,
+            "Half Pass": 7,
+            "Reboard": 1,
+            "Student": 1188,
+            "TOB ID": 6,
+            "Transfer": 2
+        },
+        "Giles/Heights": {
+            "Faculty Staff": 72,
+            "Full Fare": 11,
+            "Full Pass": 17,
+            "Reboard": 1,
+            "Student": 939,
+            "TOB ID": 3
+        },
+        "Giles/Heights Nbnd": {
+            "Faculty Staff": 67,
+            "Full Fare": 46,
+            "Full Pass": 76,
+            "Half Fare": 14,
+            "Half Pass": 2,
+            "Student": 2726
+        },
+        "Giles/Northview": {
+            "Faculty Staff": 23,
+            "Full Fare": 98,
+            "Full Pass": 70,
+            "Half Fare": 1,
+            "Half Pass": 3,
+            "Student": 1340,
+            "TOB ID": 23
+        },
+        "Giles/Northview Nbnd": {
+            "Faculty Staff": 97,
+            "Full Fare": 83,
+            "Full Pass": 68,
+            "Half Fare": 1,
+            "Half Pass": 2,
+            "Student": 1384,
+            "TOB ID": 29
+        },
+        "Giles/Patrick Henry": {
+            "Faculty Staff": 153,
+            "Full Fare": 22,
+            "Full Pass": 66,
+            "Half Fare": 32,
+            "Half Pass": 47,
+            "Student": 195,
+            "TOB ID": 32
+        },
+        "Giles/Patrick Henry Nbnd": {
+            "Faculty Staff": 230,
+            "Full Fare": 37,
+            "Full Pass": 148,
+            "Half Fare": 58,
+            "Half Pass": 129,
+            "Reboard": 3,
+            "Student": 578,
+            "TOB ID": 20
+        },
+        "Givens/Main": {
+            "Faculty Staff": 523,
+            "Full Fare": 92,
+            "Full Pass": 103,
+            "Half Fare": 5,
+            "Half Pass": 4,
+            "Student": 870,
+            "TOB ID": 10
+        },
+        "Givens/Main Wbnd": {
+            "Faculty Staff": 1262,
+            "Full Fare": 144,
+            "Full Pass": 410,
+            "Half Fare": 20,
+            "Half Pass": 5,
+            "Reboard": 42,
+            "Student": 2454,
+            "TOB ID": 19
+        },
+        "Grissom/Nellies Cave Nbnd": {
+            "Faculty Staff": 2487,
+            "Full Fare": 1637,
+            "Full Pass": 1735,
+            "Half Fare": 360,
+            "Half Pass": 204,
+            "Reboard": 40,
+            "Student": 7587,
+            "TOB ID": 225,
+            "Transfer": 3
+        },
+        "Grissom/Nellies Cave Sbnd": {
+            "Faculty Staff": 1
+        },
+        "Harding/Apperson Ebnd": {
+            "Faculty Staff": 9,
+            "Full Fare": 3,
+            "Full Pass": 2,
+            "Half Fare": 10,
+            "Reboard": 1,
+            "Student": 28
+        },
+        "Harding/Apperson Wbnd": {
+            "Faculty Staff": 394,
+            "Full Fare": 77,
+            "Full Pass": 64,
+            "Half Fare": 90,
+            "Half Pass": 1,
+            "Reboard": 1,
+            "Student": 180,
+            "TOB ID": 22
+        },
+        "Harding/Cork Wbnd": {
+            "Faculty Staff": 1586,
+            "Full Fare": 856,
+            "Full Pass": 1476,
+            "Half Fare": 87,
+            "Half Pass": 38,
+            "Reboard": 27,
+            "Student": 38180,
+            "TOB ID": 186,
+            "Transfer": 3
+        },
+        "Harding/Owens Ebnd": {
+            "Faculty Staff": 41,
+            "Full Fare": 39,
+            "Full Pass": 68,
+            "Half Fare": 7,
+            "Half Pass": 1,
+            "Reboard": 4,
+            "Student": 563,
+            "TOB ID": 1,
+            "Transfer": 1
+        },
+        "Harding/Patrick Henry Ebnd": {
+            "Faculty Staff": 15,
+            "Full Fare": 9,
+            "Full Pass": 12,
+            "Half Fare": 4,
+            "Half Pass": 2,
+            "Student": 211,
+            "TOB ID": 1
+        },
+        "Harding/Patrick Henry Wbnd": {
+            "Faculty Staff": 346,
+            "Full Fare": 83,
+            "Full Pass": 23,
+            "Half Fare": 16,
+            "Half Pass": 7,
+            "Student": 3652,
+            "TOB ID": 9,
+            "Transfer": 1
+        },
+        "Harding/Roanoke Ebnd": {
+            "Faculty Staff": 187,
+            "Full Fare": 75,
+            "Full Pass": 327,
+            "Half Fare": 29,
+            "Half Pass": 5,
+            "Reboard": 36,
+            "Student": 429,
+            "TOB ID": 6,
+            "Transfer": 1
+        },
+        "Harding/Rucker Wbnd": {
+            "Faculty Staff": 598,
+            "Full Fare": 169,
+            "Full Pass": 976,
+            "Half Fare": 65,
+            "Half Pass": 34,
+            "Reboard": 60,
+            "Student": 2299,
+            "TOB ID": 13,
+            "Transfer": 1
+        },
+        "Harding/Sutton Wbnd": {
+            "Faculty Staff": 484,
+            "Full Fare": 52,
+            "Full Pass": 12,
+            "Half Fare": 36,
+            "Half Pass": 2,
+            "Student": 570,
+            "TOB ID": 6
+        },
+        "Harding/Vista Ebnd": {
+            "Faculty Staff": 22,
+            "Full Fare": 9,
+            "Full Pass": 12,
+            "Half Fare": 7,
+            "Half Pass": 2,
+            "Student": 159,
+            "TOB ID": 2
+        },
+        "Harper Hall": {
+            "Faculty Staff": 363,
+            "Full Fare": 25,
+            "Full Pass": 12,
+            "Half Fare": 5,
+            "Half Pass": 1,
+            "Reboard": 1,
+            "Student": 30425,
+            "TOB ID": 5,
+            "Transfer": 3
+        },
+        "Hawthorne Ridge/Warm Hearth Sbnd": {
+            "Full Fare": 2,
+            "Half Fare": 2
+        },
+        "Heather/Huntington": {
+            "Faculty Staff": 255,
+            "Full Fare": 191,
+            "Full Pass": 217,
+            "Half Fare": 30,
+            "Half Pass": 3,
+            "Student": 4290,
+            "TOB ID": 2,
+            "Transfer": 1
+        },
+        "Heather/Huntington Nbnd": {
+            "Faculty Staff": 496,
+            "Full Fare": 732,
+            "Full Pass": 417,
+            "Half Fare": 71,
+            "Half Pass": 109,
+            "Reboard": 40,
+            "Student": 10659,
+            "TOB ID": 1,
+            "Transfer": 2
+        },
+        "Heather/Plymouth": {
+            "Faculty Staff": 449,
+            "Full Fare": 97,
+            "Full Pass": 90,
+            "Half Fare": 44,
+            "Student": 764,
+            "TOB ID": 4
+        },
+        "Heather/Plymouth Nbnd": {
+            "Faculty Staff": 520,
+            "Full Fare": 120,
+            "Full Pass": 139,
+            "Half Fare": 21,
+            "Half Pass": 8,
+            "Reboard": 42,
+            "Student": 3297,
+            "TOB ID": 18
+        },
+        "Heather/Plymouth Sbnd": {
+            "Faculty Staff": 7,
+            "Full Fare": 14,
+            "Full Pass": 83,
+            "Half Fare": 1,
+            "Half Pass": 1,
+            "Reboard": 24,
+            "Student": 292,
+            "TOB ID": 2,
+            "Transfer": 3
+        },
+        "Heather/Tall Oaks": {
+            "Faculty Staff": 2924,
+            "Full Fare": 1330,
+            "Full Pass": 6683,
+            "Half Fare": 108,
+            "Half Pass": 118,
+            "Reboard": 3,
+            "Student": 84701,
+            "TOB ID": 153,
+            "Transfer": 1
+        },
+        "Heather/Tall Oaks Nbnd": {
+            "Faculty Staff": 2305,
+            "Full Fare": 2169,
+            "Full Pass": 7052,
+            "Half Fare": 161,
+            "Half Pass": 164,
+            "Reboard": 2457,
+            "Student": 118224,
+            "TOB ID": 282,
+            "Transfer": 31
+        },
+        "Heather/Tall Oaks Sbnd": {
+            "Faculty Staff": 45,
+            "Full Fare": 3,
+            "Full Pass": 30,
+            "Half Fare": 2,
+            "Half Pass": 2,
+            "Reboard": 7,
+            "Student": 125
+        },
+        "Hethwood Square on Hethwood": {
+            "Faculty Staff": 3149,
+            "Full Fare": 2943,
+            "Full Pass": 7475,
+            "Half Fare": 821,
+            "Half Pass": 246,
+            "Reboard": 1149,
+            "Student": 37499,
+            "TOB ID": 67,
+            "Transfer": 22
+        },
+        "Hickory/Second Ebnd": {
+            "Faculty Staff": 3,
+            "Student": 2
+        },
+        "Hickory/W. Main Nbnd": {
+            "Faculty Staff": 39,
+            "Full Fare": 1,
+            "Student": 16
+        },
+        "Highview/Mountainview Sbnd": {
+            "Faculty Staff": 3,
+            "Student": 31
+        },
+        "Hutcheson": {
+            "Faculty Staff": 12,
+            "Student": 30
+        },
+        "Hutcheson Hall": {
+            "Faculty Staff": 1020,
+            "Full Fare": 132,
+            "Full Pass": 284,
+            "Half Fare": 4,
+            "Half Pass": 8,
+            "Reboard": 5,
+            "Student": 19754,
+            "TOB ID": 21
+        },
+        "I Lot/Cage Sbnd": {
+            "Faculty Staff": 30,
+            "Full Pass": 3,
+            "Half Pass": 1,
+            "Student": 7774,
+            "TOB ID": 3
+        },
+        "Independence/Freedom Ebnd": {
+            "Faculty Staff": 1
+        },
+        "Industrial Park/Transportation Res Ebnd": {
+            "Faculty Staff": 93,
+            "Full Fare": 87,
+            "Full Pass": 217,
+            "Half Fare": 4,
+            "Half Pass": 7,
+            "Student": 905,
+            "TOB ID": 4
+        },
+        "Industrial Park/Transportation Res Wbnd": {
+            "Faculty Staff": 4,
+            "Full Fare": 4,
+            "Full Pass": 141,
+            "Student": 113,
+            "TOB ID": 1,
+            "Transfer": 3
+        },
+        "Kraft/Knowledgeworks 1 Bldg Sbnd": {
+            "Faculty Staff": 407,
+            "Full Fare": 68,
+            "Full Pass": 292,
+            "Half Fare": 1,
+            "Half Pass": 4,
+            "Student": 7718,
+            "TOB ID": 4,
+            "Transfer": 1
+        },
+        "Kraft/Moss Bldg Sbnd": {
+            "Faculty Staff": 2067,
+            "Full Fare": 138,
+            "Full Pass": 927,
+            "Half Fare": 7,
+            "Half Pass": 11,
+            "Reboard": 11,
+            "Student": 13578,
+            "TOB ID": 7,
+            "Transfer": 1
+        },
+        "Kraft/Ramble Ebnd": {
+            "Faculty Staff": 140,
+            "Full Fare": 104,
+            "Full Pass": 68,
+            "Half Fare": 5,
+            "Half Pass": 1,
+            "Student": 8727,
+            "TOB ID": 9
+        },
+        "Kraft/Research Ctr Ebnd": {
+            "Faculty Staff": 1090,
+            "Full Fare": 178,
+            "Full Pass": 167,
+            "Half Fare": 5,
+            "Half Pass": 6,
+            "Reboard": 3,
+            "Student": 15786,
+            "TOB ID": 40,
+            "Transfer": 1
+        },
+        "Kraft/Tech Center Dr Sbnd": {
+            "Faculty Staff": 164,
+            "Full Fare": 39,
+            "Full Pass": 297,
+            "Half Fare": 1,
+            "Half Pass": 2,
+            "Reboard": 8,
+            "Student": 667,
+            "TOB ID": 1
+        },
+        "Kroger": {
+            "Faculty Staff": 6,
+            "Full Fare": 280,
+            "Full Pass": 40,
+            "Half Fare": 77,
+            "Half Pass": 7,
+            "Student": 20
+        },
+        "Kroontje Health Center": {
+            "Full Fare": 17,
+            "Half Fare": 13,
+            "Transfer": 1
+        },
+        "Lane Stadium S Endzone Nbnd": {
+            "Faculty Staff": 234,
+            "Full Fare": 20,
+            "Full Pass": 32,
+            "Half Fare": 1,
+            "Half Pass": 2,
+            "Student": 3097,
+            "TOB ID": 10
+        },
+        "Lane Stadium S Endzone Sbnd": {
+            "Faculty Staff": 97,
+            "Full Fare": 18,
+            "Full Pass": 5,
+            "Half Pass": 1,
+            "Student": 257,
+            "TOB ID": 1
+        },
+        "Laurel/Peppers Ferry": {
+            "Faculty Staff": 11,
+            "Full Fare": 36,
+            "Full Pass": 17,
+            "Half Fare": 4,
+            "Half Pass": 3,
+            "Reboard": 9,
+            "Student": 120,
+            "Transfer": 1
+        },
+        "Laurel/Peppers Ferry Nbnd": {
+            "Full Fare": 2,
+            "Full Pass": 10,
+            "Half Fare": 1,
+            "Transfer": 1
+        },
+        "Laurel/Sycamore": {
+            "Faculty Staff": 252,
+            "Full Fare": 426,
+            "Full Pass": 347,
+            "Half Fare": 55,
+            "Half Pass": 46,
+            "Reboard": 39,
+            "Student": 1095,
+            "TOB ID": 44,
+            "Transfer": 66
+        },
+        "Laurel/Sycamore Wbnd": {
+            "Faculty Staff": 14,
+            "Full Fare": 319,
+            "Full Pass": 116,
+            "Half Fare": 28,
+            "Half Pass": 4,
+            "Student": 26,
+            "TOB ID": 2
+        },
+        "LewisGale Hospital Montgomery": {
+            "Faculty Staff": 682,
+            "Full Fare": 985,
+            "Full Pass": 535,
+            "Half Fare": 240,
+            "Half Pass": 282,
+            "Reboard": 52,
+            "Student": 1316,
+            "TOB ID": 28,
+            "Transfer": 151
+        },
+        "Life Sciences 1 Bldg": {
+            "Faculty Staff": 2,
+            "Student": 831
+        },
+        "Litton Reaves Hall": {
+            "Faculty Staff": 4208,
+            "Full Fare": 879,
+            "Full Pass": 1824,
+            "Half Fare": 45,
+            "Half Pass": 52,
+            "Reboard": 44,
+            "Student": 142159,
+            "TOB ID": 115,
+            "Transfer": 20
+        },
+        "Lucas/Giles": {
+            "Faculty Staff": 201,
+            "Full Fare": 29,
+            "Full Pass": 27,
+            "Half Fare": 6,
+            "Student": 187,
+            "TOB ID": 37
+        },
+        "Lucas/Giles Ebnd": {
+            "Faculty Staff": 15,
+            "Full Fare": 33,
+            "Full Pass": 10,
+            "Half Fare": 2,
+            "Student": 734,
+            "TOB ID": 2
+        },
+        "Lucas/Main": {
+            "Faculty Staff": 39,
+            "Full Fare": 49,
+            "Full Pass": 17,
+            "Half Fare": 9,
+            "Half Pass": 1,
+            "Student": 78,
+            "TOB ID": 6
+        },
+        "Lucas/Main Ebnd": {
+            "Faculty Staff": 11,
+            "Full Fare": 84,
+            "Full Pass": 3,
+            "Half Fare": 3,
+            "Half Pass": 2,
+            "Student": 232
+        },
+        "Main St Post Office": {
+            "Faculty Staff": 1037,
+            "Full Fare": 910,
+            "Full Pass": 1249,
+            "Half Fare": 184,
+            "Half Pass": 177,
+            "Reboard": 53,
+            "Student": 4113,
+            "TOB ID": 71,
+            "Transfer": 69
+        },
+        "Main T1435": {
+            "Faculty Staff": 24,
+            "Full Fare": 15,
+            "Full Pass": 5,
+            "Half Fare": 7,
+            "Student": 240
+        },
+        "Main/Airport Sbnd": {
+            "Faculty Staff": 90,
+            "Full Fare": 99,
+            "Full Pass": 43,
+            "Half Fare": 4,
+            "Half Pass": 9,
+            "Reboard": 6,
+            "Student": 200,
+            "TOB ID": 21
+        },
+        "Main/Ardmore Nbnd": {
+            "Faculty Staff": 116,
+            "Full Fare": 238,
+            "Full Pass": 210,
+            "Half Fare": 35,
+            "Half Pass": 4,
+            "Reboard": 19,
+            "Student": 1310,
+            "TOB ID": 8,
+            "Transfer": 7
+        },
+        "Main/Calhoun Wbnd": {
+            "Faculty Staff": 6,
+            "Full Fare": 2,
+            "Full Pass": 2,
+            "Student": 2
+        },
+        "Main/Clay Nbnd": {
+            "Faculty Staff": 136,
+            "Full Fare": 157,
+            "Full Pass": 722,
+            "Half Fare": 51,
+            "Half Pass": 75,
+            "Reboard": 3,
+            "Student": 1371,
+            "TOB ID": 4,
+            "Transfer": 8
+        },
+        "Main/Cohee": {
+            "Faculty Staff": 660,
+            "Full Fare": 355,
+            "Full Pass": 552,
+            "Half Fare": 23,
+            "Half Pass": 24,
+            "Student": 2515,
+            "TOB ID": 20
+        },
+        "Main/Cohee Nbnd": {
+            "Faculty Staff": 1532,
+            "Full Fare": 506,
+            "Full Pass": 617,
+            "Half Fare": 82,
+            "Half Pass": 106,
+            "Reboard": 90,
+            "Student": 4984,
+            "TOB ID": 67,
+            "Transfer": 2
+        },
+        "Main/Collegiate Ct": {
+            "Faculty Staff": 126,
+            "Full Fare": 86,
+            "Full Pass": 98,
+            "Half Fare": 5,
+            "Half Pass": 3,
+            "Student": 820,
+            "TOB ID": 2,
+            "Transfer": 5
+        },
+        "Main/Collegiate Ct Sbnd": {
+            "Faculty Staff": 45,
+            "Full Fare": 188,
+            "Full Pass": 126,
+            "Half Fare": 28,
+            "Half Pass": 15,
+            "Reboard": 8,
+            "Student": 772,
+            "TOB ID": 12
+        },
+        "Main/Dowdy Nbnd": {
+            "Full Fare": 3,
+            "Full Pass": 1,
+            "Student": 2,
+            "TOB ID": 1
+        },
+        "Main/Dowdy Sbnd": {
+            "Faculty Staff": 5,
+            "Full Fare": 7,
+            "Full Pass": 2,
+            "Half Pass": 1,
+            "Student": 44,
+            "Transfer": 1
+        },
+        "Main/Eakin Nbnd": {
+            "Faculty Staff": 341,
+            "Full Fare": 133,
+            "Full Pass": 735,
+            "Half Fare": 14,
+            "Half Pass": 64,
+            "Reboard": 36,
+            "Student": 4230,
+            "TOB ID": 15
+        },
+        "Main/Eakin Sbnd": {
+            "Faculty Staff": 68,
+            "Full Fare": 42,
+            "Full Pass": 78,
+            "Half Fare": 11,
+            "Half Pass": 10,
+            "Reboard": 5,
+            "Student": 232,
+            "TOB ID": 16,
+            "Transfer": 2
+        },
+        "Main/Edgewood Sbnd": {
+            "Faculty Staff": 62,
+            "Full Fare": 37,
+            "Full Pass": 20,
+            "Half Fare": 2,
+            "Half Pass": 5,
+            "Reboard": 2,
+            "Student": 148,
+            "TOB ID": 4
+        },
+        "Main/Eheart Sbnd": {
+            "Faculty Staff": 62,
+            "Full Fare": 126,
+            "Full Pass": 145,
+            "Half Fare": 47,
+            "Half Pass": 15,
+            "Reboard": 7,
+            "Student": 417,
+            "TOB ID": 47,
+            "Transfer": 1
+        },
+        "Main/Faystone": {
+            "Faculty Staff": 38,
+            "Full Fare": 41,
+            "Full Pass": 77,
+            "Half Fare": 5,
+            "Half Pass": 4,
+            "Student": 163,
+            "TOB ID": 5,
+            "Transfer": 2
+        },
+        "Main/Faystone Sbnd": {
+            "Faculty Staff": 132,
+            "Full Fare": 37,
+            "Full Pass": 96,
+            "Half Fare": 9,
+            "Half Pass": 6,
+            "Reboard": 12,
+            "Student": 341,
+            "TOB ID": 8
+        },
+        "Main/Giles": {
+            "Faculty Staff": 16,
+            "Full Fare": 3,
+            "Student": 64
+        },
+        "Main/Giles Nbnd": {
+            "Faculty Staff": 7,
+            "Full Fare": 13,
+            "Full Pass": 34,
+            "Half Fare": 2,
+            "Reboard": 2,
+            "Student": 109
+        },
+        "Main/Graves": {
+            "Faculty Staff": 157,
+            "Full Fare": 417,
+            "Full Pass": 266,
+            "Half Fare": 18,
+            "Half Pass": 15,
+            "Student": 2928,
+            "TOB ID": 12,
+            "Transfer": 1
+        },
+        "Main/Graves Nbnd": {
+            "Faculty Staff": 462,
+            "Full Fare": 394,
+            "Full Pass": 352,
+            "Half Fare": 34,
+            "Half Pass": 5,
+            "Reboard": 8,
+            "Student": 4718,
+            "TOB ID": 65,
+            "Transfer": 2
+        },
+        "Main/Hemlock Nbnd": {
+            "Faculty Staff": 621,
+            "Full Fare": 103,
+            "Full Pass": 68,
+            "Half Fare": 20,
+            "Half Pass": 8,
+            "Reboard": 1,
+            "Student": 4814,
+            "TOB ID": 20,
+            "Transfer": 1
+        },
+        "Main/Hemlock Sbnd": {
+            "Faculty Staff": 61,
+            "Full Fare": 33,
+            "Full Pass": 54,
+            "Half Fare": 7,
+            "Half Pass": 1,
+            "Student": 144,
+            "TOB ID": 3
+        },
+        "Main/Kabrich": {
+            "Faculty Staff": 425,
+            "Full Fare": 164,
+            "Full Pass": 339,
+            "Half Fare": 47,
+            "Half Pass": 8,
+            "Reboard": 1,
+            "Student": 4253,
+            "TOB ID": 55,
+            "Transfer": 15
+        },
+        "Main/Kabrich Sbnd": {
+            "Faculty Staff": 658,
+            "Full Fare": 416,
+            "Full Pass": 526,
+            "Half Fare": 76,
+            "Half Pass": 22,
+            "Reboard": 15,
+            "Student": 9511,
+            "TOB ID": 50,
+            "Transfer": 23
+        },
+        "Main/Landsdowne Nbnd": {
+            "Faculty Staff": 889,
+            "Full Fare": 593,
+            "Full Pass": 653,
+            "Half Fare": 115,
+            "Half Pass": 187,
+            "Reboard": 43,
+            "Student": 2396,
+            "TOB ID": 24,
+            "Transfer": 36
+        },
+        "Main/Landsdowne Sbnd": {
+            "Faculty Staff": 786,
+            "Full Fare": 2024,
+            "Full Pass": 1814,
+            "Half Fare": 317,
+            "Half Pass": 146,
+            "Reboard": 90,
+            "Student": 2744,
+            "TOB ID": 63,
+            "Transfer": 140
+        },
+        "Main/Lee Nbnd": {
+            "Faculty Staff": 64,
+            "Full Fare": 133,
+            "Full Pass": 214,
+            "Half Fare": 26,
+            "Half Pass": 29,
+            "Reboard": 9,
+            "Student": 1052,
+            "TOB ID": 12,
+            "Transfer": 6
+        },
+        "Main/Lucas Nbnd N": {
+            "Faculty Staff": 7,
+            "Full Fare": 18,
+            "Full Pass": 7,
+            "Half Fare": 2,
+            "Half Pass": 1,
+            "Student": 108,
+            "TOB ID": 1
+        },
+        "Main/Lucas Nbnd S": {
+            "Faculty Staff": 773,
+            "Full Fare": 550,
+            "Full Pass": 442,
+            "Half Fare": 144,
+            "Half Pass": 77,
+            "Reboard": 7,
+            "Student": 1253,
+            "TOB ID": 33,
+            "Transfer": 15
+        },
+        "Main/Lucas Sbnd": {
+            "Faculty Staff": 280,
+            "Full Fare": 151,
+            "Full Pass": 105,
+            "Half Fare": 25,
+            "Half Pass": 14,
+            "Reboard": 2,
+            "Student": 3105,
+            "TOB ID": 5,
+            "Transfer": 3
+        },
+        "Main/Montgomery Nbnd": {
+            "Faculty Staff": 249,
+            "Full Fare": 483,
+            "Full Pass": 204,
+            "Half Fare": 38,
+            "Half Pass": 10,
+            "Reboard": 3,
+            "Student": 2378,
+            "TOB ID": 11,
+            "Transfer": 8
+        },
+        "Main/Montgomery Sbnd": {
+            "Faculty Staff": 864,
+            "Full Fare": 1041,
+            "Full Pass": 964,
+            "Half Fare": 145,
+            "Half Pass": 140,
+            "Reboard": 27,
+            "Student": 6703,
+            "TOB ID": 31,
+            "Transfer": 4
+        },
+        "Main/Northview Nbnd": {
+            "Faculty Staff": 23,
+            "Full Fare": 36,
+            "Full Pass": 198,
+            "Half Fare": 6,
+            "Half Pass": 4,
+            "Reboard": 7,
+            "Student": 202,
+            "TOB ID": 10,
+            "Transfer": 2
+        },
+        "Main/Northview Sbnd": {
+            "Faculty Staff": 614,
+            "Full Fare": 801,
+            "Full Pass": 333,
+            "Half Fare": 14,
+            "Half Pass": 12,
+            "Reboard": 19,
+            "Student": 23165,
+            "TOB ID": 170,
+            "Transfer": 7
+        },
+        "Main/Patrick Henry Nbnd": {
+            "Faculty Staff": 50,
+            "Full Fare": 76,
+            "Full Pass": 44,
+            "Half Fare": 12,
+            "Half Pass": 3,
+            "Reboard": 3,
+            "Student": 1112,
+            "TOB ID": 3,
+            "Transfer": 1
+        },
+        "Main/Patrick Henry Sbnd": {
+            "Faculty Staff": 2626,
+            "Full Fare": 2512,
+            "Full Pass": 2275,
+            "Half Fare": 279,
+            "Half Pass": 114,
+            "Reboard": 62,
+            "Student": 61771,
+            "TOB ID": 81,
+            "Transfer": 9
+        },
+        "Main/Red Maple": {
+            "Faculty Staff": 120,
+            "Full Fare": 527,
+            "Full Pass": 157,
+            "Half Fare": 16,
+            "Half Pass": 4,
+            "Reboard": 5,
+            "Student": 29359,
+            "TOB ID": 11,
+            "Transfer": 2
+        },
+        "Main/Red Maple Nbnd": {
+            "Faculty Staff": 328,
+            "Full Fare": 1500,
+            "Full Pass": 561,
+            "Half Fare": 124,
+            "Half Pass": 14,
+            "Reboard": 300,
+            "Student": 75829,
+            "TOB ID": 25,
+            "Transfer": 7
+        },
+        "Main/Roanoke Sbnd": {
+            "Faculty Staff": 4870,
+            "Full Fare": 8953,
+            "Full Pass": 7848,
+            "Half Fare": 1112,
+            "Half Pass": 689,
+            "Reboard": 211,
+            "Student": 33346,
+            "TOB ID": 345,
+            "Transfer": 554
+        },
+        "Main/S Hill Nbnd": {
+            "Faculty Staff": 145,
+            "Full Fare": 230,
+            "Full Pass": 262,
+            "Half Fare": 31,
+            "Half Pass": 9,
+            "Reboard": 30,
+            "Student": 1722,
+            "TOB ID": 11,
+            "Transfer": 2
+        },
+        "Main/S Hill Sbnd": {
+            "Faculty Staff": 146,
+            "Full Fare": 55,
+            "Full Pass": 182,
+            "Half Fare": 14,
+            "Half Pass": 7,
+            "Reboard": 10,
+            "Student": 468,
+            "TOB ID": 15
+        },
+        "Main/South Park Sbnd": {
+            "Faculty Staff": 113,
+            "Full Fare": 32,
+            "Full Pass": 51,
+            "Half Fare": 2,
+            "Half Pass": 1,
+            "Student": 166,
+            "TOB ID": 3
+        },
+        "Main/Sunset": {
+            "Faculty Staff": 237,
+            "Full Fare": 65,
+            "Full Pass": 144,
+            "Half Fare": 10,
+            "Half Pass": 33,
+            "Student": 1367,
+            "TOB ID": 9
+        },
+        "Main/Sunset Nbnd": {
+            "Faculty Staff": 453,
+            "Full Fare": 209,
+            "Full Pass": 561,
+            "Half Fare": 22,
+            "Half Pass": 67,
+            "Reboard": 10,
+            "Student": 5374,
+            "TOB ID": 4,
+            "Transfer": 2
+        },
+        "Main/Turner": {
+            "Faculty Staff": 19,
+            "Full Fare": 39,
+            "Full Pass": 128,
+            "Half Fare": 8,
+            "Half Pass": 7,
+            "Student": 363,
+            "TOB ID": 2,
+            "Transfer": 10
+        },
+        "Main/Turner Nbnd": {
+            "Faculty Staff": 307,
+            "Full Fare": 270,
+            "Full Pass": 271,
+            "Half Fare": 63,
+            "Half Pass": 21,
+            "Reboard": 36,
+            "Student": 3362,
+            "TOB ID": 11,
+            "Transfer": 13
+        },
+        "Main/Turner Sbnd": {
+            "Faculty Staff": 69,
+            "Full Fare": 184,
+            "Full Pass": 274,
+            "Half Fare": 65,
+            "Half Pass": 18,
+            "Reboard": 7,
+            "Student": 448,
+            "TOB ID": 8,
+            "Transfer": 3
+        },
+        "Majestic/Kays Dr Sbnd": {
+            "Faculty Staff": 29,
+            "Full Fare": 1
+        },
+        "Market Place North": {
+            "Faculty Staff": 2,
+            "Full Fare": 4,
+            "Full Pass": 1,
+            "Reboard": 4,
+            "Student": 6,
+            "TOB ID": 13,
+            "Transfer": 1
+        },
+        "Market Place South": {
+            "Faculty Staff": 2,
+            "Full Fare": 3,
+            "Full Pass": 1,
+            "Half Fare": 3,
+            "Reboard": 1,
+            "Student": 17
+        },
+        "Marlington/Emerald Wbnd": {
+            "Faculty Staff": 1189,
+            "Full Fare": 385,
+            "Full Pass": 619,
+            "Half Fare": 50,
+            "Half Pass": 28,
+            "Reboard": 6,
+            "Student": 10269,
+            "TOB ID": 11
+        },
+        "Marlington/Grayland Ebnd": {
+            "Faculty Staff": 2,
+            "Full Fare": 6,
+            "Full Pass": 2,
+            "Half Fare": 1,
+            "Student": 110
+        },
+        "Marlington/Grayland Wbnd": {
+            "Faculty Staff": 2405,
+            "Full Fare": 2486,
+            "Full Pass": 4196,
+            "Half Fare": 517,
+            "Half Pass": 226,
+            "Reboard": 193,
+            "Student": 50515,
+            "TOB ID": 80,
+            "Transfer": 12
+        },
+        "Marlington/Grissom Wbnd": {
+            "Faculty Staff": 342,
+            "Full Fare": 165,
+            "Full Pass": 102,
+            "Half Fare": 22,
+            "Half Pass": 4,
+            "Student": 2172,
+            "TOB ID": 24,
+            "Transfer": 1
+        },
+        "Marlington/Main Wbnd": {
+            "Faculty Staff": 470,
+            "Full Fare": 624,
+            "Full Pass": 1568,
+            "Half Fare": 91,
+            "Half Pass": 106,
+            "Reboard": 291,
+            "Student": 1730,
+            "TOB ID": 22,
+            "Transfer": 1
+        },
+        "McBryde Hall": {
+            "Faculty Staff": 1700,
+            "Full Fare": 985,
+            "Full Pass": 982,
+            "Half Fare": 35,
+            "Half Pass": 23,
+            "Reboard": 86,
+            "Student": 177922,
+            "TOB ID": 34,
+            "Transfer": 28
+        },
+        "McComas Hall": {
+            "Faculty Staff": 1754,
+            "Full Fare": 755,
+            "Full Pass": 1275,
+            "Half Fare": 37,
+            "Half Pass": 24,
+            "Reboard": 97,
+            "Student": 105257,
+            "TOB ID": 51,
+            "Transfer": 40
+        },
+        "Meadow/Stafford Wbnd": {
+            "Faculty Staff": 6
+        },
+        "Meadow/Walters Wbnd": {
+            "Faculty Staff": 6,
+            "Student": 5
+        },
+        "Montgomery County Courthouse": {
+            "Faculty Staff": 27,
+            "Full Fare": 150,
+            "Full Pass": 82,
+            "Half Fare": 17,
+            "Half Pass": 5,
+            "Student": 21,
+            "Transfer": 2
+        },
+        "Montgomery County Govt Center": {
+            "Faculty Staff": 11,
+            "Full Fare": 780,
+            "Full Pass": 165,
+            "Half Fare": 152,
+            "Half Pass": 25,
+            "Student": 68,
+            "TOB ID": 10,
+            "Transfer": 2
+        },
+        "Montgomery Regional Hospital": {
+            "Faculty Staff": 519,
+            "Full Fare": 638,
+            "Full Pass": 553,
+            "Half Fare": 166,
+            "Half Pass": 68,
+            "Reboard": 2,
+            "Student": 1336,
+            "TOB ID": 16,
+            "Transfer": 22
+        },
+        "NRV Theatre": {
+            "Faculty Staff": 70,
+            "Full Fare": 207,
+            "Full Pass": 306,
+            "Half Fare": 16,
+            "Half Pass": 10,
+            "Reboard": 33,
+            "Student": 2383,
+            "TOB ID": 3,
+            "Transfer": 10
+        },
+        "New Kent/Loudon Ebnd": {
+            "Faculty Staff": 567,
+            "Full Fare": 484,
+            "Full Pass": 524,
+            "Half Fare": 41,
+            "Half Pass": 16,
+            "Reboard": 5,
+            "Student": 12011,
+            "TOB ID": 11,
+            "Transfer": 1
+        },
+        "New Kent/Sussex Ebnd": {
+            "Faculty Staff": 2666,
+            "Full Fare": 2679,
+            "Full Pass": 1706,
+            "Half Fare": 403,
+            "Half Pass": 149,
+            "Reboard": 7,
+            "Student": 12766,
+            "TOB ID": 49,
+            "Transfer": 5
+        },
+        "New Kent/Sussex Wbnd": {
+            "Student": 1
+        },
+        "New River Valley Mall": {
+            "Faculty Staff": 2588,
+            "Full Fare": 6458,
+            "Full Pass": 5729,
+            "Half Fare": 809,
+            "Half Pass": 512,
+            "Reboard": 378,
+            "Student": 26293,
+            "TOB ID": 180,
+            "Transfer": 751
+        },
+        "New Village/Tula Circle Sbnd": {
+            "Faculty Staff": 2,
+            "Full Fare": 1,
+            "Reboard": 8
+        },
+        "Newman Library": {
+            "Faculty Staff": 11135,
+            "Full Fare": 4526,
+            "Full Pass": 8165,
+            "Half Fare": 400,
+            "Half Pass": 566,
+            "Reboard": 644,
+            "Student": 466439,
+            "TOB ID": 436,
+            "Transfer": 572
+        },
+        "North Franklin/Cambria Nbnd": {
+            "Faculty Staff": 3,
+            "Full Fare": 203,
+            "Full Pass": 58,
+            "Half Fare": 24,
+            "Half Pass": 18,
+            "Student": 55,
+            "Transfer": 2
+        },
+        "North Franklin/Depot Nbnd": {
+            "Faculty Staff": 46,
+            "Full Fare": 1,
+            "Student": 4
+        },
+        "North Franklin/Wades Nbnd": {
+            "Faculty Staff": 37,
+            "Full Fare": 172,
+            "Full Pass": 54,
+            "Half Fare": 14,
+            "Half Pass": 5,
+            "Student": 13
+        },
+        "North Franklin/Wades Sbnd": {
+            "Full Fare": 88,
+            "Full Pass": 29,
+            "Half Fare": 3,
+            "Half Pass": 9,
+            "Student": 5,
+            "Transfer": 1
+        },
+        "Northgate Plaza/Cambria": {
+            "Faculty Staff": 1025,
+            "Full Fare": 6,
+            "Full Pass": 200,
+            "Half Fare": 1,
+            "Half Pass": 1,
+            "Reboard": 43,
+            "Student": 238,
+            "TOB ID": 2
+        },
+        "Oak Lane Nbnd": {
+            "Faculty Staff": 8,
+            "Reboard": 1,
+            "Student": 2879,
+            "TOB ID": 1,
+            "Transfer": 1
+        },
+        "Oak Lane North": {
+            "Faculty Staff": 42,
+            "Full Fare": 27,
+            "Full Pass": 17,
+            "Half Pass": 1,
+            "Reboard": 3,
+            "Student": 66874,
+            "TOB ID": 18,
+            "Transfer": 1
+        },
+        "Oak Lane South": {
+            "Faculty Staff": 19,
+            "Full Fare": 91,
+            "Full Pass": 1,
+            "Half Fare": 4,
+            "Half Pass": 2,
+            "Reboard": 4,
+            "Student": 108384,
+            "TOB ID": 2,
+            "Transfer": 3
+        },
+        "Oak Tree/Gold Leaf Wbnd": {
+            "Faculty Staff": 75,
+            "Full Fare": 2,
+            "Student": 92,
+            "TOB ID": 1
+        },
+        "Oak Tree/Patricks Way Wbnd": {
+            "Faculty Staff": 3,
+            "Full Fare": 1,
+            "Student": 1
+        },
+        "Oaktree/Providence Way Wbnd": {
+            "Faculty Staff": 342,
+            "Full Fare": 8,
+            "Full Pass": 3,
+            "Half Pass": 1,
+            "Student": 156
+        },
+        "Old Glade/Glade": {
+            "Faculty Staff": 3,
+            "Student": 210,
+            "TOB ID": 1
+        },
+        "Old Glade/Glade Nbnd": {
+            "Faculty Staff": 67,
+            "Full Fare": 29,
+            "Full Pass": 41,
+            "Half Fare": 4,
+            "Half Pass": 10,
+            "Reboard": 88,
+            "Student": 7303,
+            "TOB ID": 2
+        },
+        "Old Security Bldg": {
+            "Faculty Staff": 4599,
+            "Full Fare": 1218,
+            "Full Pass": 3393,
+            "Half Fare": 108,
+            "Half Pass": 109,
+            "Reboard": 82,
+            "Student": 182495,
+            "TOB ID": 88,
+            "Transfer": 130
+        },
+        "Overflow Lot Ebnd": {
+            "Faculty Staff": 4,
+            "Full Fare": 23,
+            "Full Pass": 1,
+            "Reboard": 1,
+            "Student": 6863
+        },
+        "Overflow Lot Wbnd": {
+            "Faculty Staff": 1,
+            "Full Fare": 3,
+            "Student": 256,
+            "TOB ID": 1
+        },
+        "Park/East": {
+            "Full Fare": 15,
+            "Full Pass": 1,
+            "Half Fare": 2
+        },
+        "Park/Hagan": {
+            "Full Fare": 49,
+            "Full Pass": 4,
+            "Half Fare": 6,
+            "Half Pass": 1,
+            "Student": 4
+        },
+        "Park/Lester Wbnd": {
+            "Faculty Staff": 16,
+            "Full Fare": 2,
+            "Student": 34
+        },
+        "Patrick Henry/Giles": {
+            "Faculty Staff": 20,
+            "Full Fare": 38,
+            "Full Pass": 31,
+            "Half Fare": 9,
+            "Student": 3607,
+            "TOB ID": 4
+        },
+        "Patrick Henry/Giles Wbnd": {
+            "Faculty Staff": 83,
+            "Full Fare": 196,
+            "Full Pass": 126,
+            "Half Fare": 32,
+            "Half Pass": 5,
+            "Reboard": 2,
+            "Student": 9228,
+            "TOB ID": 5
+        },
+        "Patrick Henry/Main Wbnd": {
+            "Faculty Staff": 167,
+            "Full Fare": 234,
+            "Full Pass": 247,
+            "Half Fare": 27,
+            "Half Pass": 10,
+            "Reboard": 8,
+            "Student": 10220,
+            "TOB ID": 9,
+            "Transfer": 1
+        },
+        "Patrick Henry/Mary Jane Ebnd West": {
+            "Full Fare": 1,
+            "Student": 26
+        },
+        "Patrick Henry/Progress Ebnd": {
+            "Faculty Staff": 333,
+            "Full Fare": 577,
+            "Full Pass": 147,
+            "Half Fare": 7,
+            "Half Pass": 5,
+            "Reboard": 2,
+            "Student": 50330,
+            "TOB ID": 5,
+            "Transfer": 1
+        },
+        "Patrick Henry/Seneca Ebnd": {
+            "Full Fare": 2,
+            "Student": 107
+        },
+        "Patrick Henry/Seneca Wbnd": {
+            "Faculty Staff": 1413,
+            "Full Fare": 2406,
+            "Full Pass": 942,
+            "Half Fare": 97,
+            "Half Pass": 48,
+            "Reboard": 28,
+            "Student": 203511,
+            "TOB ID": 59,
+            "Transfer": 7
+        },
+        "Patrick Henry/Toms Creek Ebnd": {
+            "Faculty Staff": 620,
+            "Full Fare": 1405,
+            "Full Pass": 840,
+            "Half Fare": 32,
+            "Half Pass": 31,
+            "Reboard": 71,
+            "Student": 83264,
+            "TOB ID": 67,
+            "Transfer": 10
+        },
+        "Patrick Henry/Toms Creek Wbnd": {
+            "Faculty Staff": 630,
+            "Full Fare": 1637,
+            "Full Pass": 506,
+            "Half Fare": 34,
+            "Half Pass": 8,
+            "Reboard": 37,
+            "Student": 152934,
+            "TOB ID": 125,
+            "Transfer": 18
+        },
+        "Perry Street": {
+            "Faculty Staff": 4,
+            "Full Fare": 3,
+            "Full Pass": 14,
+            "Student": 258
+        },
+        "Pheasant Run": {
+            "Faculty Staff": 2117,
+            "Full Fare": 2823,
+            "Full Pass": 1326,
+            "Half Fare": 213,
+            "Half Pass": 85,
+            "Reboard": 43,
+            "Student": 126719,
+            "TOB ID": 48,
+            "Transfer": 3
+        },
+        "Phlegar/2nd Sbnd": {
+            "Faculty Staff": 16
+        },
+        "Phlegar/Second Sbnd": {
+            "Faculty Staff": 82,
+            "Student": 16
+        },
+        "Post Office on Arbor": {
+            "Faculty Staff": 5,
+            "Full Fare": 29,
+            "Full Pass": 14,
+            "Half Fare": 20,
+            "Half Pass": 3,
+            "Reboard": 4,
+            "Student": 30,
+            "TOB ID": 3,
+            "Transfer": 3
+        },
+        "Post Office on Arbor Nbnd": {
+            "Full Fare": 36,
+            "Full Pass": 3,
+            "Half Fare": 6,
+            "Half Pass": 2,
+            "Student": 2
+        },
+        "Pratt Dr/Andrews Bldg Nbnd": {
+            "Faculty Staff": 1938,
+            "Full Fare": 59,
+            "Full Pass": 231,
+            "Half Fare": 2,
+            "Half Pass": 1,
+            "Student": 2283,
+            "TOB ID": 2
+        },
+        "Pratt Dr/Andrews Bldg Sbnd": {
+            "Faculty Staff": 1673,
+            "Full Fare": 53,
+            "Full Pass": 89,
+            "Half Fare": 2,
+            "Half Pass": 2,
+            "Student": 2414,
+            "TOB ID": 2
+        },
+        "Pratt Dr/Garvin Bldg Nbnd": {
+            "Faculty Staff": 298,
+            "Full Fare": 26,
+            "Full Pass": 40,
+            "Half Fare": 10,
+            "Student": 1412,
+            "TOB ID": 3
+        },
+        "Pratt Dr/Garvin Bldg Sbnd": {
+            "Faculty Staff": 101,
+            "Full Fare": 24,
+            "Full Pass": 36,
+            "Half Pass": 1,
+            "Reboard": 1,
+            "Student": 495
+        },
+        "Pratt/Kraft Ebnd": {
+            "Faculty Staff": 522,
+            "Full Fare": 37,
+            "Full Pass": 69,
+            "Half Fare": 1,
+            "Half Pass": 1,
+            "Student": 2756,
+            "TOB ID": 2
+        },
+        "Pratt/Kraft Wbnd": {
+            "Faculty Staff": 2620,
+            "Full Fare": 167,
+            "Full Pass": 419,
+            "Half Fare": 4,
+            "Half Pass": 7,
+            "Reboard": 1,
+            "Student": 14032,
+            "TOB ID": 5,
+            "Transfer": 1
+        },
+        "Prices Fork/Huntington Ebnd": {
+            "Faculty Staff": 1296,
+            "Full Fare": 1843,
+            "Full Pass": 400,
+            "Half Fare": 5,
+            "Half Pass": 5,
+            "Reboard": 163,
+            "Student": 28850,
+            "TOB ID": 20
+        },
+        "Prices Fork/Huntington Wbnd": {
+            "Faculty Staff": 12,
+            "Full Fare": 35,
+            "Full Pass": 34,
+            "Half Pass": 3,
+            "Reboard": 14,
+            "Student": 218,
+            "Transfer": 3
+        },
+        "Prices Fork/Old Glade Ebnd": {
+            "Faculty Staff": 277,
+            "Full Fare": 341,
+            "Full Pass": 1374,
+            "Half Fare": 17,
+            "Half Pass": 27,
+            "Reboard": 434,
+            "Student": 3559,
+            "TOB ID": 30,
+            "Transfer": 4
+        },
+        "Prices Fork/Old Glade Wbnd": {
+            "Faculty Staff": 1545,
+            "Full Fare": 2291,
+            "Full Pass": 31246,
+            "Half Fare": 195,
+            "Half Pass": 389,
+            "Reboard": 8332,
+            "Student": 24247,
+            "TOB ID": 160,
+            "Transfer": 143
+        },
+        "Prices Fork/Plantation Ebnd": {
+            "Faculty Staff": 1763,
+            "Full Fare": 2600,
+            "Full Pass": 5565,
+            "Half Fare": 121,
+            "Half Pass": 133,
+            "Reboard": 344,
+            "Student": 50274,
+            "TOB ID": 40,
+            "Transfer": 5
+        },
+        "Prices Fork/Plantation Wbnd": {
+            "Faculty Staff": 51,
+            "Full Fare": 112,
+            "Full Pass": 395,
+            "Half Fare": 14,
+            "Half Pass": 6,
+            "Reboard": 38,
+            "Student": 964,
+            "TOB ID": 2,
+            "Transfer": 3
+        },
+        "Prices Fork/Turner Ebnd": {
+            "Faculty Staff": 413,
+            "Full Fare": 302,
+            "Full Pass": 439,
+            "Half Fare": 58,
+            "Half Pass": 52,
+            "Reboard": 11,
+            "Student": 25727,
+            "TOB ID": 12,
+            "Transfer": 11
+        },
+        "Professional Park Nbnd": {
+            "Faculty Staff": 91,
+            "Full Fare": 82,
+            "Full Pass": 45,
+            "Half Fare": 9,
+            "Half Pass": 8,
+            "Reboard": 2,
+            "Student": 841,
+            "TOB ID": 22
+        },
+        "Professional Park Sbnd": {
+            "Faculty Staff": 3,
+            "Full Fare": 6,
+            "Full Pass": 10,
+            "Half Fare": 1,
+            "Half Pass": 1,
+            "Student": 28,
+            "TOB ID": 1
+        },
+        "Progress/Broce Nbnd": {
+            "Faculty Staff": 138,
+            "Full Fare": 359,
+            "Full Pass": 153,
+            "Half Fare": 17,
+            "Half Pass": 3,
+            "Reboard": 19,
+            "Student": 8790,
+            "TOB ID": 2,
+            "Transfer": 3
+        },
+        "Progress/Broce Sbnd": {
+            "Faculty Staff": 895,
+            "Full Fare": 665,
+            "Full Pass": 500,
+            "Half Fare": 23,
+            "Half Pass": 5,
+            "Reboard": 23,
+            "Student": 73437,
+            "TOB ID": 46
+        },
+        "Progress/Hunt Club Sbnd": {
+            "Faculty Staff": 1986,
+            "Full Fare": 2578,
+            "Full Pass": 1304,
+            "Half Fare": 79,
+            "Half Pass": 22,
+            "Reboard": 21,
+            "Student": 284921,
+            "TOB ID": 239,
+            "Transfer": 7
+        },
+        "Progress/Patrick Henry Nbnd": {
+            "Faculty Staff": 381,
+            "Full Fare": 1132,
+            "Full Pass": 562,
+            "Half Fare": 52,
+            "Half Pass": 12,
+            "Reboard": 30,
+            "Student": 32296,
+            "TOB ID": 78,
+            "Transfer": 18
+        },
+        "Progress/University Terr Nbnd": {
+            "Faculty Staff": 123,
+            "Full Fare": 232,
+            "Full Pass": 167,
+            "Half Fare": 4,
+            "Half Pass": 2,
+            "Reboard": 10,
+            "Student": 7816,
+            "TOB ID": 9
+        },
+        "Progress/University Terr Sbnd": {
+            "Faculty Staff": 347,
+            "Full Fare": 498,
+            "Full Pass": 360,
+            "Half Fare": 7,
+            "Half Pass": 4,
+            "Reboard": 5,
+            "Student": 54871,
+            "TOB ID": 3,
+            "Transfer": 1
+        },
+        "Progress/Watson Nbnd": {
+            "Faculty Staff": 151,
+            "Full Fare": 95,
+            "Full Pass": 269,
+            "Half Fare": 17,
+            "Half Pass": 23,
+            "Reboard": 7,
+            "Student": 2477,
+            "TOB ID": 6,
+            "Transfer": 3
+        },
+        "Progress/Watson Sbnd": {
+            "Full Pass": 1,
+            "Half Fare": 1,
+            "Half Pass": 1,
+            "Student": 5
+        },
+        "Prosperity/Industrial Park Nbnd": {
+            "Faculty Staff": 47,
+            "Full Fare": 145,
+            "Full Pass": 467,
+            "Half Fare": 2,
+            "Half Pass": 6,
+            "Reboard": 2,
+            "Student": 753,
+            "TOB ID": 125,
+            "Transfer": 1
+        },
+        "Prosperity/Industrial Park Sbnd": {
+            "Faculty Staff": 3,
+            "Full Fare": 34,
+            "Full Pass": 97,
+            "Half Pass": 1,
+            "Student": 100,
+            "TOB ID": 11,
+            "Transfer": 2
+        },
+        "Providence/Cambria Nbnd": {
+            "Faculty Staff": 5,
+            "Reboard": 1,
+            "Student": 32
+        },
+        "Ramble/N Knollwood": {
+            "Faculty Staff": 269,
+            "Full Fare": 63,
+            "Full Pass": 194,
+            "Half Fare": 102,
+            "Half Pass": 55,
+            "Student": 3897,
+            "TOB ID": 2
+        },
+        "Ramble/Rimrock Nbnd": {
+            "Faculty Staff": 13,
+            "Full Fare": 49,
+            "Full Pass": 3,
+            "Half Fare": 1,
+            "Student": 323
+        },
+        "Ramble/Rimrock Sbnd": {
+            "Student": 2
+        },
+        "Ramble/S Knollwood": {
+            "Faculty Staff": 324,
+            "Full Fare": 91,
+            "Full Pass": 113,
+            "Half Fare": 1,
+            "Student": 3060,
+            "TOB ID": 2
+        },
+        "Rec Fields Nbnd": {
+            "Faculty Staff": 105,
+            "Full Fare": 11,
+            "Full Pass": 20,
+            "Half Fare": 2,
+            "Half Pass": 1,
+            "Student": 750,
+            "TOB ID": 1
+        },
+        "Rec Fields Sbnd": {
+            "Faculty Staff": 237,
+            "Full Fare": 20,
+            "Full Pass": 28,
+            "Half Fare": 16,
+            "Student": 1012,
+            "TOB ID": 1,
+            "Transfer": 1
+        },
+        "Recreation Center": {
+            "Faculty Staff": 4,
+            "Full Fare": 189,
+            "Full Pass": 35,
+            "Half Fare": 39,
+            "Half Pass": 4,
+            "Reboard": 3,
+            "Student": 19,
+            "Transfer": 36
+        },
+        "Replublic/Salem": {
+            "Faculty Staff": 15,
+            "Full Fare": 391,
+            "Full Pass": 51,
+            "Half Fare": 187,
+            "Half Pass": 15,
+            "Student": 26
+        },
+        "Replublic/Salem Nbnd": {
+            "Full Fare": 310,
+            "Full Pass": 225,
+            "Half Fare": 30,
+            "Half Pass": 9,
+            "Student": 9,
+            "TOB ID": 1
+        },
+        "Republic/Salem Nbnd": {
+            "Faculty Staff": 7,
+            "Full Fare": 126,
+            "Full Pass": 17,
+            "Half Fare": 8,
+            "Half Pass": 2,
+            "Student": 1
+        },
+        "Research Ctr/N Knollwood Nbnd": {
+            "Faculty Staff": 455,
+            "Full Fare": 143,
+            "Full Pass": 667,
+            "Half Fare": 135,
+            "Half Pass": 144,
+            "Reboard": 3,
+            "Student": 7634,
+            "TOB ID": 4,
+            "Transfer": 1
+        },
+        "Research Ctr/Rimrock Nbnd": {
+            "Faculty Staff": 63,
+            "Full Fare": 21,
+            "Full Pass": 2,
+            "Student": 574,
+            "TOB ID": 3,
+            "Transfer": 1
+        },
+        "Research Ctr/Rimrock Sbnd": {
+            "Faculty Staff": 1,
+            "Full Fare": 1,
+            "Student": 7
+        },
+        "Research Ctr/S Knollwood Nbnd": {
+            "Faculty Staff": 383,
+            "Full Fare": 71,
+            "Full Pass": 64,
+            "Half Fare": 4,
+            "Half Pass": 1,
+            "Student": 4666
+        },
+        "Roanoke/Church Ebnd": {
+            "Faculty Staff": 119,
+            "Full Fare": 105,
+            "Full Pass": 286,
+            "Half Fare": 12,
+            "Half Pass": 12,
+            "Student": 682,
+            "TOB ID": 5,
+            "Transfer": 6
+        },
+        "Roanoke/Craig Wbnd": {
+            "Faculty Staff": 3,
+            "Full Fare": 48,
+            "Full Pass": 72,
+            "Half Fare": 8,
+            "Half Pass": 8,
+            "Student": 1
+        },
+        "Roanoke/East Wbnd": {
+            "Faculty Staff": 43,
+            "Full Fare": 337,
+            "Full Pass": 145,
+            "Half Fare": 52,
+            "Half Pass": 21,
+            "Student": 50
+        },
+        "Roanoke/Evans Ebnd": {
+            "Faculty Staff": 3,
+            "Full Fare": 61,
+            "Full Pass": 28,
+            "Half Fare": 8,
+            "Half Pass": 6,
+            "Student": 10
+        },
+        "Roanoke/Evans Wbnd": {
+            "Faculty Staff": 5,
+            "Full Fare": 61,
+            "Full Pass": 28,
+            "Half Fare": 11,
+            "Half Pass": 8,
+            "Student": 7,
+            "TOB ID": 1
+        },
+        "Roanoke/Hungate Wbnd": {
+            "Full Fare": 314,
+            "Full Pass": 104,
+            "Half Fare": 16,
+            "Half Pass": 8,
+            "Student": 11,
+            "Transfer": 2
+        },
+        "Roanoke/Penn Wbnd": {
+            "Faculty Staff": 126,
+            "Full Fare": 26,
+            "Full Pass": 117,
+            "Half Fare": 14,
+            "Half Pass": 14,
+            "Student": 925,
+            "TOB ID": 3
+        },
+        "Roanoke/Roberts Ebnd": {
+            "Full Fare": 9,
+            "Full Pass": 1
+        },
+        "Roanoke/Rutledge Ebnd": {
+            "Faculty Staff": 16,
+            "Full Fare": 7,
+            "Full Pass": 3,
+            "Half Fare": 3,
+            "Half Pass": 1,
+            "Student": 172,
+            "TOB ID": 1
+        },
+        "Roanoke/Rutledge Wbnd": {
+            "Faculty Staff": 569,
+            "Full Fare": 242,
+            "Full Pass": 29,
+            "Half Fare": 10,
+            "Reboard": 4,
+            "Student": 24106,
+            "TOB ID": 10,
+            "Transfer": 1
+        },
+        "Roanoke/Wharton Ebnd": {
+            "Faculty Staff": 7,
+            "Full Fare": 15,
+            "Full Pass": 7,
+            "Half Fare": 2,
+            "Student": 143,
+            "TOB ID": 2,
+            "Transfer": 1
+        },
+        "Roanoke/Wharton Wbnd": {
+            "Faculty Staff": 45,
+            "Full Fare": 123,
+            "Full Pass": 69,
+            "Half Fare": 1,
+            "Half Pass": 1,
+            "Student": 3342,
+            "TOB ID": 3
+        },
+        "Roanoke/Woolwine Ebnd": {
+            "Faculty Staff": 38,
+            "Full Fare": 110,
+            "Full Pass": 22,
+            "Half Fare": 26,
+            "Half Pass": 2,
+            "Reboard": 1,
+            "Student": 368,
+            "TOB ID": 2
+        },
+        "Roanoke/Woolwine Wbnd": {
+            "Faculty Staff": 1703,
+            "Full Fare": 621,
+            "Full Pass": 649,
+            "Half Fare": 37,
+            "Half Pass": 10,
+            "Reboard": 60,
+            "Student": 38813,
+            "TOB ID": 296,
+            "Transfer": 7
+        },
+        "Seneca/Patrick Henry": {
+            "Faculty Staff": 41,
+            "Full Fare": 237,
+            "Full Pass": 65,
+            "Half Fare": 9,
+            "Half Pass": 1,
+            "Reboard": 2,
+            "Student": 18844,
+            "TOB ID": 11
+        },
+        "Seneca/Patrick Henry Sbnd": {
+            "Faculty Staff": 172,
+            "Full Fare": 773,
+            "Full Pass": 157,
+            "Half Fare": 17,
+            "Half Pass": 5,
+            "Reboard": 8,
+            "Student": 56281,
+            "TOB ID": 4,
+            "Transfer": 12
+        },
+        "Sequoia Circle/New Village Wbnd": {
+            "Faculty Staff": 1
+        },
+        "Shawnee on University City Ebnd": {
+            "Faculty Staff": 168,
+            "Full Fare": 181,
+            "Full Pass": 325,
+            "Half Fare": 52,
+            "Half Pass": 31,
+            "Reboard": 5,
+            "Student": 4637,
+            "TOB ID": 8,
+            "Transfer": 2
+        },
+        "Shawnee on University City Nbnd": {
+            "Faculty Staff": 101,
+            "Full Fare": 73,
+            "Full Pass": 127,
+            "Half Fare": 4,
+            "Half Pass": 17,
+            "Reboard": 16,
+            "Student": 2115
+        },
+        "Shawnee on University City Sbnd": {
+            "Faculty Staff": 3275,
+            "Full Fare": 430,
+            "Full Pass": 1938,
+            "Half Fare": 71,
+            "Half Pass": 797,
+            "Reboard": 111,
+            "Student": 16369,
+            "TOB ID": 23,
+            "Transfer": 3
+        },
+        "Shawnee on University City Wbnd": {
+            "Faculty Staff": 6004,
+            "Full Fare": 1382,
+            "Full Pass": 4560,
+            "Half Fare": 500,
+            "Half Pass": 397,
+            "Reboard": 260,
+            "Student": 55248,
+            "TOB ID": 64,
+            "Transfer": 12
+        },
+        "Shoppers Way": {
+            "Faculty Staff": 551,
+            "Full Fare": 1247,
+            "Full Pass": 1703,
+            "Half Fare": 176,
+            "Half Pass": 249,
+            "Reboard": 475,
+            "Student": 12954,
+            "TOB ID": 17,
+            "Transfer": 27
+        },
+        "Shoppers Way Wbnd": {
+            "Faculty Staff": 3,
+            "Full Fare": 78,
+            "Full Pass": 34,
+            "Half Fare": 29,
+            "Half Pass": 2,
+            "Student": 28,
+            "Transfer": 4
+        },
+        "Showalter Center": {
+            "Faculty Staff": 1,
+            "Full Fare": 8,
+            "Full Pass": 12,
+            "Half Fare": 35
+        },
+        "Simmons/Hammes Nbnd": {
+            "Faculty Staff": 2,
+            "Full Fare": 203,
+            "Full Pass": 41,
+            "Half Fare": 17,
+            "Half Pass": 13,
+            "Student": 5
+        },
+        "Sleepy Hollow/Tarrytown Sbnd": {
+            "Faculty Staff": 9,
+            "Full Fare": 7,
+            "Reboard": 13,
+            "Student": 30
+        },
+        "Somerset/Majestic Ebnd": {
+            "Faculty Staff": 30,
+            "Student": 6
+        },
+        "South Trolinger Sbnd": {
+            "Full Fare": 18,
+            "Full Pass": 6,
+            "Half Fare": 90,
+            "Half Pass": 65,
+            "Student": 2
+        },
+        "Spradlin Farm": {
+            "Faculty Staff": 23,
+            "Full Fare": 20,
+            "Full Pass": 40,
+            "Half Fare": 4,
+            "Reboard": 24,
+            "Student": 147,
+            "TOB ID": 2,
+            "Transfer": 3
+        },
+        "Squires Ebnd": {
+            "Faculty Staff": 19105,
+            "Full Fare": 10154,
+            "Full Pass": 22670,
+            "Half Fare": 1129,
+            "Half Pass": 1474,
+            "Reboard": 2669,
+            "Student": 299559,
+            "TOB ID": 1151,
+            "Transfer": 3205
+        },
+        "Squires Wbnd": {
+            "Faculty Staff": 16667,
+            "Full Fare": 9794,
+            "Full Pass": 13329,
+            "Half Fare": 787,
+            "Half Pass": 783,
+            "Reboard": 591,
+            "Student": 442543,
+            "TOB ID": 700,
+            "Transfer": 2060
+        },
+        "Stanger/Perry Nbnd": {
+            "Faculty Staff": 1948,
+            "Full Fare": 768,
+            "Full Pass": 1252,
+            "Half Fare": 49,
+            "Half Pass": 40,
+            "Reboard": 22,
+            "Student": 118302,
+            "TOB ID": 81,
+            "Transfer": 6
+        },
+        "Stroubles Cr": {
+            "Faculty Staff": 1745,
+            "Full Fare": 570,
+            "Full Pass": 2393,
+            "Half Fare": 218,
+            "Half Pass": 151,
+            "Reboard": 586,
+            "Student": 17574,
+            "TOB ID": 21,
+            "Transfer": 6
+        },
+        "Stroubles Crt": {
+            "Faculty Staff": 1131,
+            "Full Fare": 420,
+            "Full Pass": 1275,
+            "Half Fare": 91,
+            "Half Pass": 55,
+            "Reboard": 10,
+            "Student": 11313,
+            "TOB ID": 23,
+            "Transfer": 5
+        },
+        "Tall Oaks/Copper Croft": {
+            "Faculty Staff": 964,
+            "Full Fare": 1489,
+            "Full Pass": 6122,
+            "Half Fare": 77,
+            "Half Pass": 69,
+            "Student": 68846,
+            "TOB ID": 53
+        },
+        "Tall Oaks/Copper Croft Nbnd": {
+            "Faculty Staff": 2307,
+            "Full Fare": 2201,
+            "Full Pass": 9830,
+            "Half Fare": 71,
+            "Half Pass": 217,
+            "Reboard": 3883,
+            "Student": 89903,
+            "TOB ID": 72,
+            "Transfer": 29
+        },
+        "Tall Oaks/Foxhunt": {
+            "Faculty Staff": 376,
+            "Full Fare": 433,
+            "Full Pass": 2025,
+            "Half Fare": 78,
+            "Half Pass": 68,
+            "Reboard": 1,
+            "Student": 22434,
+            "TOB ID": 18
+        },
+        "Tall Oaks/Foxhunt Ebnd": {
+            "Faculty Staff": 4210,
+            "Full Fare": 1663,
+            "Full Pass": 6828,
+            "Half Fare": 99,
+            "Half Pass": 223,
+            "Reboard": 1562,
+            "Student": 106609,
+            "TOB ID": 98,
+            "Transfer": 18
+        },
+        "Tall Oaks/Foxridge": {
+            "Faculty Staff": 1121,
+            "Full Fare": 560,
+            "Full Pass": 2458,
+            "Half Fare": 28,
+            "Half Pass": 58,
+            "Reboard": 6,
+            "Student": 57470,
+            "TOB ID": 22,
+            "Transfer": 1
+        },
+        "Tall Oaks/Foxridge Nbnd": {
+            "Faculty Staff": 1739,
+            "Full Fare": 1025,
+            "Full Pass": 5739,
+            "Half Fare": 38,
+            "Half Pass": 126,
+            "Reboard": 1321,
+            "Student": 83296,
+            "TOB ID": 27,
+            "Transfer": 23
+        },
+        "Tall Oaks/Foxtrail": {
+            "Faculty Staff": 538,
+            "Full Fare": 463,
+            "Full Pass": 1341,
+            "Half Fare": 12,
+            "Half Pass": 10,
+            "Reboard": 1,
+            "Student": 18258,
+            "TOB ID": 2
+        },
+        "Tall Oaks/Foxtrail Sbnd": {
+            "Faculty Staff": 901,
+            "Full Fare": 903,
+            "Full Pass": 3715,
+            "Half Fare": 10,
+            "Half Pass": 78,
+            "Reboard": 899,
+            "Student": 30035,
+            "TOB ID": 12,
+            "Transfer": 7
+        },
+        "Tall Oaks/Heather": {
+            "Faculty Staff": 141,
+            "Full Fare": 132,
+            "Full Pass": 513,
+            "Half Fare": 18,
+            "Half Pass": 10,
+            "Student": 6371,
+            "TOB ID": 2
+        },
+        "Tall Oaks/Heather Ebnd": {
+            "Faculty Staff": 256,
+            "Full Fare": 204,
+            "Full Pass": 549,
+            "Half Fare": 16,
+            "Half Pass": 8,
+            "Reboard": 219,
+            "Student": 20179,
+            "TOB ID": 9,
+            "Transfer": 1
+        },
+        "Tall Oaks/Hethwood": {
+            "Faculty Staff": 2028,
+            "Full Fare": 588,
+            "Full Pass": 3069,
+            "Half Fare": 291,
+            "Half Pass": 75,
+            "Reboard": 2,
+            "Student": 16293,
+            "TOB ID": 27,
+            "Transfer": 1
+        },
+        "Tall Oaks/Hethwood Ebnd": {
+            "Faculty Staff": 3395,
+            "Full Fare": 785,
+            "Full Pass": 3664,
+            "Half Fare": 153,
+            "Half Pass": 118,
+            "Reboard": 1298,
+            "Student": 20711,
+            "TOB ID": 21,
+            "Transfer": 14
+        },
+        "Tennis Courts": {
+            "Faculty Staff": 163,
+            "Full Fare": 327,
+            "Full Pass": 676,
+            "Half Fare": 23,
+            "Half Pass": 36,
+            "Reboard": 26,
+            "Student": 12962,
+            "TOB ID": 46,
+            "Transfer": 5
+        },
+        "The Village on Patrick Henry Ebnd": {
+            "Faculty Staff": 387,
+            "Full Fare": 751,
+            "Full Pass": 339,
+            "Half Fare": 12,
+            "Half Pass": 5,
+            "Reboard": 4,
+            "Student": 51671,
+            "TOB ID": 14,
+            "Transfer": 6
+        },
+        "The Village on Patrick Henry Wbnd": {
+            "Faculty Staff": 1040,
+            "Full Fare": 3232,
+            "Full Pass": 974,
+            "Half Fare": 83,
+            "Half Pass": 17,
+            "Reboard": 56,
+            "Student": 301019,
+            "TOB ID": 70,
+            "Transfer": 14
+        },
+        "Toms Creek/Hunt Club Nbnd": {
+            "Faculty Staff": 223,
+            "Full Fare": 154,
+            "Full Pass": 202,
+            "Half Fare": 12,
+            "Half Pass": 7,
+            "Reboard": 19,
+            "Student": 18270,
+            "TOB ID": 14,
+            "Transfer": 5
+        },
+        "Toms Creek/Hunt Club Sbnd": {
+            "Faculty Staff": 2673,
+            "Full Fare": 1343,
+            "Full Pass": 1606,
+            "Half Fare": 36,
+            "Half Pass": 150,
+            "Reboard": 30,
+            "Student": 145334,
+            "TOB ID": 123,
+            "Transfer": 6
+        },
+        "Toms Creek/McBryde Nbnd": {
+            "Faculty Staff": 41,
+            "Full Fare": 30,
+            "Full Pass": 50,
+            "Half Fare": 18,
+            "Half Pass": 6,
+            "Reboard": 13,
+            "Student": 916
+        },
+        "Toms Creek/McBryde Sbnd": {
+            "Faculty Staff": 344,
+            "Full Fare": 94,
+            "Full Pass": 137,
+            "Half Fare": 11,
+            "Half Pass": 5,
+            "Reboard": 18,
+            "Student": 5819,
+            "TOB ID": 11
+        },
+        "Toms Creek/Watson Nbnd": {
+            "Faculty Staff": 24,
+            "Full Fare": 9,
+            "Full Pass": 53,
+            "Half Fare": 7,
+            "Half Pass": 31,
+            "Reboard": 1,
+            "Student": 311
+        },
+        "Toms Creek/Watson Sbnd": {
+            "Faculty Staff": 256,
+            "Full Fare": 66,
+            "Full Pass": 113,
+            "Half Fare": 62,
+            "Half Pass": 10,
+            "Reboard": 1,
+            "Student": 1594,
+            "TOB ID": 3,
+            "Transfer": 1
+        },
+        "Toms Creek/Winston Nbnd": {
+            "Faculty Staff": 94,
+            "Full Fare": 63,
+            "Full Pass": 122,
+            "Half Fare": 22,
+            "Half Pass": 56,
+            "Reboard": 3,
+            "Student": 3612,
+            "TOB ID": 6,
+            "Transfer": 5
+        },
+        "Toms Creek/Winston Sbnd": {
+            "Faculty Staff": 212,
+            "Full Fare": 47,
+            "Full Pass": 85,
+            "Half Fare": 8,
+            "Half Pass": 107,
+            "Reboard": 2,
+            "Student": 1936,
+            "TOB ID": 2
+        },
+        "Torgersen Hall": {
+            "Faculty Staff": 1401,
+            "Full Fare": 1055,
+            "Full Pass": 1513,
+            "Half Fare": 80,
+            "Half Pass": 138,
+            "Reboard": 313,
+            "Student": 75052,
+            "TOB ID": 98,
+            "Transfer": 151
+        },
+        "Torgerson Hall": {
+            "Faculty Staff": 12220,
+            "Full Fare": 7943,
+            "Full Pass": 13551,
+            "Half Fare": 516,
+            "Half Pass": 774,
+            "Reboard": 671,
+            "Student": 598884,
+            "TOB ID": 670,
+            "Transfer": 1844
+        },
+        "Town Hall and Courthouse": {
+            "Faculty Staff": 4,
+            "Full Fare": 85,
+            "Full Pass": 7,
+            "Half Fare": 28,
+            "Half Pass": 1,
+            "Reboard": 1,
+            "Student": 12,
+            "TOB ID": 1,
+            "Transfer": 2
+        },
+        "Tudor Square": {
+            "Faculty Staff": 7,
+            "Full Fare": 56,
+            "Full Pass": 7,
+            "Half Fare": 25,
+            "Half Pass": 5,
+            "Student": 11,
+            "Transfer": 1
+        },
+        "University City/Broce Nbnd": {
+            "Faculty Staff": 86,
+            "Full Fare": 141,
+            "Full Pass": 230,
+            "Half Fare": 12,
+            "Half Pass": 21,
+            "Reboard": 34,
+            "Student": 3624,
+            "TOB ID": 6,
+            "Transfer": 2
+        },
+        "University City/Broce Sbnd": {
+            "Faculty Staff": 4578,
+            "Full Fare": 1813,
+            "Full Pass": 3234,
+            "Half Fare": 137,
+            "Half Pass": 232,
+            "Reboard": 190,
+            "Student": 74758,
+            "TOB ID": 127,
+            "Transfer": 5
+        },
+        "University City/Falcon Ebnd": {
+            "Faculty Staff": 68,
+            "Full Fare": 82,
+            "Full Pass": 189,
+            "Half Fare": 1,
+            "Half Pass": 1,
+            "Reboard": 1,
+            "Student": 6320
+        },
+        "University City/Glade Nbnd": {
+            "Faculty Staff": 1320,
+            "Full Fare": 1070,
+            "Full Pass": 2791,
+            "Half Fare": 359,
+            "Half Pass": 355,
+            "Reboard": 303,
+            "Student": 27899,
+            "TOB ID": 51,
+            "Transfer": 24
+        },
+        "University City/Glade Sbnd": {
+            "Faculty Staff": 2319,
+            "Full Fare": 2423,
+            "Full Pass": 3640,
+            "Half Fare": 161,
+            "Half Pass": 230,
+            "Reboard": 284,
+            "Student": 87816,
+            "TOB ID": 220,
+            "Transfer": 23
+        },
+        "University City/Toms Creek Ebnd": {
+            "Faculty Staff": 128,
+            "Full Fare": 118,
+            "Full Pass": 109,
+            "Half Fare": 8,
+            "Half Pass": 21,
+            "Reboard": 5,
+            "Student": 4518,
+            "TOB ID": 4
+        },
+        "University City/Toms Creek Wbnd": {
+            "Faculty Staff": 4614,
+            "Full Fare": 3459,
+            "Full Pass": 6489,
+            "Half Fare": 196,
+            "Half Pass": 306,
+            "Reboard": 816,
+            "Student": 158816,
+            "TOB ID": 196,
+            "Transfer": 46
+        },
+        "University Mall Main Entrance": {
+            "Faculty Staff": 1543,
+            "Full Fare": 1266,
+            "Full Pass": 4477,
+            "Half Fare": 81,
+            "Half Pass": 76,
+            "Reboard": 207,
+            "Student": 249967,
+            "TOB ID": 185,
+            "Transfer": 14
+        },
+        "University Mall Nbnd": {
+            "Faculty Staff": 527,
+            "Full Fare": 461,
+            "Full Pass": 2957,
+            "Half Fare": 64,
+            "Half Pass": 115,
+            "Reboard": 609,
+            "Student": 18722,
+            "TOB ID": 50,
+            "Transfer": 37
+        },
+        "University Mall Sbnd": {
+            "Faculty Staff": 3084,
+            "Full Fare": 3061,
+            "Full Pass": 12045,
+            "Half Fare": 254,
+            "Half Pass": 393,
+            "Reboard": 2058,
+            "Student": 126993,
+            "TOB ID": 393,
+            "Transfer": 39
+        },
+        "Vet School Ebnd": {
+            "Faculty Staff": 109,
+            "Full Fare": 92,
+            "Full Pass": 411,
+            "Half Fare": 12,
+            "Half Pass": 9,
+            "Reboard": 15,
+            "Student": 1721,
+            "TOB ID": 2
+        },
+        "Vet School Wbnd": {
+            "Faculty Staff": 102,
+            "Full Fare": 218,
+            "Full Pass": 1164,
+            "Half Fare": 18,
+            "Half Pass": 89,
+            "Reboard": 40,
+            "Student": 1639,
+            "TOB ID": 3,
+            "Transfer": 2
+        },
+        "W Main/Dunkley": {
+            "Faculty Staff": 5,
+            "Full Fare": 233,
+            "Full Pass": 34,
+            "Half Fare": 151,
+            "Half Pass": 13,
+            "Reboard": 2,
+            "Student": 27,
+            "TOB ID": 2
+        },
+        "W Main/Dunkley Ebnd": {
+            "Faculty Staff": 12,
+            "Full Fare": 343,
+            "Full Pass": 138,
+            "Half Fare": 77,
+            "Half Pass": 13,
+            "Student": 18,
+            "TOB ID": 9
+        },
+        "Wades/N. Franklin Ebnd": {
+            "Faculty Staff": 40,
+            "Full Fare": 4,
+            "Student": 6
+        },
+        "Wal Mart": {
+            "Faculty Staff": 1953,
+            "Full Fare": 3582,
+            "Full Pass": 4885,
+            "Half Fare": 514,
+            "Half Pass": 457,
+            "Reboard": 192,
+            "Student": 23327,
+            "TOB ID": 80,
+            "Transfer": 212
+        },
+        "War Memorial Hall": {
+            "Faculty Staff": 404,
+            "Full Fare": 147,
+            "Full Pass": 536,
+            "Half Fare": 12,
+            "Half Pass": 16,
+            "Reboard": 8,
+            "Student": 7075,
+            "TOB ID": 20,
+            "Transfer": 18
+        },
+        "Warm Hearth/Dogwood Circle Wbnd": {
+            "Full Fare": 3,
+            "Full Pass": 1,
+            "Half Fare": 2,
+            "Half Pass": 6
+        },
+        "Warm Hearth/Nuthatch Ebnd": {
+            "Full Fare": 1,
+            "Half Fare": 3
+        },
+        "Warm Hearth/Oakland Square Wbnd": {
+            "Full Fare": 6,
+            "Half Fare": 50,
+            "Half Pass": 4,
+            "Transfer": 4
+        },
+        "Warm Hearth/Woodside Terrace Wbnd": {
+            "Half Fare": 1
+        },
+        "West Campus/Perry Nbnd": {
+            "Faculty Staff": 4340,
+            "Full Fare": 686,
+            "Full Pass": 1590,
+            "Half Fare": 33,
+            "Half Pass": 49,
+            "Reboard": 76,
+            "Student": 102005,
+            "TOB ID": 44,
+            "Transfer": 15
+        },
+        "Whipple/Courtney": {
+            "Faculty Staff": 89,
+            "Full Fare": 78,
+            "Full Pass": 63,
+            "Half Fare": 44,
+            "Half Pass": 2,
+            "Student": 2969,
+            "TOB ID": 2
+        },
+        "Whipple/Courtney Sbnd": {
+            "Faculty Staff": 616,
+            "Full Fare": 321,
+            "Full Pass": 358,
+            "Half Fare": 40,
+            "Half Pass": 18,
+            "Reboard": 15,
+            "Student": 7623,
+            "TOB ID": 9
+        },
+        "Whipple/Givens": {
+            "Faculty Staff": 828,
+            "Full Fare": 998,
+            "Full Pass": 633,
+            "Half Fare": 116,
+            "Half Pass": 42,
+            "Reboard": 1,
+            "Student": 10147,
+            "TOB ID": 16,
+            "Transfer": 1
+        },
+        "Whipple/Givens Wbnd": {
+            "Faculty Staff": 2137,
+            "Full Fare": 2264,
+            "Full Pass": 967,
+            "Half Fare": 498,
+            "Half Pass": 116,
+            "Reboard": 41,
+            "Student": 24535,
+            "TOB ID": 33,
+            "Transfer": 4
+        },
+        "Wright House": {
+            "Faculty Staff": 1501,
+            "Full Fare": 827,
+            "Full Pass": 1397,
+            "Half Fare": 64,
+            "Half Pass": 104,
+            "Reboard": 958,
+            "Student": 130917,
+            "TOB ID": 112,
+            "Transfer": 20
+        }
+    }
+}

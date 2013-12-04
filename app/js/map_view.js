@@ -1,32 +1,55 @@
 var fareTypeColor = []
 fareTypeColor.push({
-    "type": "Student",
-    "color": "#A6CEE3"
-});
-fareTypeColor.push({
-    "type": "Full Pass",
-    "color": "#1F78B4"
-});
-fareTypeColor.push({
     "type": "Faculty Staff",
-    "color": "#B2DF8A"
+    "color": "#E41A1C"
 });
 fareTypeColor.push({
     "type": "Full Fare",
-    "color": "#33A02C"
+    "color": "#377EB8"
 });
 fareTypeColor.push({
-    "type": "Reboard",
-    "color": "#FB9A99"
+    "type": "Full Pass",
+    "color": "#4DAF4A"
 });
 fareTypeColor.push({
     "type": "Half Fare",
-    "color": "#E31A1C"
+    "color": "#984EA3"
 });
 fareTypeColor.push({
     "type": "Half Pass",
-    "color": "#FDBF6F"
+    "color": "#FF7F00"
 });
+fareTypeColor.push({
+    "type": "Reboard",
+    "color": "#FFFF33"
+});
+fareTypeColor.push({
+    "type": "Student",
+    "color": "#A65628"
+});
+fareTypeColor.push({
+    "type": "TOB ID",
+    "color": "#F781BF"
+});
+fareTypeColor.push({
+    "type": "Transfer",
+    "color": "#999999"
+});
+
+var fareTypeColorMap = {};
+for (var i = 0; i < fareTypeColor.length; i++) {
+    fareTypeColorMap[getFareTypeName(i)] = getFareTypeColor(i);
+}
+
+// Faculty Staff|287210
+// Full Fare|208345
+// Full Pass|372981
+// Half Fare|24608
+// Half Pass|20912
+// Reboard|43568
+// Student|9557501
+// TOB ID|12654
+// Transfer|13577
 
 function getFareTypeColor(i) {
     if (i >= 0 && i < fareTypeColor.length) return fareTypeColor[i].color;
@@ -60,136 +83,161 @@ map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 // Load the station data. When the data comes back, create an overlay.
 d3.json("./data/stops.json", function(data) {
 
-    searchAutoComplete(data);
+    var stop_data = data;
+    searchAutoComplete(stop_data);
 
-    var overlay = new google.maps.OverlayView();
-    overlay.setMap(map);
+    d3.json("./data/faretypes.json", function(error, data) {
+        var fare_data = data["FareTypeCount"];
 
-    // Add the container when the overlay is added to the map.
-    overlay.onAdd = function() {
-        var layer = d3.select(this.getPanes().overlayMouseTarget).append("div")
-            .attr("class", "map_class");
+        var overlay = new google.maps.OverlayView();
+        overlay.setMap(map);
 
-        // Draw each map_marker as a separate SVG element.
-        // We could use a single SVG, but what size would it have?
-        overlay.draw = function() {
-            var projection = this.getProjection();
+        // Add the container when the overlay is added to the map.
+        overlay.onAdd = function() {
+            var layer = d3.select(this.getPanes().overlayMouseTarget).append("div")
+                .attr("class", "map_class");
 
-            /*---------------------------------------------------------------*/
-            var piechart_radius = 40;
-            var padding2 = piechart_radius;
-            var map_marker2 = layer.selectAll("svg.map_marker2")
-                .data(d3.entries(data))
-            // for every time
-            .each(transform2)
-                .enter().append("svg")
-            // for the first time
-            .each(transform2)
-                .attr("class", function(d) {
-                    return "map_marker2 " + trimStopName(d.key);
-                });
+            // Draw each map_marker as a separate SVG element.
+            // We could use a single SVG, but what size would it have?
+            overlay.draw = function() {
+                var projection = this.getProjection();
 
-            var arc = d3.svg.arc()
-                .outerRadius(piechart_radius * 1)
-                .innerRadius(piechart_radius * 0.5);
+                /*---------------------------------------------------------------*/
 
-            var pie = d3.layout.pie()
-                .sort(null)
-                .value(function(d) {
-                    return d.farecount;
-                });
+                var piechart_radius = 40;
+                var padding2 = piechart_radius;
 
-            var map_piechart = map_marker2.append("g")
-                .attr("class", "map_stop_info map_piechart")
-                .attr("transform", "translate(" + (padding2) + "," + (padding2) + ")");
+                var count = 0;
 
-            d3.csv("./data/data.csv", function(error, data) {
+                var map_marker2 = layer.selectAll("svg.map_marker2")
+                    .data(d3.entries(stop_data))
+                    .each(transform2)
+                    .enter().append("svg")
+                    .each(transform2)
+                    .attr("class", function(d) {
+
+                        return "map_marker2 " + trimStopName(d.key);
+                    });
+
+                ///
+                var map_piechart = map_marker2.append("g")
+                    .attr("class", "map_stop_info map_piechart")
+                    .attr("transform", "translate(" + (padding2) + "," + (padding2) + ")");
+
+                var arc = d3.svg.arc()
+                    .outerRadius(piechart_radius * 1)
+                    .innerRadius(piechart_radius * 0.5);
+
+                var pie = d3.layout.pie()
+                    .sort(null)
+                    .value(function(d) {
+                        return d.farecount;
+                    });
+
                 var map_piechart_unit = map_piechart.selectAll(".map_piechart_unit")
-                    .data(pie(data))
+                    .data(function(d) {
+                        var pie_data = {};
+                        if (fare_data[d.key] != undefined)
+                            var pie_data = fare_data[d.key];
+
+                        var faretypes = [];
+                        for (var i = 0; i < fareTypeColor.length; i++) {
+                            var typename = getFareTypeName(i);
+                            if (pie_data[typename] != undefined) {
+                                faretypes.push({
+                                    "faretype": typename,
+                                    "farecount": pie_data[typename]
+                                });
+                            }
+                        }
+
+                        return pie(faretypes);
+                    })
                     .enter().append("g")
-                    .attr("class", "map_piechart_unit")
+                    .attr("class", ".map_piechart_unit")
                     .append("path")
                     .attr("d", arc)
                     .style("fill", function(d) {
-                        return getFareTypeColor(d.data.faretype);
+                        return fareTypeColorMap[d.data.faretype];
                     });
-            });
+                ///
 
-            /*---------------------------------------------------------------*/
-            var map_stop_radius = 5;
-            var padding = map_stop_radius;
-            var map_marker = layer.selectAll("svg.map_marker")
-                .data(d3.entries(data))
-            // for every time
-            .each(transform, padding)
-                .enter().append("svg")
-            // for the first time
-            .each(transform, padding)
-                .attr("class", function(d) {
-                    return "map_marker " + trimStopName(d.key);
-                }).attr("lat", function(d) {
-                    return d.value[0];
-                })
-                .attr("lng", function(d) {
-                    return d.value[1];
-                });
+                /*---------------------------------------------------------------*/
+                var map_stop_radius = 5;
+                var padding = map_stop_radius;
+                var map_marker = layer.selectAll("svg.map_marker")
+                    .data(d3.entries(stop_data))
+                // for every time
+                .each(transform, padding)
+                    .enter().append("svg")
+                // for the first time
+                .each(transform, padding)
+                    .attr("class", function(d) {
+                        return "map_marker " + trimStopName(d.key);
+                    }).attr("lat", function(d) {
+                        return d.value[0];
+                    })
+                    .attr("lng", function(d) {
+                        return d.value[1];
+                    });
 
-            // Add a background.
-            map_marker.append("rect")
-                .attr("x", padding + 40)
-                .attr("y", padding - 4)
-                .attr("width", function(d) {
-                    return d.key.length * 9;
-                })
-                .attr("height", 20)
-                .attr("fill", "white")
-                .attr("class", "map_stop_info map_stop_info_text");
+                // Add a background.
+                map_marker.append("rect")
+                    .attr("x", padding + 40)
+                    .attr("y", padding - 4)
+                    .attr("width", function(d) {
+                        return d.key.length * 9;
+                    })
+                    .attr("height", 20)
+                    .attr("fill", "white")
+                    .attr("class", "map_stop_info map_stop_info_text");
 
-            // Add a label.
-            map_marker.append("text")
-                .attr("x", padding + 40)
-                .attr("y", padding + 5)
-                .attr("dy", "7px")
-                .attr("class", "map_stop_info map_stop_info_text")
-                .text(function(d) {
-                    return d.key;
-                });
+                // Add a label.
+                map_marker.append("text")
+                    .attr("x", padding + 40)
+                    .attr("y", padding + 5)
+                    .attr("dy", "7px")
+                    .attr("class", "map_stop_info map_stop_info_text")
+                    .text(function(d) {
+                        return d.key;
+                    });
 
-            // Add a circle.
-            map_marker.append("circle")
-                .attr("r", map_stop_radius)
-                .attr("cx", padding)
-                .attr("cy", padding)
-                .attr("class", "map_stop")
-                .on("mouseover", function(d) {
-                    highlightStops([d.key]);
-                    afterMouseOver(d);
-                })
-                .on("mouseout", function(d) {
-                    unhighlightStops([d.key]);
-                })
-                .on("click", function(d) {
-                    afterClickStop(d);
-                });
-            /*---------------------------------------------------------------*/
+                // Add a circle.
+                map_marker.append("circle")
+                    .attr("r", map_stop_radius)
+                    .attr("cx", padding)
+                    .attr("cy", padding)
+                    .attr("class", "map_stop")
+                    .on("mouseover", function(d) {
+                        highlightStops([d.key]);
+                        afterMouseOver(d);
+                    })
+                    .on("mouseout", function(d) {
+                        unhighlightStops([d.key]);
+                    })
+                    .on("click", function(d) {
+                        afterClickStop(d);
+                    });
+                /*---------------------------------------------------------------*/
 
-            function transform(d) {
-                d = new google.maps.LatLng(d.value[0], d.value[1]);
-                d = projection.fromLatLngToDivPixel(d);
-                return d3.select(this)
-                    .style("left", (d.x - padding) + "px")
-                    .style("top", (d.y - padding) + "px");
-            }
+                function transform(d) {
+                    d = new google.maps.LatLng(d.value[0], d.value[1]);
+                    d = projection.fromLatLngToDivPixel(d);
+                    return d3.select(this)
+                        .style("left", (d.x - padding) + "px")
+                        .style("top", (d.y - padding) + "px");
+                }
 
-            function transform2(d) {
-                d = new google.maps.LatLng(d.value[0], d.value[1]);
-                d = projection.fromLatLngToDivPixel(d);
-                return d3.select(this)
-                    .style("left", (d.x - padding2) + "px")
-                    .style("top", (d.y - padding2) + "px");
-            }
+                function transform2(d) {
+                    d = new google.maps.LatLng(d.value[0], d.value[1]);
+                    d = projection.fromLatLngToDivPixel(d);
+                    return d3.select(this)
+                        .style("left", (d.x - padding2) + "px")
+                        .style("top", (d.y - padding2) + "px");
+                }
+            };
         };
-    };
+    });
 });
 
 function trimStopName(str) {
@@ -203,7 +251,7 @@ map_highlightStopsCircleOnly = highlightStopsCircleOnlyAnimate;
 map_unhighlightStops = unhighlightStops;
 
 function highlightStopsAnimate(stopNames) {
-    console.log("highlightStopsAnimate");
+    // console.log("highlightStopsAnimate");
     unhighlightAllStops();
 
     d3.selectAll(".map_stop").classed("fade", true);
@@ -222,7 +270,7 @@ function highlightStopsAnimate(stopNames) {
 }
 
 function highlightStopsTextOnlyAnimate(stopNames) {
-    console.log("highlightStopsTextOnlyAnimate");
+    // console.log("highlightStopsTextOnlyAnimate");
     unhighlightAllStops();
 
     d3.selectAll(".map_stop").classed("fade", true);
@@ -241,7 +289,7 @@ function highlightStopsTextOnlyAnimate(stopNames) {
 }
 
 function highlightStopsCircleOnlyAnimate(stopNames) {
-    console.log("highlightStopsCircleOnlyAnimate");
+    // console.log("highlightStopsCircleOnlyAnimate");
     unhighlightAllStops();
 
     d3.selectAll(".map_stop").classed("fade", true);
@@ -259,7 +307,7 @@ function highlightStopsCircleOnlyAnimate(stopNames) {
 }
 
 function highlightStops(stopNames) {
-    console.log("highlightStops");
+    // console.log("highlightStops");
     unhighlightAllStops();
 
     d3.selectAll(".map_stop").classed("fade", true);
