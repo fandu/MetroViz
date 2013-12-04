@@ -132,6 +132,8 @@
             .key(function(d) { return toISOStringWithoutTime(d["date"]); })
             .map(data);
 
+        console.log(nested_data);
+
         var maxAdherence = d3.max(data, function (d) {
             return aveAdherence(nested_data[toISOStringWithoutTime(d["date"])]);
         });
