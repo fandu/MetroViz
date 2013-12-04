@@ -84,19 +84,35 @@ class MetroViz(object):
         return s
     
     @cherrypy.expose
-    def getAdherenceRidership(self,route,stop=None,trip=None,startDate=None,endDate=None,pretty=False):
+    def getAdherenceRidership(self,route=None,stop=None,trip=None,startDate=None,endDate=None,pretty=False):
         t = time.time()
         conn = sqlite3.connect(DB)
         c = conn.cursor()
-        query = 'select s.name,d.trip,year,month,day,hour, min,adherence, fareCount, boarding, alighting from data d left join route_trips t on t.ROWID=d.trip left join stops s on s.ROWID=d.stop where d.route=?'
-        params = [route,]
+        query = 'select r.name,s.name,d.trip,year,month,day,hour, min,adherence, fareCount, boarding, alighting from data d left join route_trips t on t.ROWID=d.trip left join stops s on s.ROWID=d.stop left join routes r on r.ROWID=d.route'
+        params = []
+        count = 0
+        if route is not None:
+            if count == 0:
+                query += ' where d.route=?'
+                count = 1
+            else:
+                query += ' and d.route=?'
+            params.append(route)
         if stop is not None:
-            query += ' and d.stop=?'
+            if count == 0:
+                query += ' where d.stop=?'
+                count = 1
+            else:
+                query += ' and d.stop=?'
             params.append(stop)
         if trip is not None:
-             query += ' and d.trip=?'
-             params.append(trip)
-        elif (startDate is not None) or (endDate is not None):
+            if count == 0:
+                query += ' where d.trip=?'
+                count = 1
+            else:
+                query += ' and d.trip=?'
+            params.append(trip)
+        if (startDate is not None) or (endDate is not None):
             start = 0 if startDate is None else int(startDate)
             end =   99999999 if endDate is None else int(endDate)
             query += ' and 10000*d.year+100*d.month+d.day between ? and ?'
@@ -106,41 +122,13 @@ class MetroViz(object):
         row = c.fetchone()
         d = {}
         while row is not None:
-            (stop,trip,syear,smonth,sday,shour,smin,delta,fare,boarding,alighting) = row
+            (route,stop,trip,syear,smonth,sday,shour,smin,delta,fare,boarding,alighting) = row
             if trip not in d:
                 d[trip] = []
-            d[trip].append({'stop':stop,'date':'{}{:02}{:02}'.format(syear,smonth,sday),'ScheduledTime':"{:02}:{:02}".format(shour,smin),'adherence':delta, 'fareCount':fare,'boarded':boarding,'alighted':alighting})
+            d[trip].append({'route':route,'stop':stop,'date':'{}{:02}{:02}'.format(syear,smonth,sday),'ScheduledTime':"{:02}:{:02}".format(shour,smin),'adherence':delta, 'fareCount':fare,'boarded':boarding,'alighted':alighting})
             row = c.fetchone()
             
         s = self.createJSON('data',d,pretty)
-        c.close()
-        conn.close()
-        print time.time()-t
-        return s
-    
-    @cherrypy.expose
-    def getTotalFareByType(self,stop=None,pretty=False):
-        t = time.time()
-        conn = sqlite3.connect(DB)
-        c = conn.cursor()
-        query = 'select stop,farename,sum(count) from totalFareByType'
-        params = ()
-        if stop is not None:
-            query += ' where stop=?'
-            params = (stop,)
-        query +=  ' group by 1,2 order by 1,2'
-        c.execute(query,params)
-
-        row = c.fetchone()
-        d = {}
-        while row is not None:
-            (stop,faretype,count) = row
-            if stop not in d:
-                d[stop] = {}
-            d[stop][faretype] = count
-            row = c.fetchone()
-            
-        s = self.createJSON('FareTypeCount',d,pretty)
         c.close()
         conn.close()
         print time.time()-t
@@ -150,15 +138,30 @@ class MetroViz(object):
         t = time.time()
         conn = sqlite3.connect(DB)
         c = conn.cursor()
-        query = 'select s.name,d.trip,d.year,d.month,d.day,d.hour, d.min,d.adherence from data d left join route_trips t on t.ROWID=d.trip left join stops s on s.ROWID=d.stop where d.route=?'
-        params = [route,]
+        query = 'select r.name,s.name,d.trip,d.year,d.month,d.day,d.hour, d.min,d.adherence from data d left join route_trips t on t.ROWID=d.trip left join stops s on s.ROWID=d.stop left join routes r on r.ROWID=d.route'
+        params = []
+        if route is not None:
+            if count == 0:
+                query += ' where d.route=?'
+                count = 1
+            else:
+                query += ' and d.route=?'
+            params.append(route)
         if stop is not None:
-            query += ' and d.stop=?'
+            if count == 0:
+                query += ' where d.stop=?'
+                count = 1
+            else:
+                query += ' and d.stop=?'
             params.append(stop)
         if trip is not None:
-             query += ' and d.trip=?'
-             params.append(trip)
-        elif (startDate is not None) or (endDate is not None):
+            if count == 0:
+                query += ' where d.trip=?'
+                count = 1
+            else:
+                query += ' and d.trip=?'
+            params.append(trip)
+        if (startDate is not None) or (endDate is not None):
             start = 0 if startDate is None else int(startDate)
             end =   99999999 if endDate is None else int(endDate)
             query += ' and 10000*d.year+100*d.month+d.day between ? and ?'
@@ -189,14 +192,29 @@ class MetroViz(object):
         t = time.time()
         conn = sqlite3.connect(DB)
         c = conn.cursor()
-        query = 'select s.name,d.trip,d.year,d.month,d.day,d.hour, d.min,d.fareCount, d.boarding, d.alighting from data d left join route_trips t on t.ROWID=d.trip left join stops s on s.ROWID=d.stop where d.route=?'
-        params = [route,]
+        query = 'select r.name,s.name,d.trip,d.year,d.month,d.day,d.hour, d.min,d.fareCount, d.boarding, d.alighting from data d left join route_trips t on t.ROWID=d.trip left join stops s on s.ROWID=d.stop left join routes r on r.ROWID=d.route'
+        params = []
+        if route is not None:
+            if count == 0:
+                query += ' where d.route=?'
+                count = 1
+            else:
+                query += ' and d.route=?'
+            params.append(route)
         if stop is not None:
-            query += ' and d.stop=?'
+            if count == 0:
+                query += ' where d.stop=?'
+                count = 1
+            else:
+                query += ' and d.stop=?'
             params.append(stop)
         if trip is not None:
-             query += ' and d.trip=?'
-             params.append(trip)
+            if count == 0:
+                query += ' where d.trip=?'
+                count = 1
+            else:
+                query += ' and d.trip=?'
+            params.append(trip)
         elif (startDate is not None) or (endDate is not None):
             start = 0 if startDate is None else int(startDate)
             end =   99999999 if endDate is None else int(endDate)
@@ -208,10 +226,10 @@ class MetroViz(object):
         d = {}
         row = c.fetchone()
         while row is not None:
-            (stop,trip,year,month,day,hour,min,fare,board,alight) = row
+            (route,stop,trip,year,month,day,hour,min,fare,board,alight) = row
             if trip not in d:
                 d[trip] = []
-            d[trip].append({'stop':stop,'date':'{}{:02}{:02}'.format(year,month,day),'SchduleTime':"{:02}:{:02}".format(hour,min),'fareCount':fare,'boarded':board, 'alighted':alight})
+            d[trip].append({'route':route,'stop':stop,'date':'{}{:02}{:02}'.format(year,month,day),'SchduleTime':"{:02}:{:02}".format(hour,min),'fareCount':fare,'boarded':board, 'alighted':alight})
             row = c.fetchone()
             
         c.close()
@@ -220,10 +238,39 @@ class MetroViz(object):
         return d
     
     @cherrypy.expose
-    def getRidership(self,route,stop=None,trip=None,startDate=None,endDate=None,pretty=False):
+    def getRidership(self,route=None,stop=None,trip=None,startDate=None,endDate=None,pretty=False):
         d = self.getRidershipData(route, stop, trip, startDate, endDate)    
         s = self.createJSON('ridership',d,pretty)
         return s
+    
+    @cherrypy.expose
+    def getTotalFareByType(self,stop=None,pretty=False):
+        t = time.time()
+        conn = sqlite3.connect(DB)
+        c = conn.cursor()
+        query = 'select name,farename,sum(count) from totalFareByType f left join stops s on s.ROWID=f.stop'
+        params = ()
+        if stop is not None:
+            query += ' where stop=?'
+            params = (stop,)
+        query +=  ' group by 1,2 order by 1,2'
+        c.execute(query,params)
+
+        row = c.fetchone()
+        d = {}
+        while row is not None:
+            (stop,faretype,count) = row
+            if stop not in d:
+                d[stop] = {}
+            d[stop][faretype] = count
+            row = c.fetchone()
+            
+        s = self.createJSON('FareTypeCount',d,pretty)
+        c.close()
+        conn.close()
+        print time.time()-t
+        return s
+    
 def CORS():
     cherrypy.response.headers["Access-Control-Allow-Origin"] = "*" # mean: CORS to all; insert spec. origin to allow spec access
     
