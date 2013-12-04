@@ -29,19 +29,24 @@
     <div id="container" style="width: 950px;height: 700px;overflow-y: scroll;float:left;">
     <div id="map_id"></div>
 
-    <div id="search_id">
+    <div id="search_id" style="float:left;">
         <input type="text" id="search_box"></input>
         <button id="search_button">Search</button>
     </div>
 
+    <div style="float:left;">
+        <h3 id="status"></h3>
+    </div>
+
     <div id="route_id" style="width: 900px; height: 650px;  overflow-x: scroll;"></div>
 
-    <div id="subview-container" style="float:left;"></div>
+    <!--<div id="subview-container" style="width: 900px;float:left;overflow-x:scroll;"></div>-->
+    <div id="subview-container"></div>
     <div id="subview-container2"></div>
     </div>
-    <div id="calendar-container" style="width:300px;height:700px;float:left;">
-        <h3 id="date">
-        </h3>
+    <div style="width:300px;height:700px;float:left;">
+        <h3 id="date"></h3>
+    <div id="calendar-container"></div>
     </div>
 </body>
 
@@ -78,6 +83,7 @@ function search_highlight() {
 //displayCalendar(fake_cal_data, updateTripView);
 var clearSubview = function() {
     $("#subview-container").empty();
+    $("#subview-container2").empty();
 };
 
 displayCalendar(fake_cal_data, function(d) {
@@ -105,11 +111,13 @@ var switchToStopView = function() {
         $("#subview-container").empty();
         $("#subview-container2").empty();
         $("#date").text(d[0].date.toDateString());
-        aggregate_bar_adhere(d, 500, 320, "subview-container");
-        aggregate_bar_pop(d, 500, 320, "subview-container2");
+        aggregate_bar_adhere(d, 600, 380, "subview-container");
+        aggregate_bar_pop(d, 600, 300, "subview-container2");
         $('#container').scrollTop($('#container')[0].scrollHeight);
     });
 };
+
+switchToTripView();
 </script>
 
 

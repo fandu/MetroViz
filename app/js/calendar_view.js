@@ -7,8 +7,8 @@
     fake_cal_data2 = [];
 
     var routes = {
-        "Hethwood A": ["Burruss Hall", "Stroubles Circle"],
-        "Hethwood B": ["Torgersen Hall", "Tall Oaks"]
+        "Hethwood A": ["Burruss Hall", "Stroubles Circle", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+//        "Hethwood B": ["Torgersen Hall", "Tall Oaks"]
     };
 
     var dt = new Date(2006, 0, 1),
@@ -123,7 +123,7 @@
             .text(function(d) { return d + ": " + percent(d); });
 
         legend.append("span")
-            .text(" " + max);
+            .text(" " + Math.floor(max));
     }
 
     displayCalendar = function(data) {
@@ -131,6 +131,8 @@
         var nested_data = d3.nest()
             .key(function(d) { return toISOStringWithoutTime(d["date"]); })
             .map(data);
+
+        console.log(nested_data);
 
         var maxAdherence = d3.max(data, function (d) {
             return aveAdherence(nested_data[toISOStringWithoutTime(d["date"])]);

@@ -62,11 +62,13 @@ function processAdherenceRidership(route, stop, cb) {
 }
 
 function processStopAdherenceRidership(stop, cb) {
-    processAdherenceRidership(1, 1, cb);
+    var url = root_url + "getAdherenceRidership?stop=" + stop;
+    fetchAndProcessData(url, cb);
 }
 
 function processRouteAdherenceRidership(route, cb) {
-    processAdherenceRidership(1, 1, cb);
+    var url = root_url + "getAdherenceRidership?route=" + route;
+    fetchAndProcessData(url, cb);
 }
 
 function convertToCalViewFmt(json) {
@@ -83,7 +85,7 @@ function convertToCalViewFmt(json) {
             day = +arr[idx].date.slice(6, 8);
             rval.push({
                 "route": 1,
-                "stop": 1,
+                "stop": arr[idx]["stop"],
                 "trip": arr[idx]["ScheduledTime"],
                 "delta": arr[idx]["adherence"],
                 "boarded": arr[idx]["boarded"],

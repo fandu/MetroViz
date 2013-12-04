@@ -2,7 +2,6 @@
     function truncate(str, maxLength, suffix) {
         if(str.length > maxLength) {
             str = str.substring(0, maxLength + 1);
-            str = str.substring(0, Math.min(str.length, str.lastIndexOf(" ")));
             str = str + suffix;
         }
         return str;
@@ -34,24 +33,13 @@
         margin = {top: 20, right: 200, bottom: 0, left: 20},
         width = 500,
         height = 650
-        cellSize = 40;
+        cellSize = 40,
+        smallSqrNum = 6;
 
     updateTripView = function (data, sel) {
         d3.select(sel).selectAll("svg").remove();
 
-        var svg = d3.select(sel).append("svg")
-            .attr("class", "RdYlBl")
-            .attr("width", width + margin.left + margin.right)
-            //.attr("height", height + margin.top + margin.bottom)
-            .attr("height", height)// + margin.top + margin.bottom)
-            .style("margin-left", margin.left + "px")
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
         var c = d3.scale.category20c();
-
-        var x = d3.scale.linear()
-            .range([0, width]);
 
         var stops = [];
         for (var i = 0; i < data.length; i++) {
@@ -65,7 +53,18 @@
 
         var color = d3.scale.quantize()
             .domain([maxAdherence, 0.0])
-            .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+            .range(d3.range(11).map(function(d) { return "tvq" + d + "-11"; }));
+
+        data = d3.nest()
+            .key(function (d) { return d["trip"]; })
+            .key(function (d) { return d["stop"]; })
+            .map(data);
+
+        width = stops.length * cellSize + 100;
+        height = Object.keys(data).length * cellSize + 140;
+
+        var x = d3.scale.linear()
+            .range([0, width]);
 
         x = d3.scale.ordinal()
             .domain(stops)
@@ -75,10 +74,15 @@
             .scale(x)
             .orient("top");
 
-        data = d3.nest()
-            .key(function (d) { return d["trip"]; })
-            .key(function (d) { return d["stop"]; })
-            .map(data);
+
+        var svg = d3.select(sel).append("svg")
+            .attr("class", "RdYlBl")
+            .attr("width", width + margin.left + margin.right)
+            //.attr("height", height + margin.top + margin.bottom)
+            .attr("height", height)// + margin.top + margin.bottom)
+            .style("margin-left", margin.left + "px")
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         var xScale = d3.scale.linear()
             .domain([x(stops[0]), x(stops[stops.length - 1])])
@@ -122,24 +126,31 @@
 
         var innerx = function(d) {
             var person = d.num;
-            return (person % 6) * (cellSize / 6);
+            return (person % smallSqrNum) * (cellSize / smallSqrNum);
         }
 
         var innery = function(d) {
             var person = d.num;
-            return (Math.floor(person / 6)) * (cellSize / 6);
+            return (Math.floor(person / smallSqrNum)) * (cellSize / smallSqrNum);
         }
 
-        for (var trip_no in data) {
-            var trip = stopList(data[trip_no]),
+        var tripNum = 0;
+        var tripTimes = Object.keys(data);
+        tripTimes.sort();
+        /* I am so ashamed of what's below. */
+        for (var tripNum = 0; tripNum < tripTimes.length; tripNum++) {
+            var tripTime = tripTimes[tripNum],
+                trip = stopList(data[tripTime]),
                 people = [],
                 nodes;
 
+            console.log(trip);
+
             for (var idx = 0; idx < trip.length; idx++) {
                 g = svg.append("g").attr("class","journal")
-                .attr("transform", "translate(" + outerx(trip[idx]) + "," + outery(trip_no) + ")");
+                .attr("transform", "translate(" + outerx(trip[idx]) + "," + outery(tripNum) + ")");
 
-                people = d3.range(avePassengers(trip[idx])).map(function(x) { return {num: x, pid: trip_no + "-" + idx + "-" + x}; });
+                people = d3.range(avePassengers(trip[idx])).map(function(x) { return {num: x, pid: tripNum + "-" + idx + "-" + x}; });
 
                 nodes = g.selectAll("rect")
                     .data(people)
@@ -147,13 +158,30 @@
                     .append("rect")
                     .attr("x", function(d) { return innerx(d); })
                     .attr("y", function(d) { return innery(d); })
-                    //.attr("y", circleY)
-                    .attr("width", function() { return cellSize / 6; })
-                    .attr("height", function() { return cellSize / 6; })
-                    //.attr("height", circleRadius)
+                    .attr("width", function() { return cellSize / smallSqrNum; })
+                    .attr("height", function() { return cellSize / smallSqrNum; })
                     .attr("class", function(d) { return "day " + color(aveAdherence(trip[idx])); });
             }
+            g = svg.append("g").attr("class","journal")
+                .attr("transform", "translate(" + (cellSize * stops.length + 10) + "," + (outery(tripNum) + cellSize / 2) + ")");
+
+            g.selectAll("text")
+                .data([tripTime])
+                .enter()
+                .append("text")
+                .text(function(d) { return d; });
+
         }
+
+        g = svg.append("g").attr("class","journal")
+            .attr("transform", "translate(" + 0 + "," + Object.keys(data).length * cellSize + ")");
+
+        g.selectAll("text")
+            .data(stops)
+            .enter()
+            .append("text")
+            .attr("transform", function(d) { return "translate(" + (outerx({stop: d}) + cellSize / 4) + "," + 100 + ") rotate(-70)"; })
+            .text(function(d) { return truncate(d, 15, "..."); });
 
         drawFullGrid(svg, cellSize, stops.length, Object.keys(data).length, "#111");
 
@@ -228,12 +256,12 @@
     }
 
     var drawFullGrid = function(svg, cellSize, numCellsX, numCellsY, color) {
-        drawGrid(svg, 40 / 6, numCellsX * 6, numCellsY * 6, "#eee");
+        drawGrid(svg, 40 / smallSqrNum, numCellsX * smallSqrNum, numCellsY * smallSqrNum, "#eee");
         drawGrid(svg, cellSize, numCellsX, numCellsY, "#111", 2);
     }
 
-    var drawGrid = function (svg, cellSize, numCellsX, numCellsY, color, hStrokeWidth) {
-        var hsw = hStrokeWidth || 1;
+    var drawGrid = function (svg, cellSize, numCellsX, numCellsY, color, strokeWidth) {
+        var sw = strokeWidth || 1;
         svg.selectAll(".vline").data(d3.range(numCellsX + 1)).enter()
             .append("line")
             .attr("x1", function (d) {
@@ -248,6 +276,7 @@
             .attr("y2", function (d) {
                 return numCellsY * cellSize;
             })
+            .style("stroke-width", sw)
             .style("stroke", color);
 
         // horizontal lines
@@ -265,7 +294,7 @@
             .attr("x2", function (d) {
                 return numCellsX * cellSize;
             })
-            .style("stroke-width", hsw)
+            .style("stroke-width", sw)
             .style("stroke", color);
     };
 })();
