@@ -55,9 +55,10 @@ d3.json("./data/routes3.json", function(data) {
         //nstops[k] = data[k]['total'];
     }
 
-    x_gap = 10;
-    y_gap = 25;
-    y_offset = 5;
+    var x_gap = 10;
+    var y_gap = 25;
+    var y_offset = 5;
+    var isTextMouseClicked = 0;
 
     for (var j = 0; j < data.length; j++) {
 
@@ -215,6 +216,11 @@ d3.json("./data/routes3.json", function(data) {
 
     function circle_mouseover() {
 
+
+    	//odds and ends
+    	d3.selectAll("text").style("font-weight", "normal");
+	    d3.selectAll("text").style("text-decoration", "none");
+
     	d3.select(this).style("fill", "red").attr("stroke-width", 1).attr("r", "5");
         var xpos = d3.select(this).attr("cx");
         var ypos = d3.select(this).attr("cy");
@@ -334,6 +340,26 @@ d3.json("./data/routes3.json", function(data) {
     }
 
     function mouseover() {
+    	if(isTextMouseClicked == 1){
+    		console.log("isTextMouseClicked = "+isTextMouseClicked);
+	        var g = d3.select(this).node().parentNode;
+	        d3.select(g).selectAll("circle").transition().attr("stroke-width", 1).attr("r", "5");
+	        d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill","#6cb3f8");
+	        var ypos = d3.select(this).attr("y");
+	        yindex = Math.round((ypos - y_offset) / y_gap);
+	        //console.log(this);
+	        stop_names = [];
+	        for(var i=0;i<data[yindex].routes.length;i++){
+	        	stop_names[i] = data[yindex].routes[i].name;
+	        }
+	        //map_unhighlightStops(data[yindex].routes);
+	        //map_unhighlightStops(stop_names);
+
+	        d3.selectAll("text").style("font-weight", "normal");
+	        d3.selectAll("text").style("text-decoration", "none");
+	        console.log("changing text colors back");
+	        d3.selectAll("#route_id circle").attr("stroke-width", 1).attr("r", "5").style("fill","#6cb3f8");
+    	}
         d3.selectAll("#route_id circle").attr("stroke-width", 1).attr("r", "5");
         var g = d3.select(this).node().parentNode;
         d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill","red");
@@ -353,24 +379,31 @@ d3.json("./data/routes3.json", function(data) {
     }
 
     function mouseout() {
-        var g = d3.select(this).node().parentNode;
-        d3.select(g).selectAll("circle").transition().attr("stroke-width", 1).attr("r", "5");
-        d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill","#6cb3f8");
-        var ypos = d3.select(this).attr("y");
-        yindex = Math.round((ypos - y_offset) / y_gap);
-        //console.log(this);
-        stop_names = [];
-        for(var i=0;i<data[yindex].routes.length;i++){
-        	stop_names[i] = data[yindex].routes[i].name;
-        }
-        //map_unhighlightStops(data[yindex].routes);
-        map_unhighlightStops(stop_names);
+    	if(isTextMouseClicked == 0){
+	        var g = d3.select(this).node().parentNode;
+	        d3.select(g).selectAll("circle").transition().attr("stroke-width", 1).attr("r", "5");
+	        d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill","#6cb3f8");
+	        var ypos = d3.select(this).attr("y");
+	        yindex = Math.round((ypos - y_offset) / y_gap);
+	        //console.log(this);
+	        stop_names = [];
+	        for(var i=0;i<data[yindex].routes.length;i++){
+	        	stop_names[i] = data[yindex].routes[i].name;
+	        }
+	        //map_unhighlightStops(data[yindex].routes);
+	        map_unhighlightStops(stop_names);
 
-        d3.select(this).style("font-weight", "normal");
-        d3.select(this).style("text-decoration", "none");
+	        d3.select(this).style("font-weight", "normal");
+	        d3.select(this).style("text-decoration", "none");
+
+    	}
+    	//else{
+
+    		//}
     }
 
     function textmouseclick() {
+    	isTextMouseClicked = 1;
         var ypos = d3.mouse(this)[1];
         yindex = Math.round((ypos - y_offset) / y_gap);
         //alert("" + data[yindex].name);
