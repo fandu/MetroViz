@@ -285,6 +285,7 @@ function afterClickStop(d) {
 function afterMouseOver(d) {
     console.log("" + d.value[0] + "," + d.value[1] + ":" + d.key);
     send_to_route_view(d.key);
+
 }
 
 function searchAutoComplete(data) {

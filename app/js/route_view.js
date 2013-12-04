@@ -118,18 +118,50 @@ d3.json("./data/routes3.json", function(data) {
 
     function send_to_r_v(stop_name) {
         // highlight the stops
-        d3.selectAll("#route_id circle").transition().attr("stroke-width",
+        d3.selectAll("#tooltip4").remove();
+        console.log("Send to rv"+stop_name);
+        d3.selectAll("#route_id circle").transition().style("fill",
             function(d, i) {
-                //console.log(stop_name);
-                if (d == stop_name) {
-                    return 3;
+                
+                if (d.name == stop_name) {
+
+
+
+                xin = Math.round(d3.select(this).attr("cx") / x_gap);
+
+                   	svg.append("text")
+            		.attr("id", "tooltip4")
+            		.attr("x", d3.select(this).attr("cx"))
+            		.attr("y", d3.select(this).attr("cy")-10)
+            		.attr("text-anchor", "start")
+            		.attr("font-family", "sans-serif")
+            		.attr("font-size", "9px")
+            		.attr("font-weight", "normal")
+            		.attr("fill", "black")
+            		.text("#"+(xin+1)+" "+stop_name);
+                //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    return "red";
                 } else {
-                    return 1;
+                    return "#6cb3f8";
                 }
             }
         ).attr("r", function(d, i) {
-            if (d == stop_name) {
-                return 10;
+            if (d.name == stop_name) {
+                return 5;
             } else {
                 return 5;
             }
@@ -142,24 +174,38 @@ d3.json("./data/routes3.json", function(data) {
     api_highlight_given_name = highlight_given_name;
 
     function highlight_given_name(stop_name) {
-        d3.selectAll("#route_id circle").transition().attr("stroke-width", 1).attr("r", 5).style("fill", "#6cb3f8");
+//        d3.selectAll("#route_id circle").transition().attr("stroke-width", 1).attr("r", 5).style("fill", "#6cb3f8");
+		d3.selectAll("#tooltip2").remove();
+		console.log("inside highlight given name "+stop_name);
         d3.selectAll("#route_id circle").transition().attr("stroke-width",
             function(d, i) {
                 //console.log(d);
-                if (d == stop_name) {
+                if (d.name == stop_name) {
+                	xin = Math.round(d3.select(this).attr("cx") / x_gap);
+
+                   	svg.append("text")
+            		.attr("id", "tooltip2")
+            		.attr("x", d3.select(this).attr("cx"))
+            		.attr("y", d3.select(this).attr("cy")-10)
+            		.attr("text-anchor", "start")
+            		.attr("font-family", "sans-serif")
+            		.attr("font-size", "9px")
+            		.attr("font-weight", "normal")
+            		.attr("fill", "black")
+            		.text("#"+(xin+1)+" "+stop_name);
                     return 1;
                 } else {
                     return 1;
                 }
             }
         ).attr("r", function(d, i) {
-            if (d == stop_name) {
-                return 10;
+            if (d.name == stop_name) {
+                return 5;
             } else {
                 return 5;
             }
         }).style("fill", function(d, i) {
-            if (d == stop_name) {
+            if (d.name == stop_name) {
                 return "red";
             } else {
                 return "#6cb3f8";
@@ -196,13 +242,14 @@ d3.json("./data/routes3.json", function(data) {
             .attr("y", tool_tip_y)
             .attr("text-anchor", "start")
             .attr("font-family", "sans-serif")
-            .attr("font-size", "11px")
-            .attr("font-weight", "bold")
+            .attr("font-size", "9px")
+            .attr("font-weight", "normal")
             .attr("fill", "black")
             .text("#"+(xindex+1)+" "+stop_name);
 
 
-
+        
+     
   //       console.log(stop_name);
 		map_highlightStops([stop_name]);
   //       console.log("after");
@@ -215,9 +262,26 @@ d3.json("./data/routes3.json", function(data) {
             function(d, i) {
                 //console.log(d.name);
                 if (d.name == stop_name) {
-                    return 1;
+
+                	xin = Math.round(d3.select(this).attr("cx") / x_gap);
+
+                if(d3.select(this).attr("cx") != xpos){
+                	svg.append("text")
+            		.attr("id", "tooltip1")
+            		.attr("x", d3.select(this).attr("cx"))
+            		.attr("y", d3.select(this).attr("cy")-10)
+            		.attr("text-anchor", "start")
+            		.attr("font-family", "sans-serif")
+            		.attr("font-size", "9px")
+            		.attr("font-weight", "normal")
+            		.attr("fill", "black")
+            		.text("#"+(xin+1)+" "+stop_name);
+                }
+
+                   return 1;
    
                 } else {
+
                     return 1;
                 }
             }
@@ -242,7 +306,10 @@ d3.json("./data/routes3.json", function(data) {
 
     function circle_mouseout() {
 
-    	d3.select("#tooltip").remove();
+    	d3.selectAll("#tooltip").remove();
+    	d3.selectAll("#tooltip1").remove();
+    	d3.selectAll("#tooltip2").remove();
+    	d3.selectAll("#tooltip4").remove();
         var xpos = d3.select(this).attr("cx");
         var ypos = d3.select(this).attr("cy");
 
