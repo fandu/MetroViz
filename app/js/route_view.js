@@ -5,7 +5,7 @@ var margin = {
     left: 10
 },
     width = 900,
-    height = 1000;
+    height = 650;
 
 var first_stop = 1,
     last_stop = 40;
@@ -59,6 +59,7 @@ d3.json("./data/routes3.json", function(data) {
     var y_gap = 25;
     var y_offset = 5;
     var isTextMouseClicked = 0;
+    var isStopClicked = 0;
 
     for (var j = 0; j < data.length; j++) {
 
@@ -216,7 +217,14 @@ d3.json("./data/routes3.json", function(data) {
 
     function circle_mouseover() {
 
+    	// remove all tooltips
+    	d3.selectAll("#tooltip").remove();
+	    	d3.selectAll("#tooltip1").remove();
+	    	d3.selectAll("#tooltip2").remove();
+	    	d3.selectAll("#tooltip4").remove();
 
+    	isTextMouseClicked = 0;
+    	isStopClicked = 0;
     	//odds and ends
     	d3.selectAll("text").style("font-weight", "normal");
 	    d3.selectAll("text").style("text-decoration", "none");
@@ -311,35 +319,36 @@ d3.json("./data/routes3.json", function(data) {
 
 
     function circle_mouseout() {
+    	
+    	if(isStopClicked != 1){
+	    	isTextMouseClicked = 0;
+	    	d3.selectAll("#tooltip").remove();
+	    	d3.selectAll("#tooltip1").remove();
+	    	d3.selectAll("#tooltip2").remove();
+	    	d3.selectAll("#tooltip4").remove();
+	        var xpos = d3.select(this).attr("cx");
+	        var ypos = d3.select(this).attr("cy");
 
-    	d3.selectAll("#tooltip").remove();
-    	d3.selectAll("#tooltip1").remove();
-    	d3.selectAll("#tooltip2").remove();
-    	d3.selectAll("#tooltip4").remove();
-        var xpos = d3.select(this).attr("cx");
-        var ypos = d3.select(this).attr("cy");
+	        xindex = Math.round(xpos / x_gap); //these numbers are really important
+	        yindex = Math.round((ypos - y_offset) / y_gap);
+	        stop_name = data[yindex].routes[xindex].name;
+	        //map_unhighlightStops([stop_name]);
 
-        xindex = Math.round(xpos / x_gap); //these numbers are really important
-        yindex = Math.round((ypos - y_offset) / y_gap);
-        stop_name = data[yindex].routes[xindex].name;
-        //map_unhighlightStops([stop_name]);
-
-		/*xAxisG.selectAll('.tick')
-        .each(function(d,i){
-        	//console.log(xindex);
-        	if(d==(xindex+1)){
-        		d3.select(this)
-        			.selectAll('text')
-        			.style("fill","gray");
-        	}
-        })*/
-
-        d3.selectAll("#route_id circle").attr("stroke-width", 1).style("fill", "#6cb3f8").attr("r", "5");
-        //d3.select("text").text(null);
-
+	        d3.selectAll("#route_id circle").attr("stroke-width", 1).style("fill", "#6cb3f8").attr("r", "5");
+	    	//isStopClicked = 0;    
+		}
+		
+		
+		
     }
 
     function mouseover() {
+    	console.log("text mousover");
+    	//remove all tooltips
+    	d3.selectAll("#tooltip").remove();
+	    d3.selectAll("#tooltip1").remove();
+	    d3.selectAll("#tooltip2").remove();
+	    d3.selectAll("#tooltip4").remove();
     	if(isTextMouseClicked == 1){
     		//console.log("isTextMouseClicked = "+isTextMouseClicked);
 	        var g = d3.select(this).node().parentNode;
@@ -379,6 +388,7 @@ d3.json("./data/routes3.json", function(data) {
     }
 
     function mouseout() {
+    	console.log("textMouseout "+isTextMouseClicked);
     	if(isTextMouseClicked == 0){
 	        var g = d3.select(this).node().parentNode;
 	        d3.select(g).selectAll("circle").transition().attr("stroke-width", 1).attr("r", "5");
@@ -404,7 +414,7 @@ d3.json("./data/routes3.json", function(data) {
 
     function textmouseclick() {
     	isTextMouseClicked = 1;
-        var ypos = d3.mouse(this)[1];
+    	var ypos = d3.mouse(this)[1];
         yindex = Math.round((ypos - y_offset) / y_gap);
         //alert("" + data[yindex].name);
         var g = d3.select(this).node().parentNode;
@@ -421,12 +431,14 @@ d3.json("./data/routes3.json", function(data) {
     // for the API
 
     function circle_mouseclick() {
+    	isStopClicked = 1;
         var xpos = d3.mouse(this)[0];
         var ypos = d3.mouse(this)[1];
         xindex = Math.round(xpos / x_gap); //these numbers are really important
         yindex = Math.round((ypos - y_offset) / y_gap);
         var selected_stop_ID = data[yindex].routes[xindex].stopId;
         //console.log(selected_stop_ID);
+        
         switchToStopView();
         processStopAdherenceRidership(selected_stop_ID, function(data) {
             var cvfmt = convertToCalViewFmt(data);
