@@ -85,13 +85,13 @@ var clearSubview = function() {
     $("#subview-container").empty();
     $("#subview-container2").empty();
 };
-
+/*
 displayCalendar(fake_cal_data, function(d) {
     $("#date").text(d[0].date.toDateString());
     updateTripView(d, "#subview-container");
     //individual_bar_all(d, 500, 200, "subview-container");
 });
-
+*/
 var switchToTripView = function() {
     clearSubview();
     //$("#subview-container").text("Trip View");
@@ -111,8 +111,8 @@ var switchToStopView = function() {
         $("#subview-container").empty();
         $("#subview-container2").empty();
         $("#date").text(d[0].date.toDateString());
-        aggregate_bar_adhere(d, 600, 380, "subview-container");
-        aggregate_bar_pop(d, 600, 300, "subview-container2");
+        aggregate_bar_adhere(d, 860, 410, "subview-container");
+        aggregate_bar_pop(d, 860, 290, "subview-container2");
         $('#container').scrollTop($('#container')[0].scrollHeight);
     });
 };
