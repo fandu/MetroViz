@@ -5,7 +5,7 @@ var margin = {
     left: 10
 },
     width = 900,
-    height = 650;
+    height = 1000;
 
 var first_stop = 1,
     last_stop = 40;
