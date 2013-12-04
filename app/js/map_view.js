@@ -163,6 +163,7 @@ d3.json("./data/stops.json", function(data) {
                 .attr("class", "map_stop")
                 .on("mouseover", function(d) {
                     highlightStops([d.key]);
+                    afterMouseOver(d);
                 })
                 .on("mouseout", function(d) {
                     unhighlightStops([d.key]);
@@ -202,7 +203,9 @@ map_highlightStopsCircleOnly = highlightStopsCircleOnlyAnimate;
 map_unhighlightStops = unhighlightStops;
 
 function highlightStopsAnimate(stopNames) {
+    console.log("highlightStopsAnimate");
     unhighlightAllStops();
+
     d3.selectAll(".map_stop").classed("fade", true);
     for (var i = 0; i < stopNames.length; i++) {
         var stopName = trimStopName(stopNames[i]);
@@ -212,13 +215,16 @@ function highlightStopsAnimate(stopNames) {
 
         if (i == parseInt(stopNames.length / 2)) {
             var marker = d3.select(".map_marker." + stopName);
-            map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
+            if (marker[0][0] != null)
+                map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
         }
     }
 }
 
 function highlightStopsTextOnlyAnimate(stopNames) {
+    console.log("highlightStopsTextOnlyAnimate");
     unhighlightAllStops();
+
     d3.selectAll(".map_stop").classed("fade", true);
     for (var i = 0; i < stopNames.length; i++) {
         var stopName = trimStopName(stopNames[i]);
@@ -228,13 +234,16 @@ function highlightStopsTextOnlyAnimate(stopNames) {
 
         if (i == parseInt(stopNames.length / 2)) {
             var marker = d3.select(".map_marker." + stopName);
-            map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
+            if (marker[0][0] != null)
+                map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
         }
     }
 }
 
 function highlightStopsCircleOnlyAnimate(stopNames) {
+    console.log("highlightStopsCircleOnlyAnimate");
     unhighlightAllStops();
+
     d3.selectAll(".map_stop").classed("fade", true);
     for (var i = 0; i < stopNames.length; i++) {
         var stopName = trimStopName(stopNames[i]);
@@ -243,13 +252,16 @@ function highlightStopsCircleOnlyAnimate(stopNames) {
 
         if (i == parseInt(stopNames.length / 2)) {
             var marker = d3.select(".map_marker." + stopName);
-            map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
+            if (marker[0][0] != null)
+                map.panTo(new google.maps.LatLng(marker.attr("lat"), marker.attr("lng")));
         }
     }
 }
 
 function highlightStops(stopNames) {
+    console.log("highlightStops");
     unhighlightAllStops();
+
     d3.selectAll(".map_stop").classed("fade", true);
     for (var i = 0; i < stopNames.length; i++) {
         var stopName = trimStopName(stopNames[i]);
