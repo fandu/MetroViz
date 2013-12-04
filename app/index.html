@@ -39,10 +39,9 @@
     <div id="subview-container" style="float:left;"></div>
     <div id="subview-container2"></div>
     </div>
-    <div style="width:300px;height:700px;float:left;">
-        <h3 id="date"></h3>
-        <div id="calendar-container"></div>
-        <h4 id="status"></h4>
+    <div id="calendar-container" style="width:300px;height:700px;float:left;">
+        <h3 id="date">
+        </h3>
     </div>
 </body>
 
@@ -79,7 +78,6 @@ function search_highlight() {
 //displayCalendar(fake_cal_data, updateTripView);
 var clearSubview = function() {
     $("#subview-container").empty();
-    $("#subview-container2").empty();
 };
 
 displayCalendar(fake_cal_data, function(d) {
@@ -107,8 +105,8 @@ var switchToStopView = function() {
         $("#subview-container").empty();
         $("#subview-container2").empty();
         $("#date").text(d[0].date.toDateString());
-        aggregate_bar_adhere(d, 800, 440, "subview-container");
-        aggregate_bar_pop(d, 800, 280, "subview-container2");
+        aggregate_bar_adhere(d, 500, 320, "subview-container");
+        aggregate_bar_pop(d, 500, 320, "subview-container2");
         $('#container').scrollTop($('#container')[0].scrollHeight);
     });
 };

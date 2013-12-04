@@ -23,7 +23,7 @@ for elem in tmp:
 print patterns
 print "Got patterns"
 
-c.execute('select RouteName text,TripName text,PatternName text,StopName text,ScheduledDepartTime text,ActualDepartTime,DepartDelta int from RSA_data')
+c.execute('select RouteName,TripName,PatternName,StopName,ScheduledDepartTime,ActualDepartTime,DepartDelta from RSA_data')
 print "Got Data"
 
 row = c.fetchone()
