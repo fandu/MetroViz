@@ -88,16 +88,23 @@
 
 %% Abstract section.
 \abstract{
-Motivation
+Motivation\\
+Public transportation, including buses and rail lines, is an important resource for urban residents. Knowing how well the public transportation is serving the public is important for schedule optimization and resources allocation. Ridership and adherence are two main dimensions for evaluating the level-of-service (LOS)~\cite{camus2005estimation,hammerle2005use}.
+% \\\\
+% Problem statement\\
+% Experts at the Department of Transportation need effective tools to aid exploring the data.
+\\\\
+Approach\\
+Using the technology of Automatic Vehicle Location (AVL), Automatic Passenger Count (APC) and Global Positioning System (GPS), ridership data and adherence data of public transportation have been collected. In this paper, we developed a visualization system for exploring public transportation data. We designed a map view for exploring stops and routes, and a calender view for exploring ridership and adherence information of trips over years.
+\\\\
+Results\\
+In the first round of usability testing, two researchers from the Center For Advanced Transportation Technology (CATT), and six Computer Science PhD students from the University of Maryland took part in a study in which they used our system to explore the bus transit data of Blacksburg, Virgina. The participants were able to use our system to explore bus stops, bus routes and ridership and adherence of bus trips.
+\\\\
+Conclusions\\
+TODO
 
-Problem statement
-
-Approach
-
-Results
-
-Conclusions
-  Public transportation is an important part our daily life. In the operation of public transportation, ridership and adherence data have been collected. With the growth of data scale, the department of transportation is in need of powerful visualization tools to explore the data, and gain insights. In this paper, we developed a visual tool to help explore the data, and gain insights. Our tool provides a map view and a route view to help people quickly locate stops and routes. A calendar view to provide a overview of adherence / ridership information for several years. A trip and a stop view to help people get details of trips and stops on specific days. Two CATT Lab researchers and twelve computer science PhD students took part in a study in which they used our tool to explore bus ridership and adherence data of Blacksburg City. THe participants were able to use our tool to locate stops and routes, and detect abnormal stops and routes, and find abnormal days.
+% Conclusions
+%   Public transportation is an important part our daily life. In the operation of public transportation, ridership and adherence data have been collected. With the growth of data scale, the department of transportation is in need of powerful visualization tools to explore the data, and gain insights. In this paper, we developed a visual tool to help explore the data, and gain insights. Our tool provides a map view and a route view to help people quickly locate stops and routes. A calendar view to provide a overview of adherence / ridership information for several years. A trip and a stop view to help people get details of trips and stops on specific days. Two CATT Lab researchers and twelve computer science PhD students took part in a study in which they used our tool to explore bus ridership and adherence data of Blacksburg City. THe participants were able to use our tool to locate stops and routes, and detect abnormal stops and routes, and find abnormal days.
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -147,7 +154,55 @@ Conclusions
 TODO: Fan
 
 \section{Related Works}
-TODO: Fan
+Analyzing Automatic Vehicle Location (AVL) and Automatic Passenger Count (APC) Data
+\\\\
+Rancic et al.~\cite{Rancic2008} present a tracking system using AVL data to analyzing city bus transit traffic.
+Chen \cite{5203406} introduces a model to simulate bus operation and passenger demand based on AVL and APC data.
+\\\\
+Travel Time Predicting
+\\\\
+Lee et al.~\cite{Lee:2012:HNF:2424321.2424357} introduce a real-time travel time prediction method based on multiple samples of similar historical trajectory.
+Tiesyte and Jensen~\cite{Tiesyte2008} propose a method to predict the future movement of a vehicle based on the identification of the most similar historical trajectory.
+Predic et al.~\cite{Predic2007} use real-time AVL data and historical data to predict bus motion and bus arrival time.
+\\\\
+Route Choosing
+\\\\
+Nguyen et al.~\cite{Nguyen2012} consider buses as moving objects, and use temporal maps to represent the movements of buses in spatio-temporal domain to help passengers choose approatiate routes.
+Liu et al.~\cite{5958130} propose a bus trip planning system to help passengers choose the most appropriate lines and transfers, based on traffic data.
+\\\\
+Trajectory Visualization
+\\\\
+Tominski et al.~\cite{Tominski2012} use a hybrid 2D/3D display to show the trajectories and associated attributes in their spatial-temporal context.
+Scheepens et al.~\cite{6065019} improve density maps to help explore trajectories using multiple density fields.
+\\\\
+Flows Visualization
+\\\\
+Guo~\cite{5290710} develops a visualization framework to interactively explore large-scale spatial flows.
+Cui et al.~\cite{4658140} propose an edge-clustering method to reduce edge crossings and visualize geometry graphs.
+\\\\
+Improving Bus Scheduling
+\\\\
+Kimpel et al.~\cite{4658140} discuss efforts of using the TriMet [*] APC and AVL data to improve buses scheduling.
+Yu and Yang~\cite{Yu2007} develop a dynamic holding strategy to optimize the holding strategy.
+\\\\
+Schedule Adherence
+\\\\
+Mai et al.~\cite{mai2011visualizing} extend the Marey graph by adding schedule adherence and passenger load information to measure transit performance.
+\\\\
+Level-of-Service (LOS) Estimation
+\\\\
+Camus et al.~\cite{camus2005estimation} propose a way to estimation the level-of-service (LOS) based on AVL data.
+Hammerle et al.~\cite{hammerle2005use} analyze the AVL and APC data of Chicago Transit Authority to estimate service reliability.
+\\\\
+Maps on Mobile Device
+\\\\
+Wang and Chi~\cite{6065020} introduce a focus+context method to visualize metro map on small displaying area of mobile devices.
+\\\\
+Public Transit Services
+\\\\
+Wmata [*]: Washington Metropolitan Area Transit Authority.
+TriMet [*]: Public Transit in the Portland Area.
+BT [*]: Blacksburg Transit provides bus transportation primarily to and from the campus of Virginia Tech.
 
 \section{System Overview}
 TODO: Peter
