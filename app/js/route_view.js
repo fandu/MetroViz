@@ -424,7 +424,7 @@ d3.json("./data/routes3.json", function(data) {
         switchToTripView();
         processRouteAdherenceRidership(selected_route_ID, function(data) {
             var cvfmt = convertToCalViewFmt(data);
-        	displayCalendar(cvfmt);
+        	displayCalendar(cvfmt, $("#caltype option:selected").text());
         });
     }
 
@@ -442,7 +442,7 @@ d3.json("./data/routes3.json", function(data) {
         switchToStopView();
         processStopAdherenceRidership(selected_stop_ID, function(data) {
             var cvfmt = convertToCalViewFmt(data);
-        	displayCalendar(cvfmt);
+        	displayCalendar(cvfmt, $("#caltype option:selected").text());
         });
     }
 

@@ -46,7 +46,12 @@
     </div>
     <div style="width:300px;height:700px;float:left;">
         <h3 id="date"></h3>
-    <div id="calendar-container"></div>
+        <select id="caltype">
+            <option value="adherence">Adherence</option>
+            <option value="ridership">Ridership</option>
+        </select>
+        <div id="calendar-legend"></div>
+        <div id="calendar-container"></div>
     </div>
 </body>
 
@@ -80,18 +85,13 @@ function search_highlight() {
     api_highlight_given_name(text);
 }
 
-//displayCalendar(fake_cal_data, updateTripView);
 var clearSubview = function() {
     $("#subview-container").empty();
     $("#subview-container2").empty();
 };
-/*
-displayCalendar(fake_cal_data, function(d) {
-    $("#date").text(d[0].date.toDateString());
-    updateTripView(d, "#subview-container");
-    //individual_bar_all(d, 500, 200, "subview-container");
-});
-*/
+
+//displayCalendar(fake_cal_data, "Ridership");
+
 var switchToTripView = function() {
     clearSubview();
     //$("#subview-container").text("Trip View");
@@ -118,6 +118,10 @@ var switchToStopView = function() {
 };
 
 switchToTripView();
+
+$("#caltype").change(function () {
+    switchCalType($("#caltype option:selected").text());
+});
 </script>
 
 
