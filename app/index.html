@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <div id="container" style="width: 950px;height: 700px;overflow-y: scroll;float:left;">
+    <div id="container" style="width: 950px;height:700px;overflow-y: scroll;float:left;">
     <div id="map_id"></div>
 
     <div id="search_id" style="float:left;">
@@ -38,7 +38,7 @@
         <h3 id="status"></h3>
     </div>
 
-    <div id="route_id" style="width: 900px; height: 650px;  overflow-x: scroll;"></div>
+    <div id="route_id" style="width: 920px; height: 650px; overflow-x: hidden;"></div> <!-- overflow-x: scroll;-->
 
     <!--<div id="subview-container" style="width: 900px;float:left;overflow-x:scroll;"></div>-->
     <div id="subview-container"></div>
@@ -46,7 +46,12 @@
     </div>
     <div style="width:300px;height:700px;float:left;">
         <h3 id="date"></h3>
-    <div id="calendar-container"></div>
+        <select id="caltype">
+            <option value="adherence">Adherence</option>
+            <option value="ridership">Ridership</option>
+        </select>
+        <div id="calendar-legend"></div>
+        <div id="calendar-container"></div>
     </div>
 </body>
 
@@ -80,17 +85,12 @@ function search_highlight() {
     api_highlight_given_name(text);
 }
 
-//displayCalendar(fake_cal_data, updateTripView);
 var clearSubview = function() {
     $("#subview-container").empty();
     $("#subview-container2").empty();
 };
 
-displayCalendar(fake_cal_data, function(d) {
-    $("#date").text(d[0].date.toDateString());
-    updateTripView(d, "#subview-container");
-    //individual_bar_all(d, 500, 200, "subview-container");
-});
+//displayCalendar(fake_cal_data, "Ridership");
 
 var switchToTripView = function() {
     clearSubview();
@@ -111,13 +111,17 @@ var switchToStopView = function() {
         $("#subview-container").empty();
         $("#subview-container2").empty();
         $("#date").text(d[0].date.toDateString());
-        aggregate_bar_adhere(d, 600, 380, "subview-container");
-        aggregate_bar_pop(d, 600, 300, "subview-container2");
+        aggregate_bar_adhere(d, 860, 410, "subview-container");
+        aggregate_bar_pop(d, 860, 290, "subview-container2");
         $('#container').scrollTop($('#container')[0].scrollHeight);
     });
 };
 
 switchToTripView();
+
+$("#caltype").change(function () {
+    switchCalType($("#caltype option:selected").text());
+});
 </script>
 
 

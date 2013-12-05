@@ -79,6 +79,14 @@
         return delta_sum / d.length;
     }
 
+    function aveRidership (d) {
+        var delta_sum = 0;
+        for (var i = 0; i < d.length; i++) {
+            delta_sum += d[i]["boarded"];
+        }
+        return delta_sum / d.length;
+    }
+
     /*
      * This function returns an SVG path starting at (d0 * cellSize, w1 * cellSize)
      * and moving in horizontal / vertial line segments from there.
@@ -98,13 +106,12 @@
         return date.toISOString().slice(0, 10);
     }
 
-    function insertLegend (spectrum, scale, min, max) {
-        var legend = d3.select("#calendar-container")
-            .insert("div", "svg")
-            .attr("id", "legend");
-
-        legend.append("p")
-            .text("Average difference between scheduled and actual arrival times: ");
+    function insertLegend (scale, min, max, calType) {
+        var spectrum = d3.range(max / 5, max + max / 5, max / 5);
+        var legend = d3.select("#calendar-legend")
+            //.insert("div", "svg")
+            .append("div")
+            .attr("id", calType + "legend");
 
         legend.append("span")
             .text(min + " ");
@@ -119,34 +126,91 @@
             .attr("width", cellSize)
             .attr("height", cellSize)
             .attr("x", function(d) { return cellSize * spectrum.indexOf(d); })
-            .attr("class", function(d) { console.log(d); return "day " + scale(d); })
+            .attr("class", function(d) { return "day " + scale(d); })
             .text(function(d) { return d + ": " + percent(d); });
 
         legend.append("span")
-            .text(" " + Math.floor(max));
+            .text(" " + max);
     }
 
-    displayCalendar = function(data) {
+    switchCalType = function(calType) {
+    };
+
+    displayCalendar = function(data, calType) {
         //$("#calendar-container").empty();
+        d3.select("#calendar-container").selectAll("svg").remove();
+        d3.select("#calendar-container").selectAll("div").remove();
+        d3.select("#calendar-legend").selectAll("div").remove();
+
         var nested_data = d3.nest()
             .key(function(d) { return toISOStringWithoutTime(d["date"]); })
             .map(data);
-
-        console.log(nested_data);
 
         var maxAdherence = d3.max(data, function (d) {
             return aveAdherence(nested_data[toISOStringWithoutTime(d["date"])]);
         });
 
-        var color = d3.scale.quantize()
+        var maxRidership = d3.max(data, function (d) {
+            return aveRidership(nested_data[toISOStringWithoutTime(d["date"])]);
+        });
+
+        var adhrColor = d3.scale.quantize()
             .domain([maxAdherence, 0.0])
             .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
+        var rdrColor = d3.scale.quantize()
+            .domain([maxRidership, 0.0])
+            .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+
+        var adhrColorCb = function(d) {
+            return "day " + adhrColor(aveAdherence(nested_data[d]));
+        };
+
+        var rdrColorCb = function(d) {
+            return "day " + rdrColor(aveRidership(nested_data[d]));
+        };
+
+        var color = adhrColor;
+        var colorCb = adhrColorCb;
+
+        insertLegend(adhrColor, 0, maxAdherence, "Adherence");
+        insertLegend(rdrColor, 0, maxRidership, "Ridership");
+
+        if (calType == "Ridership") {
+            max = d3.max(data, function (d) {
+                return aveRidership(nested_data[toISOStringWithoutTime(d["date"])]);
+            });
+
+            color = rdrColor;
+            colorCb = rdrColorCb;
+            $("#Adherencelegend").hide();
+        } else {
+            $("#Ridershiplegend").hide();
+        }
+
+        switchCalType = function(calType) {
+            var svg = d3.select("#calendar-container").selectAll("svg");
+            var rect = svg.selectAll(".day");
+
+            var colorCb = adhrColorCb;
+
+            if (calType == "Ridership") {
+                colorCb = rdrColorCb;
+                $("#Adherencelegend").hide();
+                $("#Ridershiplegend").show();
+            } else {
+                $("#Adherencelegend").show();
+                $("#Ridershiplegend").hide();
+            }
+
+            rect.filter(function(d) { return d in nested_data; })
+                .attr("class", colorCb)
+                .select("title")
+                .text(function(d) { return d + ": " + aveAdherence(nested_data[d]); });
+        };
+
         var minYear = d3.min(data, function (d) { return +d.date.getUTCFullYear(); }),
             maxYear = d3.max(data, function (d) { return +d.date.getUTCFullYear(); }) + 1;
-
-        d3.select("#calendar-container").selectAll("svg").remove();
-        d3.select("#calendar-container").selectAll("div").remove();
 
         var svg = d3.select("#calendar-container").selectAll("svg")
             .data(d3.range(minYear, maxYear))
@@ -183,11 +247,9 @@
             .attr("d", monthPath);
 
         rect.filter(function(d) { return d in nested_data; })
-            .attr("class", function(d) { return "day " + color(aveAdherence(nested_data[d])); })
+            .attr("class", colorCb)
             .select("title")
             .text(function(d) { return d + ": " + aveAdherence(nested_data[d]); });
-
-        insertLegend(d3.range(maxAdherence / 5, maxAdherence + maxAdherence / 5, maxAdherence / 5), color, 0, maxAdherence);
     };
 
     changeSubviewUpdate = function(updateCb) {
