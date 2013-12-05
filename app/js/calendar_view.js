@@ -140,6 +140,7 @@
         //$("#calendar-container").empty();
         d3.select("#calendar-container").selectAll("svg").remove();
         d3.select("#calendar-container").selectAll("div").remove();
+        d3.select("#calendar-legend").selectAll("div").remove();
 
         var nested_data = d3.nest()
             .key(function(d) { return toISOStringWithoutTime(d["date"]); })
