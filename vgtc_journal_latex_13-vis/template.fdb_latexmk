@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex template"] 1386328544 "template.aux" "template.bbl" "template" 1386328551
+["bibtex template"] 1386332003 "template.aux" "template.bbl" "template" 1386332005
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "template.aux" 1386328549 3401 73bbce915093c8f4155a687a096746ca ""
+  "template.aux" 1386332004 4132 998d4c29cdc8d2020634a7abbc5a97a2 ""
   "template.bcf" 0 -1 0 ""
   "template.bib" 1386214582 33875 624e32e6f7910a7d35ba94e8dda3bec0 ""
   (generated)
   "template.blg"
   "template.bbl"
-["pdflatex"] 1386328545 "template.tex" "template.pdf" "template" 1386328551
+["pdflatex"] 1386332004 "template.tex" "template.pdf" "template" 1386332005
   "/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/helvetic/phvb7t.tfm" 1136768653 2240 eb56c13537f4d8a0bd3fafc25572b1bd ""
@@ -90,13 +90,17 @@
   "/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1369923225 1072746 3ce1f23f203cb4a0015ca3c8411dee4a ""
   "/usr/local/texlive/2013/texmf-var/web2c/pdftex/pdflatex.fmt" 1369923264 3827029 ad4432546849f432c3154779662c76c8 ""
   "/usr/local/texlive/2013/texmf.cnf" 1369923207 577 cbc827f6294276973a1952e86e8ad73a ""
-  "CypressView.pdf" 1278356540 1867250 5877d9dba2977232500030e1688e57fe ""
   "diamondrule-eps-converted-to.pdf" 1386214648 2572 1484d62ad45a09b72f0c32bc4dacf2f6 ""
   "diamondrule.eps" 1213990016 1628 0665bc6ab15b0461d58d4980933d48e7 ""
-  "template.aux" 1386328549 3401 73bbce915093c8f4155a687a096746ca ""
-  "template.bbl" 1386328545 4218 c412e032450ba72ff3a4079f599d78e5 "bibtex template"
-  "template.out" 1386328549 922 661220052377a65c368e7a4cdf03d069 ""
-  "template.tex" 1386328536 35816 1f503da07d0c707c2f19022487b8c770 ""
+  "img/image02.pdf" 1386318870 57207 28aae3df85aa0e61a0107af49929b152 ""
+  "img/image05.pdf" 1386318876 98828 edfd553ab4583d94ac08be60afceed15 ""
+  "img/image07.pdf" 1386318882 45685 8cad17cda44e223a0a18a259bfb5fa63 ""
+  "img/image08.pdf" 1386318882 120461 f59ffa2239348ad5506718d42640317a ""
+  "img/image10.pdf" 1386318892 110542 669946dc40406e51890a88ddba87a6ad ""
+  "template.aux" 1386332004 4132 998d4c29cdc8d2020634a7abbc5a97a2 ""
+  "template.bbl" 1386332004 4218 c412e032450ba72ff3a4079f599d78e5 "bibtex template"
+  "template.out" 1386332004 922 661220052377a65c368e7a4cdf03d069 ""
+  "template.tex" 1386331992 36699 dd94ced6e2ce5e3b99c061160e9bca76 ""
   "vgtc.cls" 1375214546 27571 054891544dd7362ea4f94466832bb894 ""
   (generated)
   "template.aux"
