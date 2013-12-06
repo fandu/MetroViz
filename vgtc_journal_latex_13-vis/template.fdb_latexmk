@@ -1,12 +1,13 @@
 # Fdb version 3
-["bibtex template"] 1386216697 "template.aux" "template.bbl" "template" 1386216699
+["bibtex template"] 1386268217 "template.aux" "template.bbl" "template" 1386270432
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "template.aux" 1386216699 2339 68be20c58e0c6a1859f995c623224609 ""
+  "template.aux" 1386270431 3201 4c7b923eacf4a3ff2ae16dd00217c2e1 ""
   "template.bcf" 0 -1 0 ""
   "template.bib" 1386214582 33875 624e32e6f7910a7d35ba94e8dda3bec0 ""
   (generated)
+  "template.blg"
   "template.bbl"
-["pdflatex"] 1386216698 "template.tex" "template.pdf" "template" 1386216699
+["pdflatex"] 1386270430 "template.tex" "template.pdf" "template" 1386270432
   "/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/helvetic/phvb7t.tfm" 1136768653 2240 eb56c13537f4d8a0bd3fafc25572b1bd ""
@@ -79,10 +80,10 @@
   "CypressView.pdf" 1278356540 1867250 5877d9dba2977232500030e1688e57fe ""
   "diamondrule-eps-converted-to.pdf" 1386214648 2572 1484d62ad45a09b72f0c32bc4dacf2f6 ""
   "diamondrule.eps" 1213990016 1628 0665bc6ab15b0461d58d4980933d48e7 ""
-  "template.aux" 1386216699 2339 68be20c58e0c6a1859f995c623224609 ""
-  "template.bbl" 1386216698 49 0eba253fc001332e731e8aba3f23127b "bibtex template"
-  "template.out" 1386216699 892 28cb0de6f3516c8d4cdf5924202b7640 ""
-  "template.tex" 1386216691 6931 0890e08d21bce0cf2b347bd4a1076283 ""
+  "template.aux" 1386270431 3201 4c7b923eacf4a3ff2ae16dd00217c2e1 ""
+  "template.bbl" 1386268217 4218 c412e032450ba72ff3a4079f599d78e5 "bibtex template"
+  "template.out" 1386270431 892 28cb0de6f3516c8d4cdf5924202b7640 ""
+  "template.tex" 1386270427 11134 98a7792d3f0bfd64152f9ba76c522eb6 ""
   "vgtc.cls" 1375214546 27571 054891544dd7362ea4f94466832bb894 ""
   (generated)
   "template.aux"

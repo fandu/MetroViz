@@ -1,3 +1,109 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{10}
+
+\bibitem{camus2005estimation}
+R.~Camus, G.~Longo, and C.~Macorini.
+\newblock {Estimation of transit reliability level-of-service based on
+  automatic vehicle location data}.
+\newblock {\em Transportation Research Record: Journal of the Transportation
+  Research Board}, 1927(1):277--286, 2005.
+
+\bibitem{5203406}
+W.-Y. Chen and Z.-Y. Chen.
+\newblock {A Simulation Model for Transit Service Unreliability Prevention
+  Based on AVL-APC Data}.
+\newblock In {\em Measuring Technology and Mechatronics Automation, 2009.
+  ICMTMA '09. International Conference on}, volume~2, pages 184--188, 2009.
+
+\bibitem{4658140}
+W.~Cui, H.~Zhou, H.~Qu, P.~C. Wong, and X.~Li.
+\newblock {Geometry-Based Edge Clustering for Graph Visualization}.
+\newblock {\em Visualization and Computer Graphics, IEEE Transactions on},
+  14(6):1277--1284, 2008.
+
+\bibitem{5290710}
+D.~Guo.
+\newblock {Flow Mapping and Multivariate Visualization of Large Spatial
+  Interaction Data}.
+\newblock {\em Visualization and Computer Graphics, IEEE Transactions on},
+  15(6):1041--1048, 2009.
+
+\bibitem{hammerle2005use}
+M.~Hammerle, M.~Haynes, and S.~McNeil.
+\newblock {Use of automatic vehicle location and passenger count data to
+  evaluate bus operations}.
+\newblock {\em Transportation Research Record: Journal of the Transportation
+  Research Board}, 1903(1):27--34, 2005.
+
+\bibitem{Lee:2012:HNF:2424321.2424357}
+W.-C. Lee, W.~Si, L.-J. Chen, and M.~C. Chen.
+\newblock {HTTP: a new framework for bus travel time prediction based on
+  historical trajectories}.
+\newblock In {\em Proceedings of the 20th International Conference on Advances
+  in Geographic Information Systems}, SIGSPATIAL '12, pages 279--288, New York,
+  NY, USA, 2012. ACM.
+
+\bibitem{5958130}
+J.~Liu, Y.~Yuan, F.~Li, and W.~Ding.
+\newblock {Bus Trip Planning Service Based on Real Time Data}.
+\newblock In {\em SRII Global Conference (SRII), 2011 Annual}, pages 530--539,
+  2011.
+
+\bibitem{mai2011visualizing}
+E.~Mai, M.~Backman, and R.~Hranac.
+\newblock {Visualizing Bus Schedule Adherence and Passenger Load Through Marey
+  Graphs}.
+\newblock In {\em 18th ITS World Congress}, 2011.
+
+\bibitem{Nguyen2012}
+H.~T. Nguyen, C.~K.~T. Duong, T.~T. Bui, and P.~V. Tran.
+\newblock {Visualization of spatio-temporal data of bus trips}.
+\newblock In {\em 2012 International Conference on Control, Automation and
+  Information Sciences (ICCAIS)}, pages 392--397. IEEE, Nov. 2012.
+
+\bibitem{Predic2007}
+B.~Predic, D.~Stojanovic, S.~Djordjevic-Kajan, A.~Milosavljevic, and D.~Rancic.
+\newblock {Prediction of bus motion and continuous query processing for
+  traveler information services}.
+\newblock pages 234--249, Sept. 2007.
+
+\bibitem{Rancic2008}
+D.~Rancic, B.~Predic, and V.~Mihajlovic.
+\newblock {Online and post-processing of AVL data in public bus transportation
+  system}.
+\newblock {\em WSEAS Transactions on Information Science and Applications},
+  5(3):229--236, Mar. 2008.
+
+\bibitem{6065019}
+R.~Scheepens, N.~Willems, H.~de~Wetering, G.~Andrienko, N.~Andrienko, and J.~J.
+  van Wijk.
+\newblock {Composite Density Maps for Multivariate Trajectories}.
+\newblock {\em Visualization and Computer Graphics, IEEE Transactions on},
+  17(12):2518--2527, 2011.
+
+\bibitem{Tiesyte2008}
+D.~Tiesyte and C.~S. Jensen.
+\newblock {Similarity-based prediction of travel times for vehicles traveling
+  on known routes}.
+\newblock In {\em Proceedings of the 16th ACM SIGSPATIAL international
+  conference on Advances in geographic information systems - GIS '08}, page~1,
+  New York, New York, USA, Nov. 2008. ACM Press.
+
+\bibitem{Tominski2012}
+C.~Tominski, H.~Schumann, G.~Andrienko, and N.~Andrienko.
+\newblock {Stacking-Based Visualization of Trajectory Attribute Data}.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics},
+  18(12):2565--2574, Dec. 2012.
+
+\bibitem{6065020}
+Y.-S. Wang and M.-T. Chi.
+\newblock {Focus+Context Metro Maps}.
+\newblock {\em Visualization and Computer Graphics, IEEE Transactions on},
+  17(12):2528--2535, 2011.
+
+\bibitem{Yu2007}
+B.~Yu and Z.~Yang.
+\newblock {A dynamic holding strategy in public transit systems with real-time
+  information}.
+\newblock {\em Applied Intelligence}, 31(1):69--80, Dec. 2007.
 
 \end{thebibliography}
