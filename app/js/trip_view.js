@@ -144,13 +144,15 @@
                 people = [],
                 nodes;
 
-            console.log(trip);
+            console.log("Pay attention: ");
 
             for (var idx = 0; idx < trip.length; idx++) {
                 g = svg.append("g").attr("class","journal")
                 .attr("transform", "translate(" + outerx(trip[idx]) + "," + outery(tripNum) + ")");
 
-                people = d3.range(avePassengers(trip[idx])).map(function(x) { return {num: x, pid: tripNum + "-" + idx + "-" + x}; });
+                console.log(avePassengers(trip[idx]) + " passengers");
+                console.log(trip[idx]);
+                people = d3.range(1 + d3.min([35, avePassengers(trip[idx])])).map(function(x) { return {num: x, pid: tripNum + "-" + idx + "-" + x}; });
 
                 nodes = g.selectAll("rect")
                     .data(people)
