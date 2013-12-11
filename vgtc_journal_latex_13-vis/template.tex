@@ -29,6 +29,7 @@
 \usepackage{graphicx}
 \usepackage{times}
 \usepackage{epstopdf}
+\usepackage[utf8]{inputenc}
 
 %% We encourage the use of mathptmx for consistent usage of times font
 %% throughout the proceedings. However, if you encounter conflicts
@@ -74,22 +75,17 @@
 \author{Fan Du, Joshua Brulé, Peter Enns, Varun Manjunatha and Yoav Segev}
 \authorfooter{
 %% insert punctuation at end of each item
-\item F. Du, J. Brulé, V. Manjunatha and Y Segev are with the University of Maryland, College Park. E-mail: $\left\{fan|jbrule|varunm|segev\right\}$@cs.umd.edu.
-\item P Enns is with University of Maryland Institute for Advanced Computer Studies
+\item F. Du, J. Brulé, V. Manjunatha and Y Segev are graduate students at the University of Maryland, College Park. E-mail: $\left\{fan|jbrule|varunm|segev\right\}$@cs.umd.edu.
+\item P. Enns is affiliated with the University of Maryland Institute for Advanced Computer Studies
 . E-mail: peter@umiacs.umd.edu.
 }
 
-%other entries to be set up for journal
-\shortauthortitle{Biv \MakeLowercase{\textit{et al.}}: Global Illumination for Fun and Profit}
-%\shortauthortitle{Firstauthor \MakeLowercase{\textit{et al.}}: Paper Title}
-
 %% Abstract section.
 \abstract{
-% Motivation\\
-Understanding the quality and usage of public transportation resources is important for schedule optimization and resource allocation. Ridership and adherence are two main dimensions for evaluating the quality of service~\cite{camus2005estimation,hammerle2005use}. Using Automatic Vehicle Location (AVL), Automatic Passenger Count (APC), and Global Positioning System (GPS) data, ridership data and adherence data of public transportation can be collected. In this paper, we discuss the development of a visualization tool for exploring public transportation data. 
-We present the map view and the route to help users locate stops in the context of geography and routes information. To convey ridership and adherence information over years, we present a calendar view inspired by the calendar we use in our daily life. The calendar provides an overview of the data, and users can interactively select specific days to explore the trip details in the trip and stop components of the calendar view. 
-In the usability testing, three researchers from the Center For Advanced Transportation Technology (CATT), and six Computer Science PhD students from the University of Maryland took part in a study in which they used our tool to explore the bus transit data of Blacksburg, Virginia. The participants were able to use our tool to explore bus stops, bus routes and ridership and adherence of bus trips.
-} % end of abstract
+Understanding the quality and usage of public transportation resources is important for schedule optimization and resource allocation. Ridership and adherence are the two main dimensions for evaluating the quality of service \cite{camus2005estimation,hammerle2005use}. Using Automatic Vehicle Location (AVL), Automatic Passenger Count (APC), and Global Positioning System (GPS) data, ridership data and adherence data of public transportation can be collected. In this paper, we discuss the development of a visualization tool for exploring public transportation data. 
+We introduce `map view' and `route view' to help users locate stops in the context of geography and route information. To visualize ridership and adherence information over several years, we introduce `calendar view' - a miniaturized calendar that provides an overview of data where users can interactively select specific days to explore individual trips and stops (`trip view' and `stop view').
+MetroViz was evaluated via a series of usability tests that included researchers from the Center For Advanced Transportation Technology (CATT) and students from the University of Maryland - College Park in which test participants used the tool to explore three years of bus transit data from Blacksburg, Virginia.
+}
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
 %% please capitalize first letter and insert punctuation after last keyword
@@ -99,11 +95,11 @@ In the usability testing, three researchers from the Center For Advanced Transpo
 %% See <http://www.acm.org/class/1998/> for details.
 %% The ``\CCScat'' command takes four arguments.
 
-\CCScatlist{ % not used in journal version
- \CCScat{K.6.1}{Management of Computing and Information Systems}%
-{Project and People Management}{Life Cycle};
- \CCScat{K.7.m}{The Computing Profession}{Miscellaneous}{Ethics}
-}
+%%\CCScatlist{ % not used in journal version
+%% \CCScat{K.6.1}{Management of Computing and Information Systems}%
+%%{Project and People Management}{Life Cycle};
+%% \CCScat{K.7.m}{The Computing Profession}{Miscellaneous}{Ethics}
+%%}
 
 %% Uncomment below to include a teaser figure.
   \teaser{
