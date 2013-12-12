@@ -73,9 +73,8 @@
 \author{Fan Du, Joshua Brulé, Peter Enns, Varun Manjunatha and Yoav Segev}
 \authorfooter{
 %% insert punctuation at end of each item
-\item F. Du, J. Brulé, V. Manjunatha and Y Segev are with the University of Maryland, College Park. E-mail: $\left\{fan|jbrule|varunm|segev\right\}$@cs.umd.edu.
-\item P Enns is with University of Maryland Institute for Advanced Computer Studies
-. E-mail: peter@umiacs.umd.edu.
+\item F. Du, J. Brulé, V. Manjunatha and Y. Segev are with the University of Maryland, College Park. E-mail: $\left\{fan|jbrule|varunm|segev\right\}$@cs.umd.edu.
+\item P. Enns is with University of Maryland Institute for Advanced Computer Studies. E-mail: peter@umiacs.umd.edu.
 }
 
 %other entries to be set up for journal
@@ -86,8 +85,8 @@
 \abstract{
 % Motivation\\
 Understanding the quality and usage of public transportation resources is important for schedule optimization and resource allocation. Ridership and adherence are two main dimensions for evaluating the quality of service~\cite{camus2005estimation,hammerle2005use}. Using Automatic Vehicle Location (AVL), Automatic Passenger Count (APC), and Global Positioning System (GPS) data, ridership data and adherence data of public transportation can be collected. In this paper, we discuss the development of a visualization tool for exploring public transportation data. 
-We present the map view and the route to help users locate stops in the context of geography and routes information. To convey ridership and adherence information over years, we present a calendar view inspired by the calendar we use in our daily life. The calendar provides an overview of the data, and users can interactively select specific days to explore the trip details in the trip and stop components of the calendar view. 
-In the usability testing, three researchers from the Center For Advanced Transportation Technology (CATT), and six Computer Science PhD students from the University of Maryland took part in a study in which they used our tool to explore the bus transit data of Blacksburg, Virginia. The participants were able to use our tool to explore bus stops, bus routes and ridership and adherence of bus trips.
+We present the map view and the route view to help users locate stops in the context of geography and routes information. To convey ridership and adherence information over years, we present a calendar view inspired by the calendar we use in our daily life. The calendar provides an overview of the data, and users can interactively select specific days to explore the trip details in the trip and stop components of the calendar view. 
+In the usability testing, four researchers from the Center for Advanced Transportation Technology (CATT), and six Computer Science PhD students from the University of Maryland took part in a study in which they used our tool to explore the bus transit data of Blacksburg, Virginia. The participants were able to use our tool to explore bus stops, bus routes, ridership and adherence data of bus trips.
 } % end of abstract
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
@@ -143,7 +142,7 @@ Based on the three level model, our visual design consists of three views, inclu
 We present the map view and the route to help users locate stops in the context of geography and routes information. To convey ridership and adherence information over years, we present a calendar view inspired by the calendar we use in our daily life. The calendar provides an overview of the data, and users can interactively select specific days to explore the trip details in the trip and stop components of the calendar view. 
 Benefiting from the overview-to-detail design of the three views, our tool iteratively and progressively visualizes a small portion of the large-scale data at a time, which accelerates the query response and enables users to explore the data interactively.
 
-In the usability testing, three researchers from the Center for Advanced Transportation Technology (CATT), and six Computer Science PhD students from the University of Maryland took part in a study in which they used our tool to explore the bus transit data of Blacksburg, Virginia. The participants were able to use our tool to explore bus stops, bus routes, ridership and adherence data of bus trips.
+In the usability testing, four researchers from the Center for Advanced Transportation Technology (CATT), and six Computer Science PhD students from the University of Maryland took part in a study in which they used our tool to explore the bus transit data of Blacksburg, Virginia. The participants were able to use our tool to explore bus stops, bus routes, ridership and adherence data of bus trips.
 
 To the best of our knowledge, our work is the first to help users visually analyze public transportation data, as well as to allow users to interactively explore the large-scale time series ridership and adherence data over time. Our work presents three technical contributions.
 
@@ -176,7 +175,7 @@ Liu et al.~\cite{5958130} propose a bus trip planning system to help passengers 
 
 However, most of the research regarding AVL, APC and GPS data focus on developing algorithms to predict the travel time, to automatically optimize the bus scheduling, and to estimate the quality of service. To the best of our knowledge, there is no existing visual analysis tool that could aid service providers to interactively explore those data and gain insights using the advantages of their domain knowledge.
 
-\subsection{Spatial-temporal Data Visualization}
+\subsection{Spatio-temporal Data Visualization}
 Transportation data is a kind of spatio-temporal data. Public transportation modes follow scheduled routes and timetables, and allow passengers to board and alight at specific stops or stations. A lot of research regarding spatio-temporal data visualization focus on trajectory drawing. 
 Tominski et al.~\cite{Tominski2012} use a hybrid 2D/3D display to show the trajectories and associated attributes in their spatio-temporal context.
 Scheepens et al.~\cite{6065019} improve density maps to help explore trajectories using multiple density fields.
@@ -185,7 +184,7 @@ Cui et al.~\cite{4658140} propose an edge-clustering method to reduce edge cross
 Guo~\cite{5290710} develops a visualization framework to interactively explore large-scale spatio flows.
 Wang and Chi~\cite{6065020} introduce a focus+context method to visualize metro map on small displaying area of mobile devices.
 
-However, trajectories cannot effectively show data in both the spatio-temporal context and the ridership-adherence context simultaneously. In our design, we choose to use separated overview-to-detail interface to show stops / stations, routes and trips information on different levels of visualization.
+However, trajectories cannot effectively show data in both the spatio-temporal context and the ridership-adherence context simultaneously. In our design, we choose to use an overview-to-detail interface to show stops / stations, routes and trips information on different levels of visualization.
 
 \section{System Overview}
 MetroViz is organized into three primary views: map view (Fig.~\ref{map_view}), route view (Fig.~\ref{map_view}) and calendar view (Fig.~\ref{calendar_view_big}). Those views are designed visualize several dimensions of public transportation datasets at important levels of detail, and allow the user to zoom in on the data they wish to explore and filter out extraneous details.

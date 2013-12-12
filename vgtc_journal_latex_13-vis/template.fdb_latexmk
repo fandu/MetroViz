@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex template"] 1386332003 "template.aux" "template.bbl" "template" 1386332005
+["bibtex template"] 1386650432 "template.aux" "template.bbl" "template" 1386650800
   "/usr/local/texlive/2013/texmf-dist/bibtex/bst/base/abbrv.bst" 1292289607 20329 b5fed53e10044d0f8112183785c759b1 ""
-  "template.aux" 1386332004 4132 998d4c29cdc8d2020634a7abbc5a97a2 ""
+  "template.aux" 1386650799 4131 e0144b8b225a72fd3a854809e2d634b7 ""
   "template.bcf" 0 -1 0 ""
   "template.bib" 1386214582 33875 624e32e6f7910a7d35ba94e8dda3bec0 ""
   (generated)
   "template.blg"
   "template.bbl"
-["pdflatex"] 1386332004 "template.tex" "template.pdf" "template" 1386332005
+["pdflatex"] 1386650799 "template.tex" "template.pdf" "template" 1386650800
   "/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2013/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2013/texmf-dist/fonts/tfm/adobe/helvetic/phvb7t.tfm" 1136768653 2240 eb56c13537f4d8a0bd3fafc25572b1bd ""
@@ -97,10 +97,10 @@
   "img/image07.pdf" 1386318882 45685 8cad17cda44e223a0a18a259bfb5fa63 ""
   "img/image08.pdf" 1386318882 120461 f59ffa2239348ad5506718d42640317a ""
   "img/image10.pdf" 1386318892 110542 669946dc40406e51890a88ddba87a6ad ""
-  "template.aux" 1386332004 4132 998d4c29cdc8d2020634a7abbc5a97a2 ""
-  "template.bbl" 1386332004 4218 c412e032450ba72ff3a4079f599d78e5 "bibtex template"
-  "template.out" 1386332004 922 661220052377a65c368e7a4cdf03d069 ""
-  "template.tex" 1386331992 36699 dd94ced6e2ce5e3b99c061160e9bca76 ""
+  "template.aux" 1386650799 4131 e0144b8b225a72fd3a854809e2d634b7 ""
+  "template.bbl" 1386650432 4218 c412e032450ba72ff3a4079f599d78e5 "bibtex template"
+  "template.out" 1386650799 921 a3624825e2427811d9ae73f14c7b8e0f ""
+  "template.tex" 1386650796 36697 366156d1fa6c413c6bab4fd552c50e2d ""
   "vgtc.cls" 1375214546 27571 054891544dd7362ea4f94466832bb894 ""
   (generated)
   "template.aux"
