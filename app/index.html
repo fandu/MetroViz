@@ -112,8 +112,10 @@ var switchToStopView = function() {
         $("#subview-container").empty();
         $("#subview-container2").empty();
         $("#date").text(d[0].date.toDateString());
+        $("#subview-container").html("<h2 style='text-align: center'>Average Earlyness/Lateness (minutes) by hour</h2>");
+        $("#subview-container2").html("<h2 style='text-align: center'>Average Ridership (APC boardings) by hour</h2>");
         aggregate_bar_adhere(d, 860, 410, "subview-container");
-        aggregate_bar_pop(d, 860, 290, "subview-container2");
+        aggregate_bar_pop(d, 860, 250, "subview-container2");
         $('#container').scrollTop($('#container')[0].scrollHeight);
     });
 };

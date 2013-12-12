@@ -30,17 +30,17 @@ var DEFAULT_HEIGHT = 320;
 var scale_max = 30;
 var pop_max = 20;
 var bar_chart_options = {scaleOverride: true, scaleStartValue: 0,
-                         scaleStepWidth: 1, scaleSteps: scale_max, scaleFontSize: 14};
+                         scaleStepWidth: 1, scaleSteps: scale_max, scaleFontSize: 12};
 var bar_chart_options_pop = {scaleOverride: true, scaleStartValue: 0, scaleLineColor: "rgba(0,0,0,1)",
-scaleLineWidth: 2, scaleStepWidth: 1, scaleSteps: pop_max, scaleFontSize: 14, scaleGridLineColor: "rgba(0,0,0,.2)"};
+scaleLineWidth: 2, scaleStepWidth: 1, scaleSteps: pop_max, scaleFontSize: 13, scaleGridLineColor: "rgba(0,0,0,.2)"};
 var bar_chart_options_stacked = {scaleOverride: true, scaleStartValue: -scale_max, stacked: true,
                                 scaleLineColor: "rgba(0,0,0,1)", scaleLineWidth: 2,
                                  scaleStepWidth: 2, scaleSteps: scale_max, scaleFontSize: 14, scaleGridLineColor: "rgba(0,0,0,.2)"};
 var line_chart_options = {scaleOverride: true, scaleStartValue: -scale_max,
-                          scaleStepWidth: 1, scaleSteps: scale_max * 2, scaleFontSize: 14};
+                          scaleStepWidth: 1, scaleSteps: scale_max * 2, scaleFontSize: 12};
 var radar_chart_options = {scaleOverride: true, pointDotRadius: 3, pointDotStrokeWidth: 0, datasetStrokeWidth: 3, angleShowLineOut: true,
                            datasetStroke: false,
-                           scaleStepWidth: 1, scaleSteps: pop_max, scaleFontSize: 14};
+                           scaleStepWidth: 1, scaleSteps: pop_max, scaleFontSize: 12};
 
 /**
  * Sort array of objects by key.

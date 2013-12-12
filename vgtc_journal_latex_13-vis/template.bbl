@@ -1,5 +1,9 @@
 \begin{thebibliography}{10}
 
+\bibitem{d3calendar}
+M.~Bostock.
+\newblock Calendar view.
+
 \bibitem{camus2005estimation}
 R.~Camus, G.~Longo, and C.~Macorini.
 \newblock {Estimation of transit reliability level-of-service based on
