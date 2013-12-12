@@ -130,15 +130,14 @@ MetroViz was evaluated via a series of usability tests that included researchers
 \maketitle
 
 %% \section{Introduction} %for journal use above \firstsection{..} instead
-Public transportation modes follow scheduled routes and timetables, and allow passengers to board and alight at specific stops or stations. Most research regarding AVL, APC and GPS data focus on developing algorithms to predict the travel time~\cite{Lee:2012:HNF:2424321.2424357,Tiesyte2008,Predic2007}, to automatically optimize the bus scheduling~\cite{4658140,Yu2007}, and to estimate the quality of service~\cite{camus2005estimation,hammerle2005use}. To the best of our knowledge, there is no existing visualization tool that could aid service providers to interactively explore those data and gain insights using the advantages of their domain knowledge.
+Public transportation follows scheduled routes and timetables, and allows passengers to board and alight at specific stops or stations. Most research regarding AVL, APC and GPS data focuses on developing algorithms to predict the travel time \cite{Lee:2012:HNF:2424321.2424357,Tiesyte2008,Predic2007}, to automatically optimize scheduling \cite{4658140,Yu2007}, and to estimate the quality of service \cite{camus2005estimation,hammerle2005use}. To the best of our knowledge, there is no existing visualization tool to aid service providers in interactively exploring \emph{all} of this data with the same tool to help gain insight using the advantages of their domain knowledge.
 
-There are three technical challenges that we believe are critical to visually analyze the ridership and adherence data of public transportation over time. The first challenge is how to design a general data model that can be applied to different public transportation modes. The second challenge is how to design the interface to show the stops / stations, routes, trips, ridership and adherence simultaneously. The third challenge is how to process the large-scale time series data and develop an interactive visual analysis tool.
+There are three technical challenges that we believe are critical to visually analyze the ridership and adherence data of public transportation over time. The first challenge is to design a general data model that can be applied to different public transportation modes. The second challenge is to design the interface to show the stops/stations, routes, trips, ridership and adherence simultaneously. The third challenge is how to process the large-scale time series data and develop an interactive visual analysis tool.
 
 To address these challenges, we have developed MetroViz, an interactive visual analysis tool that helps users explore public transportation data, and evaluate how the public transportation is serving the public. 
-We model the public transportation data into three levels: 1) the stop / station level, 2) the route level and 3) the trip level. As most public transportation modes follow scheduled routes and timetables, and allow passengers to board and alight at specific stops or stations, our model as well as our visual analysis tool can be applied to different public transportation modes. 
-Based on the three level model, our visual design consists of three views, including the map view, the route view and calendar view. 
-We present the map view and the route to help users locate stops in the context of geography and routes information. To convey ridership and adherence information over years, we present a calendar view inspired by the calendar we use in our daily life. The calendar provides an overview of the data, and users can interactively select specific days to explore the trip details in the trip and stop components of the calendar view. 
-Benefiting from the overview-to-detail design of the three views, our tool iteratively and progressively visualizes a small portion of the large-scale data at a time, which accelerates the query response and enables users to explore the data interactively.
+We model the public transportation data by separating it into three levels: 1) the stop/station level, 2) the route level and 3) the trip level. As most public transportation modes follow scheduled routes and timetables, and only allow passengers to board and alight at specific stops or stations, our model and tool can be applied to many different public transportation modes.
+Based on the three level model, our visual design consists of three views: the map view, the route view and the calendar view.
+We present a map and route view to help users locate stops in the context of geography and route information. To convey ridership and adherence information over years, we present a calendar view inspired by Mike Bostock's D3 calendar \cite{d3calendar}. The calendar provides an overview of the data from which users can interactively select specific days to explore the details in the trip and stop components of the calendar view.
 
 In the usability testing, three researchers from the Center for Advanced Transportation Technology (CATT), and six Computer Science PhD students from the University of Maryland took part in a study in which they used our tool to explore the bus transit data of Blacksburg, Virginia. The participants were able to use our tool to explore bus stops, bus routes, ridership and adherence data of bus trips.
 
@@ -354,7 +353,7 @@ Finally, higher quality data would be ideal and would allow for a better evaluat
 % \acknowledgments{
 % }
 
-\bibliographystyle{abbrv}
+%\bibliographystyle{abbrv}
 %%use following if all content of bibtex file should be shown
 %\nocite{*}
 \bibliography{template}
