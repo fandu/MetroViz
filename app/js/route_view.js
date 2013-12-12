@@ -335,6 +335,7 @@ d3.json("./data/routes3.json", function(data) {
             .style("fill", function(d,i){
 
                 if(d.name == clicked_stop_name){
+                    map_highlightStops([clicked_stop_name]);
                     svg.append("text")
                     .attr("id", "tooltip5")
                     .attr("x", d3.select(this).attr("cx"))
@@ -418,6 +419,7 @@ d3.json("./data/routes3.json", function(data) {
 	        d3.select(g).selectAll("circle").transition().attr("stroke-width", 1).attr("r", "5");
 	        d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill", function(d,i){
                 if(d.name == clicked_stop_name){
+                    map_highlightStops([clicked_stop_name]);
                     svg.append("text")
                     .attr("id", "tooltip5")
                     .attr("x", d3.select(this).attr("cx"))
