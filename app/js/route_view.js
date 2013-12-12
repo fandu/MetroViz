@@ -60,6 +60,8 @@ d3.json("./data/routes3.json", function(data) {
     var y_offset = 5;
     var isTextMouseClicked = 0;
     var isStopClicked = 0;
+    var clicked_stop_name = "";
+    var clicked_stop_number = 0;
 
     for (var j = 0; j < data.length; j++) {
 
@@ -95,6 +97,7 @@ d3.json("./data/routes3.json", function(data) {
         	.on("mouseover", circle_mouseover)
             .on("mouseout", circle_mouseout)
             .on("click", circle_mouseclick);
+            
 
 
         g.append("text")
@@ -120,14 +123,15 @@ d3.json("./data/routes3.json", function(data) {
 
     function send_to_r_v(stop_name) {
         // highlight the stops
+
         d3.selectAll("#tooltip4").remove();
         console.log("Send to rv"+stop_name);
         d3.selectAll("#route_id circle").transition().style("fill",
             function(d, i) {
                 
                 if (d.name == stop_name) {
-
-
+                    
+                    
 
                 xin = Math.round(d3.select(this).attr("cx") / x_gap);
 
@@ -142,19 +146,6 @@ d3.json("./data/routes3.json", function(data) {
             		.attr("fill", "black")
             		.text("#"+(xin+1)+" "+stop_name);
                 //}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     return "red";
                 } else {
@@ -176,6 +167,7 @@ d3.json("./data/routes3.json", function(data) {
     api_highlight_given_name = highlight_given_name;
 
     function highlight_given_name(stop_name) {
+        console.log("Hightlight given name");
 //        d3.selectAll("#route_id circle").transition().attr("stroke-width", 1).attr("r", 5).style("fill", "#6cb3f8");
 		d3.selectAll("#tooltip2").remove();
 		//console.log("inside highlight given name "+stop_name);
@@ -184,7 +176,7 @@ d3.json("./data/routes3.json", function(data) {
                 //console.log(d);
                 if (d.name == stop_name) {
                 	xin = Math.round(d3.select(this).attr("cx") / x_gap);
-
+                    clicked_stop_name = stop_name;
                    	svg.append("text")
             		.attr("id", "tooltip2")
             		.attr("x", d3.select(this).attr("cx"))
@@ -219,9 +211,10 @@ d3.json("./data/routes3.json", function(data) {
 
     	// remove all tooltips
     	d3.selectAll("#tooltip").remove();
-	    	d3.selectAll("#tooltip1").remove();
-	    	d3.selectAll("#tooltip2").remove();
-	    	d3.selectAll("#tooltip4").remove();
+	    d3.selectAll("#tooltip1").remove();
+	    d3.selectAll("#tooltip2").remove();
+	    d3.selectAll("#tooltip4").remove();
+        d3.selectAll("#tooltip5").remove();
 
     	isTextMouseClicked = 0;
     	isStopClicked = 0;
@@ -259,6 +252,7 @@ d3.json("./data/routes3.json", function(data) {
             .attr("font-size", "9px")
             .attr("font-weight", "normal")
             .attr("fill", "black")
+            .style("opacity",1)
             .text("#"+(xindex+1)+" "+stop_name);
 
 
@@ -320,6 +314,7 @@ d3.json("./data/routes3.json", function(data) {
 
     function circle_mouseout() {
     	
+        //console.log(clicked_stop_name);
     	if(isStopClicked != 1){
 	    	isTextMouseClicked = 0;
 	    	d3.selectAll("#tooltip").remove();
@@ -334,7 +329,28 @@ d3.json("./data/routes3.json", function(data) {
 	        stop_name = data[yindex].routes[xindex].name;
 	        //map_unhighlightStops([stop_name]);
 
-	        d3.selectAll("#route_id circle").attr("stroke-width", 1).style("fill", "#6cb3f8").attr("r", "5");
+
+	        d3.selectAll("#route_id circle")
+            .attr("stroke-width", 1)
+            .style("fill", function(d,i){
+
+                if(d.name == clicked_stop_name){
+                    svg.append("text")
+                    .attr("id", "tooltip5")
+                    .attr("x", d3.select(this).attr("cx"))
+                    .attr("y", d3.select(this).attr("cy")-10)
+                    .attr("text-anchor", "start")
+                    .attr("font-family", "sans-serif")
+                    .attr("font-size", "9px")
+                    .attr("font-weight", "normal")
+                    .attr("fill", "black")
+                    .text("#"+" "+clicked_stop_name);
+                    return "red";
+                }
+                else
+                    return "6cb3f8";
+            })
+            .attr("r", "5");
 	    	//isStopClicked = 0;    
 		}
 		
@@ -349,11 +365,13 @@ d3.json("./data/routes3.json", function(data) {
 	    d3.selectAll("#tooltip1").remove();
 	    d3.selectAll("#tooltip2").remove();
 	    d3.selectAll("#tooltip4").remove();
+        d3.selectAll("#tooltip5").remove();
     	if(isTextMouseClicked == 1){
     		//console.log("isTextMouseClicked = "+isTextMouseClicked);
 	        var g = d3.select(this).node().parentNode;
 	        d3.select(g).selectAll("circle").transition().attr("stroke-width", 1).attr("r", "5");
 	        d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill","#6cb3f8");
+            //d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill",""             });
 	        var ypos = d3.select(this).attr("y");
 	        yindex = Math.round((ypos - y_offset) / y_gap);
 	        //console.log(this);
@@ -388,11 +406,34 @@ d3.json("./data/routes3.json", function(data) {
     }
 
     function mouseout() {
+        d3.selectAll("#tooltip").remove();
+        d3.selectAll("#tooltip1").remove();
+        d3.selectAll("#tooltip2").remove();
+        d3.selectAll("#tooltip4").remove();
+        d3.selectAll("#tooltip5").remove();
+
     	console.log("textMouseout "+isTextMouseClicked);
     	if(isTextMouseClicked == 0){
 	        var g = d3.select(this).node().parentNode;
 	        d3.select(g).selectAll("circle").transition().attr("stroke-width", 1).attr("r", "5");
-	        d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill","#6cb3f8");
+	        d3.select(g).selectAll("circle").attr("stroke-width", 1).attr("r", "5").style("fill", function(d,i){
+                if(d.name == clicked_stop_name){
+                    svg.append("text")
+                    .attr("id", "tooltip5")
+                    .attr("x", d3.select(this).attr("cx"))
+                    .attr("y", d3.select(this).attr("cy")-10)
+                    .attr("text-anchor", "start")
+                    .attr("font-family", "sans-serif")
+                    .attr("font-size", "9px")
+                    .attr("font-weight", "normal")
+                    .attr("fill", "black")
+                    .text("#"+" "+clicked_stop_name);
+                    return "red";
+                }
+                else
+                    return "#6cb3f8";
+
+                });
 	        var ypos = d3.select(this).attr("y");
 	        yindex = Math.round((ypos - y_offset) / y_gap);
 	        //console.log(this);
@@ -437,8 +478,12 @@ d3.json("./data/routes3.json", function(data) {
         xindex = Math.round(xpos / x_gap); //these numbers are really important
         yindex = Math.round((ypos - y_offset) / y_gap);
         var selected_stop_ID = data[yindex].routes[xindex].stopId;
-        //console.log(selected_stop_ID);
         
+        d3.select(this).style("fill","red");
+
+        clicked_stop_name = data[yindex].routes[xindex].name;    
+        clicked_stop_number = xindex;   
+
         switchToStopView();
         processStopAdherenceRidership(selected_stop_ID, function(data) {
             var cvfmt = convertToCalViewFmt(data);
