@@ -9,7 +9,7 @@ fareTypeColor.push({
 });
 fareTypeColor.push({
     "type": "Full Pass",
-    "color": "#4DAF4A"
+    "color": "#A65628"
 });
 fareTypeColor.push({
     "type": "Half Fare",
@@ -25,7 +25,7 @@ fareTypeColor.push({
 });
 fareTypeColor.push({
     "type": "Student",
-    "color": "#A65628"
+    "color": "#4DAF4A"
 });
 fareTypeColor.push({
     "type": "TOB ID",
