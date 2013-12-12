@@ -35,7 +35,7 @@
 }
 #map_id .map_stop.fade {
     stroke: none;
-    fill-opacity: 0.1;
+    fill-opacity: 0.0;
 }
 #map_id .map_stop.mouseon {
     fill: red;
