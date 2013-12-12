@@ -129,8 +129,9 @@
             .attr("class", function(d) { return "day " + scale(d); })
             .text(function(d) { return d + ": " + percent(d); });
 
+        var maxStr = "" + max;
         legend.append("span")
-            .text(" " + max);
+            .text(" " + maxStr.split('.')[0] + '.' + maxStr.split('.')[1].slice(0, 2));
     }
 
     switchCalType = function(calType) {
