@@ -2,6 +2,8 @@ MetroViz
 ========
 MetroViz: Visual Analysis of Public Transportation Data, Blacksburg, VA.
 
+![Screenshot](http://i.imgur.com/PGDZESE.png)
+
 Usage
 =====
 Running MetroViz requires python2 or python3 with cherrypy installed and the following database file (too large to be included directly in the git repo):
