@@ -12,3 +12,11 @@ MetroViz is an interactive visual analysis tool that helps users explore public 
 
 ### Paper
 * [MetroViz: Visual Analysis of Public Transportation Data](https://arxiv.org/abs/1507.05215)
+```
+@article{du2015metroviz,
+  title={Metroviz: Visual analysis of public transportation data},
+  author={Du, Fan and Brul{\'e}, Joshua and Enns, Peter and Manjunatha, Varun and Segev, Yoav},
+  journal={arXiv preprint arXiv:1507.05215},
+  year={2015}
+}
+```
